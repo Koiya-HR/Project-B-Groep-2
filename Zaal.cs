@@ -377,8 +377,8 @@ public class Zaal
                 (true, false, true) => "blue",
                 (true, true, true) => "darkBlue",
                 (false, true, false) => "red",
-                (false, true, true) => "blue_but_wrong",
-                (false, false, true) => "selected_not_free",
+                (false, true, true) => "porblem 1",
+                (false, false, true) => "problem 2",
 
             };
             // stoel.chairColor = result;
