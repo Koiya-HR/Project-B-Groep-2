@@ -76,7 +76,6 @@ namespace TicketSystem
                         selectedOption++;
                 }
             }
-            Environment.Exit(0);
         }
     }
 }
