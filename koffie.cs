@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-class Koffie
+public class Koffie
 {
     public static void Drank()
     {
