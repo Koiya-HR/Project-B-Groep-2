@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 class Koffie
 {
-    public static void Main()
+    public static void Drank()
     {
         ConsoleKeyInfo choice;
         int selectedIndex = 0;
