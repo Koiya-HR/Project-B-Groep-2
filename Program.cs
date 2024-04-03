@@ -10,7 +10,7 @@ public class Program
         bool run = true;
         while (run)
         {
-            Console.WriteLine("1: show seats \n2: show tickets \n3: quit");
+            Console.WriteLine("1: show seats \n2: show tickets \n3: koffie \n4: cancel reservation \n5: quit");
             string? input = Console.ReadLine();
             switch (input)
             {
@@ -21,6 +21,12 @@ public class Program
                     showTickets();
                     break;
                 case "3":
+                    Koffie.Drank();
+                    break;
+                case "4":
+                    Reservation.CancelReservation();
+                    break;
+                case "5":
                     run = false;
                     break;
                 default:

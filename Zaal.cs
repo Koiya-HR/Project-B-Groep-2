@@ -58,6 +58,7 @@ public class Zaal
                     //     stoelArray[oldRow, oldCol].selected = true;
                     //     stoelArray[oldRow, oldCol].free = false;
                     // }
+                    canBeSelectedCheck(newRow, newCol);
                     if (!stoelArray[oldRow, oldCol].selected && stoelArray[oldRow, oldCol].free)
                     {
                         stoelArray[oldRow, oldCol].selected = true;
@@ -110,165 +111,185 @@ public class Zaal
         }
     }
 
-    private bool canBeSelectedCheck(int rowToCheck, int colToCheck)
+    private void canBeSelectedCheck(int rowToCheck, int colToCheck)
     {
-        if (stoelArray[rowToCheck, colToCheck].selected)
-        {
-            if (stoelArray[rowToCheck, colToCheck].invalide)
-            {
-                if (colToCheck == stoelArray.GetLength(1))
-                {
-                    if (stoelArray[rowToCheck, colToCheck - 1].free)
-                    {
-                        stoelArray[rowToCheck, colToCheck].selected = false;
-                        stoelArray[rowToCheck, colToCheck].free = true;
-                        return false;
-                    }
-                }
-                else if (stoelArray[rowToCheck, colToCheck + 1].free)
-                {
-                    stoelArray[rowToCheck, colToCheck].selected = false;
-                    stoelArray[rowToCheck, colToCheck].free = true;
-                    return false;
-                }
-            }
-            if (stoelArray[rowToCheck, colToCheck - 1].free || stoelArray[rowToCheck, colToCheck + 1].free)
-            {
-                stoelArray[rowToCheck, colToCheck].selected = false;
-                stoelArray[rowToCheck, colToCheck].free = true;
-                return false;
-            }
-            return false;
-        }
         bool isFirstChair = true;
-        int selectingRow = 9999;
-        int optionLeft = 9999;
-        int optionRight = 9999;
-        foreach (Stoel rij in stoelArray)
+        int firstRow = 0;
+        int firstCol = 0;
+        for (int i = 0; i < stoelArray.GetLength(0); i++)
         {
-            foreach (Stoel stoel in stoelArray)
+            for (int j = 0; j < stoelArray.GetLength(1); j++)
             {
-                if (stoel.selected && isFirstChair)
+                if (stoelArray[i, j].selected)
                 {
-                    selectingRow = stoel.row;
                     isFirstChair = false;
-                    if (stoel.col == 0)
-                    {
-                        optionLeft = 9999;
-                    }
-                    else if (stoel.col == stoel.maxChairs)
-                    {
-                        optionRight = 9999;
-                    }
-                    else
-                    {
-                        optionLeft = stoel.col - 1;
-                    }
-
-                }
-                else if (stoel.selected && !isFirstChair)
-                {
-                    if (stoel.col < stoel.maxChairs)
-                    {
-                        if (stoelArray[stoel.row, stoel.col + 1].free == true)
-                        {
-                            optionRight = stoel.col;
-                            break;
-                        }
-                    }
+                    firstRow = i;
+                    firstCol = j;
                 }
             }
         }
-
-        if (stoelArray[rowToCheck, colToCheck].free)
+        if (!isFirstChair)
         {
-            if (isFirstChair)
-            {
-                if (stoelArray[rowToCheck, colToCheck].invalide)
-                {
-                    if (numInvalideTickets > 0)
-                    {
-                        if (colToCheck == stoelArray.GetLength(1))
-                        {
-                            if (stoelArray[rowToCheck, colToCheck - 1].free &&
-                                stoelArray[rowToCheck, colToCheck - 2].free ||
-                                !stoelArray[rowToCheck, colToCheck - 1].free)
-                            {
-                                return true;
-                            }
-                            return false;
-                        }
-                        else
-                        {
-                            if (stoelArray[rowToCheck, colToCheck + 1].free &&
-                                stoelArray[rowToCheck, colToCheck + 2].free ||
-                                !stoelArray[rowToCheck, colToCheck + 1].free)
-                            {
-                                return true;
-                            }
-                            return false;
-                        }
-                    }
-                    return false;
-                }
-                else
-                {
-                    Console.WriteLine($"row {rowToCheck}, col {colToCheck}");
-                    if (stoelArray[rowToCheck, colToCheck + 1].free &&
-                        stoelArray[rowToCheck, colToCheck + 2].free ||
-                        !stoelArray[rowToCheck, colToCheck + 1].free)
-                    {
-                        if (stoelArray[rowToCheck, colToCheck - 1].free &&
-                            stoelArray[rowToCheck, colToCheck - 2].free ||
-                            !stoelArray[rowToCheck, colToCheck - 1].free)
-                        {
-                            return true;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-            }
-            else if (!isFirstChair)
-            {
-                if (selectingRow != 9999)
-                {
-                    if (rowToCheck == selectingRow)
-                    {
-                        if (colToCheck == optionLeft)
-                        {
-                            if (stoelArray[rowToCheck, colToCheck].invalide)
-                            {
-                                if (numInvalideTickets > 0)
-                                {
-                                    return true;
-                                }
-                                return false;
-                            }
-                        }
-                        else if (colToCheck == optionRight)
-                        {
-                            if (stoelArray[rowToCheck, colToCheck].invalide)
-                            {
-                                if (numInvalideTickets > 0)
-                                {
-                                    return true;
-                                }
-                                return false;
-                            }
-                        }
-                    }
-                }
-                return false;
-            }
-            return false;
+            Console.WriteLine($"is first chair: {firstRow}-{firstCol}");
         }
-
-
-
-        return false;
-
     }
+    // {
+    //     if (stoelArray[rowToCheck, colToCheck].selected)
+    //     {
+    //         if (stoelArray[rowToCheck, colToCheck].invalide)
+    //         {
+    //             if (colToCheck == stoelArray.GetLength(1))
+    //             {
+    //                 if (stoelArray[rowToCheck, colToCheck - 1].free)
+    //                 {
+    //                     stoelArray[rowToCheck, colToCheck].selected = false;
+    //                     stoelArray[rowToCheck, colToCheck].free = true;
+    //                     return false;
+    //                 }
+    //             }
+    //             else if (stoelArray[rowToCheck, colToCheck + 1].free)
+    //             {
+    //                 stoelArray[rowToCheck, colToCheck].selected = false;
+    //                 stoelArray[rowToCheck, colToCheck].free = true;
+    //                 return false;
+    //             }
+    //         }
+    //         if (stoelArray[rowToCheck, colToCheck - 1].free || stoelArray[rowToCheck, colToCheck + 1].free)
+    //         {
+    //             stoelArray[rowToCheck, colToCheck].selected = false;
+    //             stoelArray[rowToCheck, colToCheck].free = true;
+    //             return false;
+    //         }
+    //         return false;
+    //     }
+    //     bool isFirstChair = true;
+    //     int selectingRow = 9999;
+    //     int optionLeft = 9999;
+    //     int optionRight = 9999;
+    //     foreach (Stoel rij in stoelArray)
+    //     {
+    //         foreach (Stoel stoel in stoelArray)
+    //         {
+    //             if (stoel.selected && isFirstChair)
+    //             {
+    //                 selectingRow = stoel.row;
+    //                 isFirstChair = false;
+    //                 if (stoel.col == 0)
+    //                 {
+    //                     optionLeft = 9999;
+    //                 }
+    //                 else if (stoel.col == stoel.maxChairs)
+    //                 {
+    //                     optionRight = 9999;
+    //                 }
+    //                 else
+    //                 {
+    //                     optionLeft = stoel.col - 1;
+    //                 }
+    //             }
+    //             else if (stoel.selected && !isFirstChair)
+    //             {
+    //                 if (stoel.col < stoel.maxChairs)
+    //                 {
+    //                     if (stoelArray[stoel.row, stoel.col + 1].free == true)
+    //                     {
+    //                         optionRight = stoel.col;
+    //                         break;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     if (stoelArray[rowToCheck, colToCheck].free)
+    //     {
+    //         if (isFirstChair)
+    //         {
+    //             if (stoelArray[rowToCheck, colToCheck].invalide)
+    //             {
+    //                 if (numInvalideTickets > 0)
+    //                 {
+    //                     if (colToCheck == stoelArray.GetLength(1))
+    //                     {
+    //                         if (stoelArray[rowToCheck, colToCheck - 1].free &&
+    //                             stoelArray[rowToCheck, colToCheck - 2].free ||
+    //                             !stoelArray[rowToCheck, colToCheck - 1].free)
+    //                         {
+    //                             return true;
+    //                         }
+    //                         return false;
+    //                     }
+    //                     else
+    //                     {
+    //                         if (stoelArray[rowToCheck, colToCheck + 1].free &&
+    //                             stoelArray[rowToCheck, colToCheck + 2].free ||
+    //                             !stoelArray[rowToCheck, colToCheck + 1].free)
+    //                         {
+    //                             return true;
+    //                         }
+    //                         return false;
+    //                     }
+    //                 }
+    //                 return false;
+    //             }
+    //             else
+    //             {
+    //                 Console.WriteLine($"row {rowToCheck}, col {colToCheck}");
+    //                 if (stoelArray[rowToCheck, colToCheck + 1].free &&
+    //                     stoelArray[rowToCheck, colToCheck + 2].free ||
+    //                     !stoelArray[rowToCheck, colToCheck + 1].free)
+    //                 {
+    //                     if (stoelArray[rowToCheck, colToCheck - 1].free &&
+    //                         stoelArray[rowToCheck, colToCheck - 2].free ||
+    //                         !stoelArray[rowToCheck, colToCheck - 1].free)
+    //                     {
+    //                         return true;
+    //                     }
+    //                     return false;
+    //                 }
+    //                 return false;
+    //             }
+    //         }
+    //         else if (!isFirstChair)
+    //         {
+    //             if (selectingRow != 9999)
+    //             {
+    //                 if (rowToCheck == selectingRow)
+    //                 {
+    //                     if (colToCheck == optionLeft)
+    //                     {
+    //                         if (stoelArray[rowToCheck, colToCheck].invalide)
+    //                         {
+    //                             if (numInvalideTickets > 0)
+    //                             {
+    //                                 return true;
+    //                             }
+    //                             return false;
+    //                         }
+    //                     }
+    //                     else if (colToCheck == optionRight)
+    //                     {
+    //                         if (stoelArray[rowToCheck, colToCheck].invalide)
+    //                         {
+    //                             if (numInvalideTickets > 0)
+    //                             {
+    //                                 return true;
+    //                             }
+    //                             return false;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //             return false;
+    //         }
+    //         return false;
+    //     }
+
+
+
+    //     return false;
+
+    // }
 
 
     private void printInfo()
@@ -377,7 +398,7 @@ public class Zaal
                 (true, false, true) => "blue",
                 (true, true, true) => "darkBlue",
                 (false, true, false) => "red",
-                (false, true, true) => "porblem 1",
+                (false, true, true) => "problem 1",
                 (false, false, true) => "problem 2",
 
             };
