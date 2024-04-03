@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 
 
+
+
 public class Ticket
 {
-    public string Film { get; set; }
-    public string Genre { get; set; }
+    public string? Film { get; set; }
+    public string? Genre { get; set; }
     public int Stoelen { get; set; }
     public double Prijs { get; set; }
 }
@@ -19,8 +21,9 @@ public class TicketController
     public TicketController(string jsonFilePath)
     {
         string jsonData = File.ReadAllText(jsonFilePath);
-        tickets = JsonConvert.DeserializeObject<List<Ticket>>(jsonData);
+        tickets = JsonConvert.DeserializeObject<List<Ticket>>(jsonData)!;
     }
+
 
     public void ShowTicketInfo()
     {
@@ -33,13 +36,19 @@ public class TicketController
             Console.WriteLine($"Prijs: {ticket.Prijs:C}");
             Console.WriteLine();
         }
+        if (tickets.Count == 0)
+        {
+            Console.WriteLine("je hebt geen tickets");
+        }
     }
 
     public void ShowTotalAmount()
     {
+        double prijs = 0;
         foreach (Ticket ticket in tickets)
         {
-            Console.WriteLine($"Totaalbedrag voor alle tickets: {ticket.Prijs:C}");
+            prijs += ticket.Prijs;
         }
+        Console.WriteLine($"Totaalbedrag voor alle tickets: {prijs:C}");
     }
 }
