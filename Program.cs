@@ -1,5 +1,3 @@
-
-
 using System.Runtime.Intrinsics.Arm;
 
 public class Program
@@ -12,7 +10,7 @@ public class Program
         bool run = true;
         while (run)
         {
-            Console.WriteLine("1: show seats \n2: show tickets \n3: drank \n4: quit");
+            Console.WriteLine("1: show seats \n2: show tickets \n3: koffie \n4: cancel reservation \n5: quit");
             string? input = Console.ReadLine();
             switch (input)
             {
@@ -26,6 +24,9 @@ public class Program
                     Koffie.Drank();
                     break;
                 case "4":
+                    Reservation.CancelReservation();
+                    break;
+                case "5":
                     run = false;
                     break;
                 default:
