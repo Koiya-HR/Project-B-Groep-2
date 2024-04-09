@@ -6,6 +6,8 @@ public class Program
 {
     public static void Main()
     {
+        StartScreen.Screen();
+
         Zaal zaal = new(10, 23);
         bool run = true;
         while (run)
