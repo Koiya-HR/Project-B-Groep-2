@@ -1,22 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-
-public class Film
+namespace MiniProj
 {
-
-    public string Title;
-
-
-    private int _length;
-
-    public int Length
+    public class Film
     {
-        get { return _length; }
-        set { _length = value <= 0 ? 1 : value; }
-    }
-
-    public Film(string title, int length)
-    {
-        Title = title;
-        Length = length;
+        public string Naam { get; set; }
+        public string Genre { get; set; }
+        public string Acteurs { get; set; }
+        public string Omschrijving { get; set; }
+        public string ReleaseDatum { get; set; }
+        public int Duur { get; set; }
     }
 }
