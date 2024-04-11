@@ -1,0 +1,5 @@
+C:\Users\no1al\OneDrive\Documenten\GitHub\Project-B-Groep-2\Pathe@hr\obj\Debug\net8.0\Pathe@hr.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\no1al\OneDrive\Documenten\GitHub\Project-B-Groep-2\Pathe@hr\obj\Debug\net8.0\Pathe@hr.AssemblyInfoInputs.cache
+C:\Users\no1al\OneDrive\Documenten\GitHub\Project-B-Groep-2\Pathe@hr\obj\Debug\net8.0\Pathe@hr.AssemblyInfo.cs
+C:\Users\no1al\OneDrive\Documenten\GitHub\Project-B-Groep-2\Pathe@hr\obj\Debug\net8.0\Pathe@hr.csproj.CoreCompileInputs.cache
+C:\Users\no1al\OneDrive\Documenten\GitHub\Project-B-Groep-2\Pathe@hr\obj\Debug\net8.0\Pathe@hr.sourcelink.json
