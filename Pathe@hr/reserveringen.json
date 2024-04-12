@@ -1,0 +1,12 @@
+[
+  {
+    "Ticket nummer": 3,
+    "prijs": 15,
+    "verkocht": false
+  },
+  {
+    "Ticket nummer": 4,
+    "prijs": 15,
+    "verkocht": false
+  }
+]

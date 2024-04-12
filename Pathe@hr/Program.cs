@@ -1,4 +1,4 @@
-
+﻿
 
 using System.Runtime.Intrinsics.Arm;
 
@@ -6,11 +6,16 @@ public class Program
 {
     public static void Main()
     {
-        Zaal zaal = new(10, 23);
+
+
+        Zaal zaal = new(10, 20);
+        Bioscoop bios = new("schouwbeurgplein");
+        //StartScreen.Screen(zaal, bios);
+
         bool run = true;
         while (run)
         {
-            Console.WriteLine("1: show seats \n2: show tickets \n3: koffie \n4: cancel reservation \n5: quit");
+            Console.WriteLine("1: show seats \n2: show movies \n3: show tickets \n4: koffie \n5: cancel reservation \n6: quit");
             string? input = Console.ReadLine();
             switch (input)
             {
@@ -18,15 +23,18 @@ public class Program
                     zaal.chooseChairs();
                     break;
                 case "2":
-                    showTickets();
+                    bios.ChooseMovies(zaal);
                     break;
                 case "3":
-                    Koffie.Drank();
+                    showTickets();
                     break;
                 case "4":
-                    Reservation.CancelReservation();
+                    Koffie.Drank();
                     break;
                 case "5":
+                    Reservation.CancelReservation();
+                    break;
+                case "6":
                     run = false;
                     break;
                 default:
@@ -34,6 +42,7 @@ public class Program
                     break;
             }
         }
+
     }
 
     public static void showTickets()

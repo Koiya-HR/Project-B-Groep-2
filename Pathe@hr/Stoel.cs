@@ -6,6 +6,7 @@ public class Stoel
     public bool free;
     public bool selected;
     public bool isCurrentChair;
+    public bool isIllegal = false;
     public int row;
     public int col;
     public int maxChairs;
@@ -69,6 +70,9 @@ public class Stoel
             case "red":
                 chairColor = "\u001b[48;2;247;104;96m";
                 break;
+            case "light red":
+                chairColor = "\u001b[48;2;255;92;108m";
+                break;
             case "green":
                 chairColor = "\u001b[48;2;105;212;99m";
                 break;
@@ -82,7 +86,7 @@ public class Stoel
                 chairColor = "\u001b[48;2;32;85;245m";
                 break;
             case "orange":
-                chairColor = "\u001b[48;2;247;121;42m";
+                chairColor = "\u001b[48;2;217;164;17m";
                 break;
             case "darkBlue":
                 chairColor = "\u001b[48;2;2;15;191m";
