@@ -1,0 +1,4 @@
+[
+    { "Film": "Fast and Furious 8", "Genre": "Actie", "Stoelen": 2, "Prijs": 30.00},
+    { "Film": "interstellar", "Genre": "Avontuur", "Stoelen": 3, "Prijs": 45.00}
+]
