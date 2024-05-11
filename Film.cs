@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MiniProj
+namespace Pathe_hr.obj
 {
     public class Film
     {
