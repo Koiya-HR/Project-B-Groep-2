@@ -1,0 +1,14 @@
+
+
+
+[
+    {
+        "EventID":1,
+        "movieID":2,
+        "Chairs":[],
+        "BestellingIDs":[]
+    },
+    {
+        "deze moeten hierin opgeslagen worden":["event id", "movie id", "stoelen", "locatie", "start tijd"]
+    }
+]
