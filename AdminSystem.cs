@@ -3,458 +3,771 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Newtonsoft.Json;
-
-namespace Pathe_hr.obj
+using System.Globalization;
+// aangepast
+public class AdminSystem
 {
-    class AdminSystem
+    static List<Film> films = new List<Film>();
+    static string path = "movies.json";
+
+    public static void Inlogscherm()
+{
+    string adminEmail = "admin12@gmail.com";
+    string adminPassword = "admin12";
+
+    bool isLoggedIn = false;
+    Console.Clear();
+    int selectedIndex = 0;
+    string[] options = { "Doorgaan met inloggen", "Terug naar het hoofdmenu" };
+
+    while (true)
     {
-        static List<Film> films = new List<Film>();
-        static string path = "movies.json";
-
-        static void Main(string[] args)
+        Console.Clear();
+        Console.WriteLine("Wat wilt u doen?");
+        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+        for (int i = 0; i < options.Length; i++)
         {
-            // Admin inloggegevens
-            string adminEmail = "admin12@gmail.com";
-            string adminPassword = "admin12";
-
-            Console.WriteLine("Welkom bij het filmsysteem");
-
-            bool isLoggedIn = false;
-            while (!isLoggedIn)
+            if (i == selectedIndex)
             {
-                // Inloggen als admin
-                Console.Write("Voer uw e-mailadres in: ");
-                string? inputEmail = Console.ReadLine();
-                Console.Write("Voer uw wachtwoord in: ");
-                string? inputPassword = Console.ReadLine();
+                Console.BackgroundColor = ConsoleColor.Gray;
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
+            Console.WriteLine(options[i]);
+            Console.ResetColor();
+        }
 
-                if (inputEmail == adminEmail && inputPassword == adminPassword)
+        ConsoleKeyInfo key = Console.ReadKey(true);
+        if (key.Key == ConsoleKey.UpArrow)
+        {
+            selectedIndex = Math.Max(0, selectedIndex - 1);
+        }
+        else if (key.Key == ConsoleKey.DownArrow)
+        {
+            selectedIndex = Math.Min(options.Length - 1, selectedIndex + 1);
+        }
+        else if (key.Key == ConsoleKey.Enter)
+        {
+            if (selectedIndex == 0)
+            {
+                break;
+            }
+            else if (selectedIndex == 1)
+            {
+                return;
+            }
+        }
+    } 
+
+    Console.Clear();
+
+    while (true)
+    {
+        Console.WriteLine("Welkom bij het Adminsysteem!");
+        Console.WriteLine("Voer uw e-mailadres in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om uw wachtwoord in te voeren: ");
+        string? inputEmail = Console.ReadLine();
+
+        // Controleer of email niet leeg is 
+        if (string.IsNullOrWhiteSpace(inputEmail))
+        {
+            Console.Write("E-mailadres mag niet leeg zijn. Druk op een toets om opnieuw te proberen.");
+            Console.ReadKey();
+            Console.Clear();
+            continue; // Lus wordt opnieuw geroepen
+        }
+
+        Console.WriteLine("Voer uw wachtwoord in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om door te gaan: ");
+        string? inputPassword = Console.ReadLine();
+
+        // Controleer of wachtwoord niet leeg is
+        if (string.IsNullOrWhiteSpace(inputPassword))
+        {
+            Console.Write("Wachtwoord mag niet leeg zijn. Druk op een toets om opnieuw te proberen.");
+            Console.ReadKey();
+            Console.Clear();
+            continue; // Lus wordt opnieuw geroepen
+        }
+
+        if (inputEmail == adminEmail && inputPassword == adminPassword)
+        {
+            Console.WriteLine("\nU bent nu ingelogd!");
+            Thread.Sleep(1000);
+            isLoggedIn = true;
+            break; // Uit de lus als inloggegevens correct zijn
+        }
+        else
+        {
+            Console.WriteLine("\nOngeldige inloggegevens. Wat wilt u doen?");
+            int retrySelectedIndex = 0;
+            string[] retryOptions = { "Opnieuw inloggen", "Terug naar het hoofdmenu" };
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Ongeldige inloggegevens. Wat wilt u doen?");
+                Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+                for (int i = 0; i < retryOptions.Length; i++)
                 {
-                    Console.WriteLine("\nU bent nu ingelogd!");
-                    Thread.Sleep(1000);
-                    isLoggedIn = true;
+                    if (i == retrySelectedIndex)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                    }
+                    Console.WriteLine(retryOptions[i]);
+                    Console.ResetColor();
+                }
 
+                ConsoleKeyInfo key2 = Console.ReadKey(true);
+                if (key2.Key == ConsoleKey.UpArrow)
+                {
+                    retrySelectedIndex = Math.Max(0, retrySelectedIndex - 1);
+                }
+                else if (key2.Key == ConsoleKey.DownArrow)
+                {
+                    retrySelectedIndex = Math.Min(retryOptions.Length - 1, retrySelectedIndex + 1);
+                }
+                else if (key2.Key == ConsoleKey.Enter)
+                {
+                    if (retrySelectedIndex == 0)
+                    {
+                        Console.Clear();
+                        break; // Opnieuw inloggen
+                    }
+                    else
+                    {
+                        return; // Terug naar het hoofdmenu
+                    }
+                }
+            }
+        }
+    }
+
+    if (isLoggedIn)
+    {
+        ToonMenu();
+    }
+}
+
+
+    static void ToonMenu()
+    {
+        int selectedIndex = 0;
+        bool doorgaan = true;
+        string[] menuOptions = { "Film toevoegen", "Film bewerken", "Film verwijderen", "Uitloggen" };
+
+        while (doorgaan)
+        {
+            films = LoadFilms();
+
+            Console.Clear();
+            Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+            for (int i = 0; i < menuOptions.Length; i++)
+            {
+                if (i == selectedIndex)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write("=> ");
                 }
                 else
                 {
-                    Console.WriteLine("\nOngeldige inloggegevens. Probeer het opnieuw.");
+                    Console.Write("   ");
                 }
+                Console.WriteLine(menuOptions[i]);
+                Console.ResetColor();
             }
 
-            // Als de gebruiker is ingelogd, toon het menu
-            if (isLoggedIn)
+            ConsoleKeyInfo key = Console.ReadKey();
+
+            switch (key.Key)
             {
-                ToonMenu();
-            }
-        }
-
-        static void ToonMenu()
-        {
-            int selectedIndex = 0;
-            bool doorgaan = true;
-            string[] menuOptions = { "Film toevoegen", "Film bewerken", "Film verwijderen", "Uitloggen" };
-
-            while (doorgaan)
-            {
-                Console.Clear();
-                Console.Write("\u001b[37mKies een optie door middel van ");
-
-                
-                Console.Write("\u001b[38;2;250;156;55mpijltjes\u001b[37m ");
-
-                
-                Console.Write("en druk op ");
-
-                
-                Console.Write("\u001b[38;2;250;156;55mEnter");
-
-                
-                Console.WriteLine("\u001b[0m:");
-
-
-                // Toon het menu met pijltjestoetsen
-                for (int i = 0; i < menuOptions.Length; i++)
-                {
-                    if (i == selectedIndex)
-                    {   Console.BackgroundColor = ConsoleColor.Gray; 
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.Write("=> ");
-                    }
-                    else
+                case ConsoleKey.UpArrow:
+                    selectedIndex = Math.Max(0, selectedIndex - 1);
+                    break;
+                case ConsoleKey.DownArrow:
+                    selectedIndex = Math.Min(menuOptions.Length - 1, selectedIndex + 1);
+                    break;
+                case ConsoleKey.Enter:
+                    Console.WriteLine("\nGeselecteerde optie: " + menuOptions[selectedIndex]);
+                    switch (selectedIndex)
                     {
-                        Console.Write("   ");
+                        case 0:
+                            VoegFilmToe();
+                            break;
+                        case 1:
+                            BewerkFilm();
+                            break;
+                        case 2:
+                            VerwijderFilm();
+                            break;
+                        case 3:
+                            Console.WriteLine("\nU bent nu uitgelogd!");
+                            Thread.Sleep(1000);
+                            doorgaan = false;
+                            break;
+                        default:
+                            Console.WriteLine("\nOngeldige keuze. Probeer het opnieuw.");
+                            break;
                     }
-                    Console.WriteLine(menuOptions[i]);
-                    Console.ResetColor();
-                }
-
-                // Lees de toetsaanslag van de gebruiker
-                ConsoleKeyInfo key = Console.ReadKey();
-
-                // Verwerk de toetsaanslag
-                switch (key.Key)
-                {
-                    case ConsoleKey.UpArrow:
-                        selectedIndex = Math.Max(0, selectedIndex - 1);
-                        break;
-                    case ConsoleKey.DownArrow:
-                        selectedIndex = Math.Min(menuOptions.Length - 1, selectedIndex + 1);
-                        break;
-                    case ConsoleKey.Enter:
-                        Console.WriteLine("\nGeselecteerde optie: " + menuOptions[selectedIndex]);
-                        switch (selectedIndex)
-                        {
-                            case 0:
-                                VoegFilmToe();
-                                break;
-                            case 1:
-                                BewerkFilm();
-                                break;
-                            case 2:
-                                VerwijderFilm();
-                                break;
-                            case 3:
-                                Console.WriteLine("\nU bent nu uitgelogd!");
-                                doorgaan = false;
-                                break;
-                            default:
-                                Console.WriteLine("\nOngeldige keuze. Probeer het opnieuw.");
-                                break;
-                        }
-                        break;
-                }
+                    break;
             }
         }
+    }
 
-        static void VoegFilmToe()
+    static void VoegFilmToe()
+{
+    Console.Clear();
+    int selectedIndex = 0;
+    string[] options = { "Doorgaan met toevoegen van een film", "Terug naar het hoofdmenu" };
+
+    while (true)
+    {
+        Console.Clear();
+        Console.WriteLine("Wat wilt u doen?");
+        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+        for (int i = 0; i < options.Length; i++)
         {
-            Console.WriteLine("\nFilm toevoegen:");
-
-            // Filmgegevens invoeren
-            Console.Write("Naam van de film: ");
-            string? naam = Console.ReadLine();
-            Console.Write("Genre: ");
-            string? genre = Console.ReadLine();
-            Console.Write("Acteurs: ");
-            string? acteurs = Console.ReadLine();
-            Console.Write("Omschrijving: ");
-            string? omschrijving = Console.ReadLine();
-            Console.Write("Release datum: ");
-            string? releaseDatum = Console.ReadLine();
-
-            int duur;
-            while (true)
+            if (i == selectedIndex)
             {
-                Console.Write("Duur (in minuten): ");
-                string inputDuur = Console.ReadLine();
-                try
-                {
-                    duur = Convert.ToInt32(inputDuur);
-                    break; 
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Ongeldige invoer. Voer een getal in voor de duur.");
-                }
+                Console.BackgroundColor = ConsoleColor.Gray;
+                Console.ForegroundColor = ConsoleColor.Black;
             }
-
-            // Nieuw filmobject maken
-            Film nieuweFilm = new Film
-            {
-                Naam = naam,
-                Genre = genre,
-                Acteurs = acteurs,
-                Omschrijving = omschrijving,
-                ReleaseDatum = releaseDatum,
-                Duur = duur
-            };
-
-            // Laden van bestaande films uit bestand
-            if (File.Exists(path))
-            {
-                try
-                {
-                    string json = File.ReadAllText(path);
-                    films = JsonConvert.DeserializeObject<List<Film>>(json) ?? new List<Film>(); 
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error loading films from JSON: {ex.Message}");
-                    films = new List<Film>(); 
-                }
-            }
-
-            // Voeg de nieuwe film toe aan de lijst
-            films.Add(nieuweFilm);
-
-            // Lijst converteren
-            string jsonFilms = JsonConvert.SerializeObject(films, Formatting.Indented);
-
-            // Schrijf de JSON naar het bestand
-            File.WriteAllText(path, jsonFilms);
-
-            Console.WriteLine("\nFilm succesvol toegevoegd!");
-            Thread.Sleep(1000);
+            Console.WriteLine(options[i]);
+            Console.ResetColor();
         }
 
-        static void BewerkFilm()
+        ConsoleKeyInfo key = Console.ReadKey(true);
+        if (key.Key == ConsoleKey.UpArrow)
         {
-            Console.WriteLine("\nFilm bewerken:");
-
-            // Laden van films uit JSON-bestand
-            if (File.Exists(path))
+            selectedIndex = Math.Max(0, selectedIndex - 1);
+        }
+        else if (key.Key == ConsoleKey.DownArrow)
+        {
+            selectedIndex = Math.Min(options.Length - 1, selectedIndex + 1);
+        }
+        else if (key.Key == ConsoleKey.Enter)
+        {
+            if (selectedIndex == 0)
             {
-                try
-                {
-                    string json = File.ReadAllText(path);
-                    films = JsonConvert.DeserializeObject<List<Film>>(json) ?? new List<Film>(); 
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error loading films from JSON: {ex.Message}");
-                    films = new List<Film>(); 
-                }
+                break;
             }
-
-            if (films.Count == 0)
+            else if (selectedIndex == 1)
             {
-                Console.WriteLine("Er zijn geen films om te bewerken.");
-                Thread.Sleep(1000);
                 return;
             }
+        }
+        Console.Clear();
+    }
 
-            int selectedIndex = 0; 
+    Console.WriteLine("\nFilm toevoegen:");
 
-            while (true)
+    Console.Write("Titel van de film: ");
+    string? naam = Console.ReadLine();
+
+    // Genres invoeren
+    List<string> genres;
+    while (true)
+    {
+        Console.Write("Genres (gescheiden door komma's): ");
+        Console.WriteLine("Voorbeeld: Drama, Actie");
+        string? genreInput = Console.ReadLine();
+        genres = genreInput.Split(',').Select(g => g.Trim()).ToList();
+
+        // Controleren of er minimaal twee genres zijn ingevoerd
+        if (genres.Count >= 2)
+        {
+            break;
+        }
+        else
+        {
+            Console.WriteLine("Voer minimaal twee genres gescheiden door komma's in.");
+        }
+    }
+
+    // Acteurs invoeren
+    List<string> acteurs;
+    while (true)
+    {
+        Console.Write("Acteurs (gescheiden door komma's): ");
+        Console.WriteLine("Voorbeeld: Dwayne Johnson, Sylvester Stallone");
+        string? acteursInput = Console.ReadLine();
+        acteurs = acteursInput.Split(',').Select(a => a.Trim()).ToList();
+
+        // Controleren of er minimaal twee acteurs zijn ingevoerd
+        if (acteurs.Count >= 2)
+        {
+            break;
+        }
+        else
+        {
+            Console.WriteLine("Voer minimaal twee acteurs gescheiden door komma's in.");
+        }
+    }
+    Console.Write("Omschrijving: ");
+    string? omschrijving = Console.ReadLine();
+
+    // Datum en tijd invoeren
+    string releaseDatum;
+    while (true)
+    {
+        Console.Write("Release datum en tijd (yyyy-MM-ddTHH:mm:ss): ");
+        Console.WriteLine("Voorbeeld: 2024-05-14T16:30:00");
+        string inputDatumTijd = Console.ReadLine();
+        if (DateTime.TryParseExact(inputDatumTijd, "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDatumTijd))
+        {
+            releaseDatum = parsedDatumTijd.ToString("yyyy-MM-ddTHH:mm:ss");
+            break;
+        }
+        else
+        {
+            Console.WriteLine("Ongeldige datum of tijd. Voer de datum en tijd in het formaat yyyy-MM-ddTHH:mm:ss in.");
+        }
+    }
+
+    int duur;
+    while (true)
+    {
+        Console.Write("Duur (in minuten): ");
+        string inputDuur = Console.ReadLine();
+        try
+        {
+            duur = Convert.ToInt32(inputDuur);
+            break;
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Ongeldige invoer. Voer een getal in voor de duur.");
+        }
+    }
+
+    Film nieuweFilm = new Film
+    {
+        Titel = naam,
+        Genres = genres,
+        Acteurs = acteurs,
+        Omschrijving = omschrijving,
+        ReleaseDatum = releaseDatum,
+        Duur = duur
+    };
+
+    films.Add(nieuweFilm);
+    SaveFilms(films);
+    Console.WriteLine("\nFilm succesvol toegevoegd!");
+}
+
+
+
+    static void BewerkFilm()
+    {
+        Console.Clear();
+        int Index = 0; // Correcte naam: selectedIndex
+        string[] options = { "Doorgaan met bewerken van een film", "Terug naar het hoofdmenu" };
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Wat wilt u doen?");
+            Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+            for (int i = 0; i < options.Length; i++)
             {
-                Console.Clear();
-                Console.WriteLine("Kies de index van de film die u wilt bewerken:");
-                for (int i = 0; i < films.Count; i++)
+                if (i == Index)
                 {
-                    if (i == selectedIndex)
-                    {   Console.BackgroundColor = ConsoleColor.Gray; 
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.Write("=> ");
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+                Console.WriteLine(options[i]);
+                Console.ResetColor();
+            }
+
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.UpArrow)
+            {
+                Index = Math.Max(0, Index - 1);
+            }
+            else if (key.Key == ConsoleKey.DownArrow)
+            {
+                Index = Math.Min(options.Length - 1, Index + 1);
+            }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                if (Index == 0)
+                {
+                    break;
+                }
+                else if (Index == 1)
+                {
+                    return;
+                }
+            }
+            Console.Clear();
+        }
+
+        Console.WriteLine("\nFilm bewerken:");
+
+        if (File.Exists(path))
+        {
+            try
+            {
+                string json = File.ReadAllText(path);
+                films = JsonConvert.DeserializeObject<List<Film>>(json) ?? new List<Film>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading films from JSON: {ex.Message}");
+                films = new List<Film>();
+            }
+        }
+
+        if (films.Count == 0)
+        {
+            Console.WriteLine("Er zijn geen films om te bewerken.");
+            Thread.Sleep(1000);
+            return;
+        }
+
+        int selectedIndex = 0;
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Kies de index van de film die u wilt bewerken:");
+            for (int i = 0; i < films.Count; i++)
+            {
+                if (i == selectedIndex)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write("=> ");
+                }
+                else    
+                {
+                    Console.Write("   ");
+                }
+                Console.WriteLine($"{i + 1}. {films[i].Titel}");
+                Console.ResetColor();
+            }
+
+            ConsoleKeyInfo key = Console.ReadKey();
+            if (key.Key == ConsoleKey.UpArrow)
+            {
+                selectedIndex = Math.Max(0, selectedIndex - 1);
+            }
+            else if (key.Key == ConsoleKey.DownArrow)
+            {
+                selectedIndex = Math.Min(films.Count - 1, selectedIndex + 1);
+            }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                break;
+            }
+        }
+
+        Film selectedFilm = films[selectedIndex];
+        int fieldToEditIndex = 1;
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("\nHuidige gegevens:");
+            for (int i = 1; i <= 6; i++)
+            {
+                if (i == fieldToEditIndex)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write("=> ");
+                }
+                else
+                {
+                    Console.Write("   ");
+                }
+                Console.WriteLine(GetFieldName(i, selectedFilm));
+                Console.ResetColor();
+            }
+
+            ConsoleKeyInfo key = Console.ReadKey();
+            if (key.Key == ConsoleKey.UpArrow)
+            {
+                fieldToEditIndex = Math.Max(1, fieldToEditIndex - 1);
+            }
+            else if (key.Key == ConsoleKey.DownArrow)
+            {
+                fieldToEditIndex = Math.Min(6, fieldToEditIndex + 1);
+            }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                break;
+            }
+        }
+
+        switch (fieldToEditIndex)
+        {
+            case 1:
+                Console.Write("Voer de nieuwe titel van de film in: ");
+                selectedFilm.Titel = Console.ReadLine();
+                break;
+            case 2:
+                // Bewerken van genres
+                List<string> genres;
+                while (true)
+                {
+                    Console.Write("Voer het nieuwe genre van de film in (gescheiden door komma's): ");
+                    Console.WriteLine("Voorbeeld: Drama, Actie");
+                    string genreInput = Console.ReadLine();
+                    genres = genreInput.Split(',').Select(g => g.Trim()).ToList();
+
+                    // Controleren of er minimaal twee genres zijn ingevoerd
+                    if (genres.Count >= 2)
+                    {
+                        break;
                     }
                     else
                     {
-                        Console.Write("   ");
+                        Console.WriteLine("Voer minimaal twee genres gescheiden door komma's in.");
                     }
-                    Console.WriteLine($"{i + 1}. {films[i].Naam}");
-                    Console.ResetColor();
                 }
-
-                ConsoleKeyInfo key = Console.ReadKey();
-                if (key.Key == ConsoleKey.UpArrow)
+                selectedFilm.Genres = genres;
+                break;
+            case 3:
+                // Bewerken van acteurs
+                List<string> acteurs;
+                while (true)
                 {
-                    selectedIndex = Math.Max(0, selectedIndex - 1); // Verplaats de selectie omhoog, maar niet onder 0
-                }
-                else if (key.Key == ConsoleKey.DownArrow)
-                {
-                    selectedIndex = Math.Min(films.Count - 1, selectedIndex + 1); // Verplaats de selectie omlaag, maar niet voorbij het einde van de lijst
-                }
-                else if (key.Key == ConsoleKey.Enter)
-                {
-                    break; 
-                }
-            }
+                    Console.Write("Voer de nieuwe acteurs van de film in (gescheiden door komma's): ");
+                    Console.WriteLine("Voorbeeld: Dwayne Johnson, Sylvester Stallone");
+                    string acteurInput = Console.ReadLine();
+                    acteurs = acteurInput.Split(',').Select(a => a.Trim()).ToList();
 
-            // Geselecteerde film om te bewerken
-            Film selectedFilm = films[selectedIndex];
-
-            // Vraag de gebruiker welk veld ze willen bewerken
-            int fieldToEditIndex = 1; // Begin met het eerste veld geselecteerd
-
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("\nHuidige gegevens:");
-                for (int i = 1; i <= 6; i++)
-                {
-                    if (i == fieldToEditIndex)
-                    {   Console.BackgroundColor = ConsoleColor.Gray; 
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.Write("=> ");
+                    // Controleren of er minimaal twee acteurs zijn ingevoerd
+                    if (acteurs.Count >= 2)
+                    {
+                        break;
                     }
                     else
                     {
-                        Console.Write("   ");
+                        Console.WriteLine("Voer minimaal twee acteurs gescheiden door komma's in.");
                     }
-                    Console.WriteLine(GetFieldName(i, selectedFilm));
-                    Console.ResetColor();
                 }
+                selectedFilm.Acteurs = acteurs;
+                break;
+            case 4:
+                Console.Write("Voer de nieuwe omschrijving van de film in: ");
+                selectedFilm.Omschrijving = Console.ReadLine();
+                break;
+            case 5:
+                // Datum en tijd invoeren
+                string releaseDatum;
+                while (true)
+                {
+                    Console.Write("Voer de nieuwe release datum en tijd van de film in (yyyy-MM-ddTHH:mm:ss): ");
+                    Console.WriteLine("Voorbeeld: 2024-05-14T16:30:00");
+                    string inputDatumTijd = Console.ReadLine();
+                    if (DateTime.TryParseExact(inputDatumTijd, "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDatumTijd))
+                    {
+                        releaseDatum = parsedDatumTijd.ToString("yyyy-MM-ddTHH:mm:ss");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ongeldige datum of tijd. Voer de datum en tijd in het formaat yyyy-MM-ddTHH:mm:ss in.");
+                        Console.WriteLine("Voorbeeld: 2024-05-14T16:30:00");
+                    }
+                }
+                selectedFilm.ReleaseDatum = releaseDatum;
+                break;
+            case 6:
+                int duur;
+                while (true)
+                {
+                    Console.Write("Voer de nieuwe duur van de film in (in minuten): ");
+                    string inputDuur = Console.ReadLine();
+                    if (int.TryParse(inputDuur, out duur))
+                    {
+                        selectedFilm.Duur = duur;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ongeldige invoer. Voer een geheel getal in voor de duur.");
+                    }
+                }
+                break;
+        }
 
-                ConsoleKeyInfo key = Console.ReadKey();
-                if (key.Key == ConsoleKey.UpArrow)
-                {
-                    fieldToEditIndex = Math.Max(1, fieldToEditIndex - 1);
-                }
-                else if (key.Key == ConsoleKey.DownArrow)
-                {
-                    fieldToEditIndex = Math.Min(6, fieldToEditIndex + 1); 
-                }
-                else if (key.Key == ConsoleKey.Enter)
-                {
-                    break; 
-                }
-            }
+        string updatedJsonFilms = JsonConvert.SerializeObject(films, Formatting.Indented);
+        File.WriteAllText(path, updatedJsonFilms);
 
-            // Bewerk het geselecteerde veld van de geselecteerde film
-            switch (fieldToEditIndex)
+        SaveFilms(films);
+        Console.WriteLine("\nFilm succesvol bijgewerkt!");
+        Thread.Sleep(1000);
+    }
+    static void VerwijderFilm()
+    {
+        Console.Clear();
+        int Index = 0; // Correcte naam: selectedIndex
+        string[] options = { "Doorgaan met verwijderen van een film", "Terug naar het hoofdmenu" };
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Wat wilt u doen?");
+            Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+            for (int i = 0; i < options.Length; i++)
             {
-                case 1:
-                    Console.Write("Voer de nieuwe naam van de film in: ");
-                    selectedFilm.Naam = Console.ReadLine();
-                    break;
-                case 2:
-                    Console.Write("Voer het nieuwe genre van de film in: ");
-                    selectedFilm.Genre = Console.ReadLine();
-                    break;
-                case 3:
-                    Console.Write("Voer de nieuwe acteurs van de film in: ");
-                    selectedFilm.Acteurs = Console.ReadLine();
-                    break;
-                case 4:
-                    Console.Write("Voer de nieuwe omschrijving van de film in: ");
-                    selectedFilm.Omschrijving = Console.ReadLine();
-                    break;
-                case 5:
-                    Console.Write("Voer de nieuwe release datum van de film in: ");
-                    selectedFilm.ReleaseDatum = Console.ReadLine();
-                    break;
-                case 6:
-                    int duur;
-                    while (true)
-                    {       
-                        Console.Write("Duur (in minuten): ");
-                        string inputDuur = Console.ReadLine();
-                        try
-                        {
-                            duur = Convert.ToInt32(inputDuur);
-                            break; 
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Ongeldige invoer. Voer een getal in voor de duur.");
-                        }
-                    }
-                    selectedFilm.Duur = duur;
-                    break;
+                if (i == Index)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+                Console.WriteLine(options[i]);
+                Console.ResetColor();
             }
 
-            // Converteer de bijgewerkte lijst van films naar JSON
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.UpArrow)
+            {
+                Index = Math.Max(0, Index - 1);
+            }
+            else if (key.Key == ConsoleKey.DownArrow)
+            {
+                Index = Math.Min(options.Length - 1, Index + 1);
+            }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                if (Index == 0)
+                {
+                    break;
+                }
+                else if (Index == 1)
+                {
+                    return;
+                }
+            }
+            Console.Clear();
+        }
+
+        Console.WriteLine("\nFilm verwijderen:");
+
+        if (File.Exists(path))
+        {
+            try
+            {
+                string json = File.ReadAllText(path);
+                films = JsonConvert.DeserializeObject<List<Film>>(json) ?? new List<Film>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading films from JSON: {ex.Message}");
+                films = new List<Film>();
+            }
+        }
+
+        if (films.Count == 0)
+        {
+            Console.WriteLine("Er zijn geen films om te verwijderen.");
+            Thread.Sleep(1000);
+            return;
+        }
+
+        int selectedIndex = 0;
+        
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Kies de index van de film die u wilt verwijderen:");
+            for (int i = 0; i < films.Count; i++)
+            {
+                if (i == selectedIndex)
+                {   Console.BackgroundColor = ConsoleColor.Gray; 
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write("=> ");
+                }
+                else
+                {
+                    Console.Write("   ");
+                }
+                Console.WriteLine($"{i + 1}. {films[i].Titel}");
+                Console.ResetColor();
+            }
+
+            ConsoleKeyInfo key = Console.ReadKey();
+            if (key.Key == ConsoleKey.UpArrow)
+            {
+                selectedIndex = Math.Max(0, selectedIndex - 1);
+            }
+            else if (key.Key == ConsoleKey.DownArrow)
+            {
+                selectedIndex = Math.Min(films.Count - 1, selectedIndex + 1);
+            }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                break;
+            }
+        }
+
+        int indexToRemove = selectedIndex;
+
+        if (indexToRemove >= 0 && indexToRemove < films.Count)
+        {
+            films.RemoveAt(indexToRemove);
             string updatedJsonFilms = JsonConvert.SerializeObject(films, Formatting.Indented);
-
-            // Schrijf de bijgewerkte JSON naar het bestand
             File.WriteAllText(path, updatedJsonFilms);
 
-            Console.WriteLine("\nFilm succesvol bijgewerkt!");
+            SaveFilms(films);
+            Console.WriteLine("\nFilm succesvol verwijderd!");
             Thread.Sleep(1000);
         }
-
-        static void VerwijderFilm()
+        else
         {
-            Console.WriteLine("\nFilm verwijderen:");
+            Console.WriteLine("\nOngeldige index. Film niet verwijderd.");
+        }
+    }
 
-            if (File.Exists(path))
+    static string GetFieldName(int index, Film selectedFilm)
+    {
+        switch (index)
+        {
+            case 1:
+                return $"1. Titel: {selectedFilm.Titel}";
+            case 2:
+                return $"2. Genre: {string.Join(", ", selectedFilm.Genres)}";
+            case 3:
+                return $"3. Acteurs: {string.Join(", ", selectedFilm.Acteurs)}";
+            case 4:
+                return $"4. Omschrijving: {selectedFilm.Omschrijving}";
+            case 5:
+                return $"5. Release datum: {selectedFilm.ReleaseDatum}";
+            case 6:
+                return $"6. Duur: {selectedFilm.Duur} minuten";
+            default:
+                return "";
+        }
+    }   
+
+
+    static void SaveFilms(List<Film> filmsToSave)
+    {
+        string jsonFilms = JsonConvert.SerializeObject(filmsToSave, Formatting.Indented);
+        File.WriteAllText(path, jsonFilms);
+    }
+
+    static List<Film> LoadFilms()
+    {
+        List<Film> loadedFilms = new List<Film>();
+
+        if (File.Exists(path))
+        {
+            try
             {
-                try
-                {
-                    string json = File.ReadAllText(path);
-                    films = JsonConvert.DeserializeObject<List<Film>>(json) ?? new List<Film>();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error loading films from JSON: {ex.Message}");
-                    films = new List<Film>();
-                }
+                string json = File.ReadAllText(path);
+                loadedFilms = JsonConvert.DeserializeObject<List<Film>>(json) ?? new List<Film>();
             }
-
-            if (films.Count == 0)
+            catch (Exception ex)
             {
-                Console.WriteLine("Er zijn geen films om te verwijderen.");
-                Thread.Sleep(1000);
-                return;
-            }
-
-            int selectedIndex = 0; // Houdt de geselecteerde index van de film bij
-            
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("Kies de index van de film die u wilt verwijderen:");
-                for (int i = 0; i < films.Count; i++)
-                {
-                    if (i == selectedIndex)
-                    {   Console.BackgroundColor = ConsoleColor.Gray; 
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.Write("=> ");
-                    }
-                    else
-                    {
-                        Console.Write("   ");
-                    }
-                    Console.WriteLine($"{i + 1}. {films[i].Naam}");
-                    Console.ResetColor();
-
-                }
-
-                ConsoleKeyInfo key = Console.ReadKey();
-                if (key.Key == ConsoleKey.UpArrow)
-                {
-                    selectedIndex = Math.Max(0, selectedIndex - 1); // Verplaats de selectie omhoog, maar niet onder 0
-                }
-                else if (key.Key == ConsoleKey.DownArrow)
-                {
-                    selectedIndex = Math.Min(films.Count - 1, selectedIndex + 1); // Verplaats de selectie omlaag, maar niet voorbij het einde van de lijst
-                }
-                else if (key.Key == ConsoleKey.Enter)
-                {
-                    break;
-                }
-            }
-
-            int indexToRemove = selectedIndex;
-
-            // Verwijder de geselecteerde film uit de lijst
-            if (indexToRemove >= 0 && indexToRemove < films.Count)
-            {
-                films.RemoveAt(indexToRemove);
-
-                // Converteer de bijgewerkte lijst van films naar JSON
-                string updatedJsonFilms = JsonConvert.SerializeObject(films, Formatting.Indented);
-
-                // Schrijf de bijgewerkte JSON naar het bestand
-                File.WriteAllText(path, updatedJsonFilms);
-
-                Console.WriteLine("\nFilm succesvol verwijderd!");
-                Thread.Sleep(1000);
-            }
-            else
-            {
-                Console.WriteLine("\nOngeldige index. Film niet verwijderd.");
+                Console.WriteLine($"Error loading films from JSON: {ex.Message}");
+                loadedFilms = new List<Film>();
             }
         }
 
-        static string GetFieldName(int index, Film selectedFilm)
-        {
-            switch (index)
-            {
-                case 1:
-                    return $"1. Naam: {selectedFilm.Naam}";
-                case 2:
-                    return $"2. Genre: {selectedFilm.Genre}";
-                case 3:
-                    return $"3. Acteurs: {selectedFilm.Acteurs}";
-                case 4:
-                    return $"4. Omschrijving: {selectedFilm.Omschrijving}";
-                case 5:
-                    return $"5. Release datum: {selectedFilm.ReleaseDatum}";
-                case 6:
-                    return $"6. Duur: {selectedFilm.Duur}";
-                default:
-                    return "";
-            }
-        }
+        return loadedFilms;
     }
 }
