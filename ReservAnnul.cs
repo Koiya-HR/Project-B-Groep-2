@@ -1,10 +1,37 @@
 using Newtonsoft.Json.Linq;
 
+/*
+
+format tickets
+
+[
+    {
+        "FilmID":1,
+        "StoelRow":5,
+        "StoelCol":14,
+        "EventID":1,
+        "StoelNaam": "05-14",
+        "Prijs": 18.00
+    },
+    {
+        "FilmID":2,
+        "StoelRow":3,
+        "StoelCol":10,
+        "EventID":2,
+        "StoelNaam": "03-10",
+        "Prijs": 18.00
+    }
+]
+
+*/
+
+
+
 static class Reservation
 {
     public static void CancelReservation()
     {
-        string jsonPath = "reserveringen.json";
+        string jsonPath = "tickets.json";
 
         //de data uit het json bestand wordt ingelezen
         string jsonData = File.ReadAllText(jsonPath);
@@ -13,7 +40,21 @@ static class Reservation
         JArray jsonArray = JArray.Parse(jsonData);
 
         Console.Write("Ticket nummer: ");
-        string ticketNumber = Console.ReadLine();
+        int intTicketNumber;
+        string ticketNumber;
+        while (true)
+        {
+            if (int.TryParse(Console.ReadLine(), out intTicketNumber))
+            {
+                ticketNumber = intTicketNumber.ToString();
+                break;
+            }
+            else
+            {
+                Console.WriteLine("not correct input");
+            }
+        }
+
 
         RemoveReservationOutOfJSON(jsonArray, ticketNumber);
 
@@ -28,31 +69,44 @@ static class Reservation
     }
     public static void RemoveReservationOutOfJSON(JArray jsonArray, string ticketNumber)
     {
+        bool ticketRemoved = false;
         for (int index = jsonArray.Count - 1; index >= 0; index--)
         {
             JObject reservation = (JObject)jsonArray[index];
-
-            if (reservation["Ticket nummer"].ToString() == ticketNumber)
+            if (reservation["Ticket nummer"] != null)
             {
-
-                if (Convert.ToBoolean(reservation["verkocht"]) == false)
+                if (reservation["Ticket nummer"]?.ToString() == ticketNumber)
                 {
-                    // als er nog niet betaald is en de gebruiker nog steeds in het systeem zit,
-                    // wordt het totaal op 0 gezet
-                    reservation["prijs"] = 0;
-                }
-                else if (Convert.ToBoolean(reservation["verkocht"]) == true)
-                {
-                    // als er eerder gereserveerd is en al wel is betaald 
-                    // en de gebruiker dit wilt annuleren, krijgt ie het bedrag teruggestort.
 
-                    Console.WriteLine($"het bedrag: €{reservation["prijs"]} wordt naar u teruggestort.");
+                    if (Convert.ToBoolean(reservation["verkocht"]) == false)
+                    {
+                        // als er nog niet betaald is en de gebruiker nog steeds in het systeem zit,
+                        // wordt het totaal op 0 gezet
+                        reservation["prijs"] = 0;
+                    }
+                    else if (Convert.ToBoolean(reservation["verkocht"]) == true)
+                    {
+                        // als er eerder gereserveerd is en al wel is betaald 
+                        // en de gebruiker dit wilt annuleren, krijgt ie het bedrag teruggestort.
+
+                        Console.WriteLine($"het bedrag: €{reservation["prijs"]} wordt naar u teruggestort.");
+                    }
+                    jsonArray.RemoveAt(index);
+                    ticketRemoved = true;
                 }
-                jsonArray.RemoveAt(index);
             }
 
-        }
 
+
+        }
+        if (!ticketRemoved)
+        {
+            Console.WriteLine($"No ticket found with ticket number {ticketNumber}");
+        }
+        else
+        {
+            Console.WriteLine($"Ticket with number: {ticketNumber} removed");
+        }
 
     }
 }
