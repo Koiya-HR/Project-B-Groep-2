@@ -1,39 +1,16 @@
 
-
-using System.Runtime.Intrinsics.Arm;
-
 public class Program
 {
+    private static int selectedIndex = 0;
+    private static readonly string arrow = "=>";
+
+
     public static void Main()
     {
-        Zaal zaal = new(10, 23);
-        bool run = true;
-        while (run)
-        {
-            Console.WriteLine("1: show seats \n2: show tickets \n3: koffie \n4: cancel reservation \n5: quit");
-            string? input = Console.ReadLine();
-            switch (input)
-            {
-                case "1":
-                    zaal.chooseChairs();
-                    break;
-                case "2":
-                    showTickets();
-                    break;
-                case "3":
-                    Koffie.Drank();
-                    break;
-                case "4":
-                    Reservation.CancelReservation();
-                    break;
-                case "5":
-                    run = false;
-                    break;
-                default:
-                    Console.WriteLine("input not correct");
-                    break;
-            }
-        }
+        Zaal zaal = new(10, 20);
+        Menu lidmaatschapMenu = new();
+        Bioscoop bios = new("schouwbeurgplein");
+        StartScreen.Screen(zaal, bios, lidmaatschapMenu); // startscherm van alihan
     }
 
     public static void showTickets()
@@ -47,11 +24,13 @@ public class Program
         {
             Console.Clear();
             Console.WriteLine("Welkom bij het ticketsysteem.");
-            Console.WriteLine("Gebruik de pijltjestoetsen om een optie te selecteren en druk op Enter om door te gaan:");
+            Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
             for (int keuze = 1; keuze <= 3; keuze++)
             {
                 if (keuze == selectedOption)
                 {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
                     Console.Write("=> ");
                 }
                 else
@@ -70,6 +49,7 @@ public class Program
                         Console.WriteLine("Exit");
                         break;
                 }
+                Console.ResetColor();
             }
 
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
