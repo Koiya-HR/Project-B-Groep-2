@@ -1,0 +1,66 @@
+[
+  {
+    "isCurrentMovie": false,
+    "Titel": "Echo's van Passie",
+    "Genres": [
+      "Arthouse",
+      "Romantisch Drama"
+    ],
+    "Acteurs": [
+      "Nina de Wit",
+      "Thijs van Houten"
+    ],
+    "Omschrijving": "Een poëtische reis door de onvoorspelbare golven van menselijke passie en verlangen, waarbij twee \nzielen elkaar vinden en verliezen in een eindeloos spel van aantrekken en afstoten.",
+    "ReleaseDatum": "07-06-2023 21:45:00",
+    "Duur": 115,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Verlangen naar Verlossing",
+    "Genres": [
+      "Arthouse",
+      "Psychologisch Drama"
+    ],
+    "Acteurs": [
+      "Sophie Meijer",
+      "Tim van Rijn"
+    ],
+    "Omschrijving": "Een diepgaande verkenning van innerlijke strijd en bevrijding, waarbij twee verloren zielen hun weg \nzoeken naar verlossing te midden van de donkere schaduwen van het menselijk bestaan.",
+    "ReleaseDatum": "03-11-2022 19:00:00",
+    "Duur": 130,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Het Geheim van de Nacht",
+    "Genres": [
+      "Arthouse",
+      "Drama"
+    ],
+    "Acteurs": [
+      "Sylvester Stallone",
+      "Daan Mulder"
+    ],
+    "Omschrijving": "Een intieme en melancholische verkenning van de diepere lagen van menselijke emoties en verborgen \nwaarheden die naar boven komen wanneer twee vreemden elkaar ontmoeten in de schemering van de nacht.",
+    "ReleaseDatum": "15-02-2024 20:15:00",
+    "Duur": 120,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Stilte van Verlangen",
+    "Genres": [
+      "Arthouse",
+      "Romantiek"
+    ],
+    "Acteurs": [
+      "Anna de Boer",
+      "Joris van Dijk"
+    ],
+    "Omschrijving": "Een contemplatieve verkenning van de subtiele emoties en verborgen verlangens tussen twee eenzame \nzielen die elkaar vinden in de stilte van een verlaten landschap, waar woorden overbodig zijn en de \nnatuur spreekt.",
+    "ReleaseDatum": "21-08-2023 18:30:00",
+    "Duur": 110,
+    "Color": "\u001b[0m"
+  }
+]
