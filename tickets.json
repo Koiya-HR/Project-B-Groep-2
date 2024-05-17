@@ -1,0 +1,42 @@
+[
+    {
+        "FilmID":1,
+        "StoelRow":5,
+        "StoelCol":14,
+        "EventID":1,
+        "StoelNaam": "05-14",
+        "Prijs": 18.00
+    },
+    {
+        "FilmID":1,
+        "StoelRow":5,
+        "StoelCol":13,
+        "EventID":1,
+        "StoelNaam": "05-13",
+        "Prijs": 18.00
+    },
+    {
+        "FilmID":1,
+        "StoelRow":5,
+        "StoelCol":12,
+        "EventID":1,
+        "StoelNaam": "05-12",
+        "Prijs": 18.00
+    },
+    {
+        "FilmID":1,
+        "StoelRow":5,
+        "StoelCol":11,
+        "EventID":1,
+        "StoelNaam": "05-11",
+        "Prijs": 18.00
+    },
+    {
+        "FilmID":1,
+        "StoelRow":5,
+        "StoelCol":10,
+        "EventID":1,
+        "StoelNaam": "05-10",
+        "Prijs": 18.00
+    }
+]
