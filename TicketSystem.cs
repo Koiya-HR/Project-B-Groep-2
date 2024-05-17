@@ -4,16 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 
 
-
-
-public class Ticket
-{
-    public string? Film { get; set; }
-    public string? Genre { get; set; }
-    public int Stoelen { get; set; }
-    public double Prijs { get; set; }
-}
-
 public class TicketController
 {
     private List<Ticket> tickets = new List<Ticket>();
@@ -30,10 +20,12 @@ public class TicketController
         Console.WriteLine("Ticket informatie:");
         foreach (Ticket ticket in tickets)
         {
-            Console.WriteLine($"Film: {ticket.Film}");
-            Console.WriteLine($"Genre: {ticket.Genre}");
-            Console.WriteLine($"Stoelen: {ticket.Stoelen}");
-            Console.WriteLine($"Prijs: {ticket.Prijs:C}");
+            Console.WriteLine($"Film ID: {ticket.FilmID}");
+            Console.WriteLine($"stoel: {ticket.StoelNaam}");
+            Console.WriteLine($"row in array: {ticket.StoelRow}");
+            Console.WriteLine($"col in array: {ticket.StoelCol}");
+            Console.WriteLine($"event id: {ticket.EventID}");
+            Console.WriteLine($"prijs: {ticket.Prijs}");
             Console.WriteLine();
         }
         if (tickets.Count == 0)
