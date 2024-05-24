@@ -85,12 +85,13 @@ public class Bioscoop
                             allMovies[currentMovieID].isCurrentMovie = true;
                         }
                         break;
-                    case ConsoleKey.Spacebar:
+                    case ConsoleKey.Enter:
                         Console.Clear();
                         movieChosen = true;
                         Console.WriteLine($"Gekozen film is {allMovies[currentMovieID].Titel}");
+                        Extras.gekozenFilm = allMovies[currentMovieID].Titel;
                         return currentMovieID; // Index van de gekozen film
-                    case ConsoleKey.Backspace:
+                    case ConsoleKey.Escape:
                         Console.Clear();
                         movieChosen = false;
                         return -1; //no movie chosen
