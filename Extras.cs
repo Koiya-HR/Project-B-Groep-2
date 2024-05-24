@@ -4,4 +4,5 @@ public static class Extras
     public static double completePrijs;
     public static double drankPrijs;
     public static int numTickets;
+    public static string? gekozenFilm;
 }
