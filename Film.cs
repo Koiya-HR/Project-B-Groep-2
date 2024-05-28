@@ -1,4 +1,3 @@
-// aangepast
 public class Film
 {
     public string? Titel { get; set; }
@@ -28,7 +27,7 @@ public class Film
         }
     }
 
-    public string GetFormattedReleaseDatum()
+    public string? GetFormattedReleaseDatum()
     {
         if (DateTime.TryParse(ReleaseDatum, out DateTime releaseDate))
         {
@@ -37,19 +36,25 @@ public class Film
         return ReleaseDatum;
     }
 
-    public void PrintControllInfo()
+    public static void PrintControllInfo()
     {
         Console.WriteLine($"\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
-        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mPIJL OMHOOG\u001b[0m en \u001b[38;2;250;156;55mOMLAAG\u001b[0m om door de lijst te gaan \ndruk \u001b[38;2;250;156;55mSPATIE\u001b[0m om te selecteren \ndruk \u001b[38;2;250;156;55mBACKSPACE\u001b[0m om terug te gaan");
+        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mPIJL OMHOOG\u001b[0m en \u001b[38;2;250;156;55mOMLAAG\u001b[0m om door de lijst te gaan \ndruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren \ndruk \u001b[38;2;250;156;55mF\u001b[0m om te filteren op acteur \ndruk \u001b[38;2;250;156;55mG\u001b[0m om te filteren op genre \ndruk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan");
         Console.WriteLine($"\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
     }
 
+    public static void PrintInfoFilterActor()
+    {
+        Console.WriteLine($"\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mPIJL OMHOOG\u001b[0m en \u001b[38;2;250;156;55mOMLAAG\u001b[0m om door de lijst te gaan \ndruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren \ndruk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan");
+        Console.WriteLine($"\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+    }
     public void PrintMovie()
     {
         setStatusColourMovie();
         Console.WriteLine($"{Color}====================================================================================================================={resetColorMovie}");
         Console.WriteLine("\u001b[38;2;250;156;55mTitel:\u001b[0m " + Titel);
-    
+
         if (Genres != null && Genres.Any())
         {
             Console.WriteLine("\u001b[38;2;250;156;55mGenres:\u001b[0m " + string.Join(", ", Genres));
@@ -74,3 +79,4 @@ public class Film
         Console.WriteLine($"{Color}====================================================================================================================={resetColorMovie}");
     }
 }
+
