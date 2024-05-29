@@ -105,45 +105,50 @@ public static class LidmaatschapAanvraag
     {
         if (leeftijd < 67)
         {
-            keuzeTypeLidmaatschap = Selecteren(new string[] { "Unlimited", "Drinks on me", "Half price", "Quit" });
+            keuzeTypeLidmaatschap = Selecteren(new string[] { "Unlimited: max 2 gratis tickets per aankoop", "Drinks on me: max 2 gratis drankjes per ticket", "Half price: 50% korting op tickets", "Quit" });
         }
         else
         {
-            keuzeTypeLidmaatschap = Selecteren(new string[] { "Unlimited", "Drinks on me", "Half price", "Senior", "Quit" });
+            keuzeTypeLidmaatschap = Selecteren(new string[] { "Unlimited: max 2 gratis tickets per aankoop", "Drinks on me: max 2 gratis drankjes per ticket", "Half price: 50% korting op tickets", "Senior: 25% korting op tickets, max 2 gratis drankjes per bestelling", "Quit" });
         }
 
         DateTime currentDateTime = DateTime.Now;
+
         aanschafdatum = currentDateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
         switch (keuzeTypeLidmaatschap)
         {
-            case "Unlimited":
+            case "Unlimited: max 2 gratis tickets per aankoop":
                 typeLidmaatschap = "Unlimited";
                 prijsLidmaatschap = 30.00;
                 KortingsType.Add("max 2 gratis tickets per aankoop");
                 break;
-            case "Drinks on me":
+            case "Drinks on me: max 2 gratis drankjes per ticket":
                 typeLidmaatschap = "Drinks on me";
                 prijsLidmaatschap = 10.00;
-                KortingsType.Add("gratis drankjes");
+                KortingsType.Add("max 2 gratis drankjes per ticket");
                 break;
-            case "Half price":
+            case "Half price: 50% korting op tickets":
                 typeLidmaatschap = "Half price";
                 prijsLidmaatschap = 20.50;
-                KortingsType.Add("ieder ticket 50% korting");
+                KortingsType.Add("50% korting op tickets");
                 break;
-            case "Senior":
+            case "Senior: 25% korting op tickets, max 2 gratis drankjes per bestelling":
                 typeLidmaatschap = "Senior";
                 prijsLidmaatschap = 15.00;
                 KortingsType.Add("25% korting op tickets");
-                KortingsType.Add("max 2 gratis drankjes");
+                KortingsType.Add("max 2 gratis drankjes per bestelling");
                 break;
             case "Quit":
                 break;
         }
 
         if (keuzeTypeLidmaatschap != "Quit")
+
+        // if zetten met als deze lidmaatschap al niet bestaat
         {
+            StartScreen.DisplayAsciiArt();
+
             Console.WriteLine($"Gekozen Lidmaatschap: {typeLidmaatschap}\nBijbehorende korting: {string.Join(", ", KortingsType)}\nPrijs: €{prijsLidmaatschap}");
         }
         else
@@ -193,32 +198,37 @@ public static class LidmaatschapAanvraag
 
     // Selecteren():
     // in deze functie krijgt de gebruiker de optie om dingen te selecteren
-    public static string Selecteren(string[] Opties)
+    public static string Selecteren(string[] Opties, string message = "")
     {
+
         string[] opties = Opties;
         int geselecteerdeIndex = 0;
 
         while (true)
         {
             Console.Clear();
-
+            StartScreen.DisplayAsciiArt();
+            if (message != "")
+            {
+                Console.WriteLine(message);
+            }
             for (int i = 0; i < opties.Length; i++)
             {
                 if (i == geselecteerdeIndex)
                 {
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine(opties[i]);
+                    Console.WriteLine($"=>  {opties[i]}");
                 }
                 else
                 {
-                    Console.WriteLine(opties[i]);
+                    Console.WriteLine($"    {opties[i]}");
                 }
                 Console.ResetColor();
             }
 
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-
+            Console.Clear();
             switch (keyInfo.Key)
             {
                 case ConsoleKey.UpArrow:
@@ -240,31 +250,42 @@ public static class LidmaatschapAanvraag
     {
         string choice1 = "";
         string choice2 = "";
-        while (choice1 != "Quit" && choice2 != "Quit")
+        while (choice1 != "Uitloggen" && choice2 != "Uitloggen")
         {
             if (lidmaatschapExists)
             {
 
-                choice1 = Selecteren(new string[] { "Lidmaatschap opzeggen", "Lidmaatschap wijzigen", "Quit" });
+                choice1 = Selecteren(new string[] { "Lidmaatschap opzeggen", "Lidmaatschap wijzigen", "Uitloggen" });
                 switch (choice1)
                 {
                     case "Lidmaatschap opzeggen":
-                        JsonDataManager.lidmaatschapBijwerkenJson(email, false, "", null, 0.0, []);
-                        lidmaatschapExists = false;
-                        Prompt("Lidmaatschap opgezegd");
+                        Thread.Sleep(1000);
+                        string bevestigingOpzeggen = Selecteren(new string[] { "Ja", "Nee" }, "Weet u zeker dat u uw lidmaatschap wilt opzeggen?:");
+                        if (bevestigingOpzeggen == "Ja")
+                        {
+                            JsonDataManager.lidmaatschapBijwerkenJson(email, false, "", null, 0.0, []);
+                            lidmaatschapExists = false;
+                            Prompt("Lidmaatschap opgezegd");
+
+                        }
+
                         break;
 
                     case "Lidmaatschap wijzigen":
+
                         LidmaatschapAanvragen(email, leeftijd);
                         break;
 
-                    case "Quit":
+                    case "Uitloggen":
+                        Console.WriteLine("Uitloggen bij ART BIOS...");
+                        Thread.Sleep(1500);
+                        Prompt("Uitgelogd");
                         break;
                 }
             }
             if (!lidmaatschapExists)
             {
-                choice2 = Selecteren(new string[] { "Lidmaatschap aanvragen", "Quit" });
+                choice2 = Selecteren(new string[] { "Lidmaatschap aanvragen", "Uitloggen" });
 
                 switch (choice2)
                 {
@@ -275,7 +296,11 @@ public static class LidmaatschapAanvraag
                             lidmaatschapExists = true;
                         }
                         break;
-                    case "Quit":
+                    case "Uitloggen":
+                        Console.WriteLine("Uitloggen bij ART BIOS...");
+
+                        Thread.Sleep(1500);
+                        Prompt("Uitgelogd");
                         break;
                 }
             }
@@ -287,47 +312,100 @@ public static class LidmaatschapAanvraag
     public static void Prompt(string prompt)
     {
         Thread.Sleep(2000);
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine(prompt);
+        Console.ResetColor();
         Thread.Sleep(1000);
+
+
     }
 }
-
 public class Account
 {
+    string email = "";
+
+
     Random random = new Random();
     JObject klant = null;
-    JArray jsonKlantLidmaatschappen;
+    JArray jsonAccounts;
 
     string juisteWachtwoord = "";
-    string email;
+
     string achternaam;
     string wachtwoord;
 
     bool accountExists;
     bool lidmaatschapExists;
+    bool terug = false;
 
     int klantnummer;
     int leeftijd;
-
-    // controleAccountGegevens():
+    int x = 0;
+    public static bool emailGevalideerd = false;
+    public static string accountOptie;
+    // emailInvoeren():
     // kijkt of de ingevoerde e-mailadress al bestaat of niet
     // bestaat het, dan worden alle gegevens in het object klant gestopt
     // kijkt of er al een lidmaatschap bij de bijbehorende account bestaat
 
-    public void controleAccountGegevens()
+    public void emailInvoeren()
+    {
+        StartScreen.DisplayAsciiArt();
+        emailGevalideerd = false;
+
+
+        do
+        {
+            Console.Write("Voer uw e-mailadres in: ");
+
+            if (Console.ReadKey(true).Key == ConsoleKey.Backspace)
+            {
+                return;
+            }
+
+
+            email = Console.ReadLine();
+
+            emailGevalideerd = true;
+            bool emailbestaat = emailBestaat(email);
+
+            if (accountOptie == "Account aanmaken")
+            {
+                if (!email.Contains("@") || !email.Contains(".") || email.Length < 7)
+                {
+                    ErrorMessage("Ongeldig e-mailadres. Probeer opnieuw.(Zorg er voor dat het e-mailaddress bestaat uit minimaal 7 tekens en een @ en . bevat)");
+                    Console.Clear();
+                    StartScreen.DisplayAsciiArt();
+                    emailGevalideerd = false;
+
+
+                }
+                if (emailbestaat)
+                {
+
+                    ErrorMessage("Deze e-mailadress wordt al gebruikt, probeer een andere e-mailadress");
+                    emailGevalideerd = false;
+
+                }
+            }
+            else if (accountOptie == "Inloggen")
+            {
+                if (!emailbestaat)
+                {
+                    ErrorMessage("Account bestaat niet");
+                    emailGevalideerd = false;
+
+                }
+            }
+
+        }
+        while (emailGevalideerd == false);
+
+    }
+    public bool emailBestaat(string email)
     {
         accountExists = false;
         lidmaatschapExists = false;
-
-        Console.Write("Voer uw e-mailadres in: ");
-        email = Console.ReadLine();
-
-        while (!email.Contains("@") || !email.EndsWith(".com") || email.Length < 13)
-        {
-            Console.WriteLine("Ongeldig e-mailadres. Probeer opnieuw.");
-            Console.Write("Voer uw e-mailadres in: ");
-            email = Console.ReadLine();
-        }
 
         FileInfo fileInfo = new FileInfo("lidmaatschap.json");
 
@@ -341,23 +419,25 @@ public class Account
         }
 
         string jsonData = File.ReadAllText("lidmaatschap.json");
-        jsonKlantLidmaatschappen = JArray.Parse(jsonData);
+        jsonAccounts = JArray.Parse(jsonData);
 
-        foreach (JObject klantLidmaatschap in jsonKlantLidmaatschappen)
+        foreach (JObject account in jsonAccounts)
         {
-            if (klantLidmaatschap["Email"].ToString() == email)
+            if (account["Email"].ToString() == email)
             {
                 accountExists = true;
-                klant = klantLidmaatschap;
-                juisteWachtwoord = klantLidmaatschap["Wachtwoord"].ToString();
+                klant = account;
+                juisteWachtwoord = account["Wachtwoord"].ToString();
 
-                if ((bool)klantLidmaatschap["Lidmaatschap"] == true)
+                if ((bool)account["Lidmaatschap"] == true)
                 {
                     lidmaatschapExists = true;
                 }
-                break;
+                return true;
             }
         }
+        return false;
+
     }
 
     // Inloggen():
@@ -365,6 +445,8 @@ public class Account
     // de waardes van het klant object worden meegegevn aan ieder variable 
     public bool Inloggen()
     {
+        Console.Clear();
+        StartScreen.DisplayAsciiArt();
         if (accountExists)
         {
             Console.Write("Voer uw wachtwoord in: ");
@@ -372,7 +454,7 @@ public class Account
 
             while (wachtwoord != juisteWachtwoord)
             {
-                Console.WriteLine("Wachtwoord is onjuist, probeer opnieuw");
+                ErrorMessage("Wachtwoord is onjuist, probeer opnieuw");
                 Console.Write("Voer uw wachtwoord in: ");
                 wachtwoord = Wachtwoord();
             }
@@ -382,12 +464,9 @@ public class Account
             achternaam = klant["Achternaam"].ToString();
             return true;
         }
-        else
-        {
-            Console.WriteLine("Account bestaat niet");
-            Thread.Sleep(3000);
-            return false;
-        }
+        return false;
+
+
     }
 
     // Registreren():
@@ -397,6 +476,9 @@ public class Account
     // er kan alleen een account aan worden gemaakt als de e-mailadress niet al bestaat
     public bool Registreren()
     {
+        Console.Clear();
+        StartScreen.DisplayAsciiArt();
+
 
         if (!accountExists)
 
@@ -409,13 +491,20 @@ public class Account
             Console.Write("Voer uw leeftijd in: ");
             leeftijd = Convert.ToInt32(Console.ReadLine());
 
+
+            if (leeftijd < 18)
+            {
+
+                ErrorMessage("Te jong om lidmaatschap aan te vragen");
+                return false;
+            }
             Console.Write("Maak wachtwoord aan: ");
             wachtwoord = Wachtwoord();
 
 
             while (wachtwoord.Length < 7)
             {
-                Console.WriteLine("Ongeldig wachtwoord, gebruik minimaal 7 tekens");
+                ErrorMessage("Ongeldig wachtwoord, gebruik minimaal 7 tekens");
                 Console.Write("Maak wachtwoord aan: ");
                 wachtwoord = Wachtwoord();
             }
@@ -423,9 +512,9 @@ public class Account
             do
             {
                 klantnummer = random.Next(2000, 20000);
-                foreach (JObject klantLidmaatschap in jsonKlantLidmaatschappen)
+                foreach (JObject account in jsonAccounts)
                 {
-                    if (int.Parse(klantLidmaatschap["Klantnummer"].ToString()) == klantnummer)
+                    if (int.Parse(account["Klantnummer"].ToString()) == klantnummer)
                     {
                         klantnummerBestaat = true;
                         break;
@@ -440,12 +529,7 @@ public class Account
             accountExists = true;
             return true;
         }
-        else
-        {
-            Console.WriteLine("Deze e-mailadress wordt al gebruikt, probeer een andere e-mailadress");
-            Thread.Sleep(3000);
-            return false;
-        }
+        return false;
     }
 
     public static string Wachtwoord()
@@ -455,12 +539,12 @@ public class Account
         do
         {
             key = Console.ReadKey(true);
-            if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
+            if (key.Key != ConsoleKey.Escape && key.Key != ConsoleKey.Enter)
             {
                 wachtwoord += key.KeyChar;
                 Console.Write("*");
             }
-            else if (key.Key == ConsoleKey.Backspace && wachtwoord.Length > 0)
+            else if (key.Key == ConsoleKey.Escape && wachtwoord.Length > 0)
             {
                 wachtwoord = wachtwoord.Remove(wachtwoord.Length - 1);
                 Console.Write("\b \b");
@@ -472,40 +556,61 @@ public class Account
         return wachtwoord;
     }
 
+
+
     public void AccountOpties()
     {
-        //begin menu
-        bool ingelogd = false;
-        bool geregistreerd = false;
-        string accountOptie;
-
         do
         {
+            bool ingelogd = false;
+            bool geregistreerd = false;
+            emailGevalideerd = false;
+
             accountOptie = LidmaatschapAanvraag.Selecteren(new string[] { "Inloggen", "Account aanmaken", "Account verwijderen", "Quit" });
             switch (accountOptie)
             {
                 case "Inloggen":
-                    controleAccountGegevens();
-                    ingelogd = Inloggen();
-                    break;
-                case "Account aanmaken":
-                    controleAccountGegevens();
 
-                    geregistreerd = Registreren();
-                    break;
-                case "Account verwijderen":
-
-                    controleAccountGegevens();
-                    bool inloggen = Inloggen();
-                    if (inloggen == true)
+                    emailInvoeren();
+                    if (emailGevalideerd)
                     {
-                        string AccVerwijderen = LidmaatschapAanvraag.Selecteren(new string[] { "Account verwijderen bevestigen", "Quit" });
+                        Console.Clear();
 
-                        if (AccVerwijderen == "Account verwijderen bevestigen")
+                        ingelogd = Inloggen();
+                    }
+                    break;
+
+                case "Account aanmaken":
+                    emailInvoeren();
+
+                    if (emailGevalideerd)
+                    {
+                        Console.Clear();
+
+                        geregistreerd = Registreren();
+                    }
+                    break;
+
+
+                case "Account verwijderen":
+                    emailInvoeren();
+
+                    if (emailGevalideerd)
+                    {
+
+                        Console.Clear();
+
+                        bool inloggen = Inloggen();
+                        if (inloggen == true)
                         {
-                            LidmaatschapAanvraag.Prompt("Account verwijderd");
-                            JsonDataManager.DeleteAccountFromJson(email);
-                            accountExists = false;
+                            string AccVerwijderen = LidmaatschapAanvraag.Selecteren(new string[] { "Account verwijderen bevestigen", "Quit" });
+
+                            if (AccVerwijderen == "Account verwijderen bevestigen")
+                            {
+                                LidmaatschapAanvraag.Prompt("Account verwijderd");
+                                JsonDataManager.DeleteAccountFromJson(email);
+                                accountExists = false;
+                            }
                         }
                     }
                     break;
@@ -513,18 +618,55 @@ public class Account
                 case "Quit":
                     return;
             }
-        }
-        while (ingelogd == false && geregistreerd == false && accountOptie != "Quit");
 
 
-        if (accountExists)
-        {
-            LidmaatschapAanvraag.lidmaatschapOpties(lidmaatschapExists, email, leeftijd);
+            if (ingelogd != false || geregistreerd != false)
+            {
+                LidmaatschapAanvraag.lidmaatschapOpties(lidmaatschapExists, email, leeftijd);
+            }
+
         }
+        while (accountOptie != "Quit");
     }
+
+    public static void ErrorMessage(string message)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(message);
+        Console.ResetColor();
+        Thread.Sleep(3000);
+    }
+
+
+    // kijkt of er een lidmaatschap bestaat zo ja returnt het de bijbehorende korting
+    public List<string> HuidigeLidmaatschap()
+    {
+
+        string jsonData = File.ReadAllText("lidmaatschap.json");
+        JArray jsonKlantLidmaatschappen = JArray.Parse(jsonData);
+
+        foreach (JObject klant in jsonKlantLidmaatschappen)
+        {
+            if (klant["Email"].ToString() == email)
+            {
+                if (klant["Lidmaatschap"].ToObject<bool>() == true)
+                {
+                    List<string> kortingstypes = klant["KortingsType"].ToObject<List<string>>();
+                    return kortingstypes;
+                    break;
+                }
+            }
+        }
+        return [];
+    }
+    public void LidmaatschapAanmaken()
+    {
+        LidmaatschapAanvraag.LidmaatschapAanvragen(email, leeftijd);
+    }
+
 }
 
-class Menu()
+class Menu
 {
     public void LidmaatschapSysteem()
     {
@@ -532,14 +674,5 @@ class Menu()
         account.AccountOpties();
     }
 }
-
-// class Program
-// {
-//     static void Main(string[] args)
-//     {
-//         Menu menu = new Menu();
-//         menu.LidmaatschapSysteem();
-//     }
-// }
 
 
