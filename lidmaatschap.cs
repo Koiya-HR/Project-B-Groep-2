@@ -14,7 +14,7 @@ public class AccountGegevens
     public double PrijsLidmaatschap;
     public List<string> KortingsType;
 
-    public AccountGegevens(string achternaam, string email, string wachtwoord, int leeftijd, int klantnummer,bool lidmaatschap,string typeLidmaatschap, string datumAanschaffing, double prijsLidmaatschap, List<string> kortingstype)
+    public AccountGegevens(string achternaam, string email, string wachtwoord, int leeftijd, int klantnummer, bool lidmaatschap, string typeLidmaatschap, string datumAanschaffing, double prijsLidmaatschap, List<string> kortingstype)
     {
         this.Achternaam = achternaam;
         this.Email = email;
@@ -38,7 +38,7 @@ public static class JsonDataManager
     public static void AppendAccountToJson()
     {
         string jsonData = File.ReadAllText(jsonPath);
-        
+
         JObject newLidmaatschap = JObject.FromObject(lidmaatschapObject);
         JArray jsonKlantLidmaatschappen = JArray.Parse(jsonData);
         jsonKlantLidmaatschappen.Add(newLidmaatschap);
@@ -63,9 +63,9 @@ public static class JsonDataManager
         string updatedJsonData = jsonKlantLidmaatschappen.ToString();
         File.WriteAllText(jsonPath, updatedJsonData);
     }
-    
+
     // lidmaatschap wordt toegevoegd of verwijderd in deze functie
-    public static void lidmaatschapBijwerkenJson(string email, bool lidmaatschap,string typeLidmaatschap, string datumAanschaffing, double prijsLidmaatschap, List<string> kortingstype)
+    public static void lidmaatschapBijwerkenJson(string email, bool lidmaatschap, string typeLidmaatschap, string datumAanschaffing, double prijsLidmaatschap, List<string> kortingstype)
     {
         string jsonData = File.ReadAllText(jsonPath);
         JArray jsonKlantLidmaatschappen = JArray.Parse(jsonData);
@@ -98,10 +98,10 @@ public static class LidmaatschapAanvraag
     static string aanschafdatum;
     static string keuzeTypeLidmaatschap;
     static bool betaald;
-    
+
     // lidmaatschapAanvragen():
     // hierin de opties van de lidmaatschappen en het toevoegen aan de gegevens ervan
-    public static void LidmaatschapAanvragen(string email,int leeftijd)
+    public static void LidmaatschapAanvragen(string email, int leeftijd)
     {
         if (leeftijd < 67)
         {
@@ -155,10 +155,10 @@ public static class LidmaatschapAanvraag
         betaald = Betalen();
         if (betaald)
         {
-            JsonDataManager.lidmaatschapBijwerkenJson(email,true,typeLidmaatschap,aanschafdatum,prijsLidmaatschap,KortingsType);
+            JsonDataManager.lidmaatschapBijwerkenJson(email, true, typeLidmaatschap, aanschafdatum, prijsLidmaatschap, KortingsType);
             Prompt("Lidmaatschap succesvol aangevraagd!");
         }
-        
+
         KortingsType.Clear();
     }
 
@@ -168,18 +168,18 @@ public static class LidmaatschapAanvraag
         Console.WriteLine($"Te betalen: €{prijsLidmaatschap}");
         Thread.Sleep(5000);
         string betaalOptie = Selecteren(new string[] { "Betalen", "Quit" });
-        
+
         if (betaalOptie == "Betalen")
         {
-            string bank = Selecteren(new string[] { "American Express","Mastercard","Google Pay","Apple Pay","IDEAL","VISA","PayPal","Quit"});
+            string bank = Selecteren(new string[] { "American Express", "Mastercard", "Google Pay", "Apple Pay", "IDEAL", "VISA", "PayPal", "Quit" });
 
             if (bank != "Quit")
             {
                 bevestigen = Selecteren(new string[] { "Betaling bevestigen", "Quit" });
             }
-            
+
         }
-        
+
         if (bevestigen == "Betaling bevestigen")
         {
             Prompt("Betaling is voltooid!");
@@ -190,7 +190,7 @@ public static class LidmaatschapAanvraag
             return false;
         }
     }
-    
+
     // Selecteren():
     // in deze functie krijgt de gebruiker de optie om dingen te selecteren
     public static string Selecteren(string[] Opties)
@@ -236,9 +236,9 @@ public static class LidmaatschapAanvraag
     // lidmaatschapOpties():
     // als de lidmaatschap bestaat krijgt gebruiker de opties lidmaatschap opzeggen of wijzigen
     // als de lidmaatschap (nog) niet bestaat krijgt de gebruiker de optie om deze aan te vragen
-    public static void lidmaatschapOpties(bool lidmaatschapExists,string email,int leeftijd)
+    public static void lidmaatschapOpties(bool lidmaatschapExists, string email, int leeftijd)
     {
-        string choice1 = "";    
+        string choice1 = "";
         string choice2 = "";
         while (choice1 != "Quit" && choice2 != "Quit")
         {
@@ -249,13 +249,13 @@ public static class LidmaatschapAanvraag
                 switch (choice1)
                 {
                     case "Lidmaatschap opzeggen":
-                        JsonDataManager.lidmaatschapBijwerkenJson(email,false,"",null,0.0,[]);
+                        JsonDataManager.lidmaatschapBijwerkenJson(email, false, "", null, 0.0, []);
                         lidmaatschapExists = false;
                         Prompt("Lidmaatschap opgezegd");
                         break;
 
                     case "Lidmaatschap wijzigen":
-                        LidmaatschapAanvragen(email,leeftijd);
+                        LidmaatschapAanvragen(email, leeftijd);
                         break;
 
                     case "Quit":
@@ -269,14 +269,14 @@ public static class LidmaatschapAanvraag
                 switch (choice2)
                 {
                     case "Lidmaatschap aanvragen":
-                        LidmaatschapAanvragen(email,leeftijd);
+                        LidmaatschapAanvragen(email, leeftijd);
                         if (betaald)
                         {
                             lidmaatschapExists = true;
                         }
                         break;
                     case "Quit":
-                        break;                
+                        break;
                 }
             }
         }
@@ -305,7 +305,7 @@ public class Account
 
     bool accountExists;
     bool lidmaatschapExists;
-    
+
     int klantnummer;
     int leeftijd;
 
@@ -313,7 +313,7 @@ public class Account
     // kijkt of de ingevoerde e-mailadress al bestaat of niet
     // bestaat het, dan worden alle gegevens in het object klant gestopt
     // kijkt of er al een lidmaatschap bij de bijbehorende account bestaat
-    
+
     public void controleAccountGegevens()
     {
         accountExists = false;
@@ -322,7 +322,7 @@ public class Account
         Console.Write("Voer uw e-mailadres in: ");
         email = Console.ReadLine();
 
-        while (!email.Contains("@") || !email.EndsWith(".com")|| email.Length < 13)
+        while (!email.Contains("@") || !email.EndsWith(".com") || email.Length < 13)
         {
             Console.WriteLine("Ongeldig e-mailadres. Probeer opnieuw.");
             Console.Write("Voer uw e-mailadres in: ");
@@ -350,7 +350,7 @@ public class Account
                 accountExists = true;
                 klant = klantLidmaatschap;
                 juisteWachtwoord = klantLidmaatschap["Wachtwoord"].ToString();
-            
+
                 if ((bool)klantLidmaatschap["Lidmaatschap"] == true)
                 {
                     lidmaatschapExists = true;
@@ -388,8 +388,8 @@ public class Account
             Thread.Sleep(3000);
             return false;
         }
-    }        
-    
+    }
+
     // Registreren():
     // in deze functie worden de accounts aangemaakt
     // er wordt gecheckt op wachtwoord
@@ -412,13 +412,13 @@ public class Account
             Console.Write("Maak wachtwoord aan: ");
             wachtwoord = Wachtwoord();
 
-            
+
             while (wachtwoord.Length < 7)
             {
                 Console.WriteLine("Ongeldig wachtwoord, gebruik minimaal 7 tekens");
                 Console.Write("Maak wachtwoord aan: ");
                 wachtwoord = Wachtwoord();
-            } 
+            }
 
             do
             {
@@ -431,10 +431,10 @@ public class Account
                         break;
                     }
                 }
-            } 
+            }
             while (klantnummerBestaat);
 
-            JsonDataManager.lidmaatschapObject =  new AccountGegevens(achternaam, email, wachtwoord, leeftijd, klantnummer,false,"", null, 0.0,[]); 
+            JsonDataManager.lidmaatschapObject = new AccountGegevens(achternaam, email, wachtwoord, leeftijd, klantnummer, false, "", null, 0.0, []);
 
             JsonDataManager.AppendAccountToJson();
             accountExists = true;
@@ -465,7 +465,7 @@ public class Account
                 wachtwoord = wachtwoord.Remove(wachtwoord.Length - 1);
                 Console.Write("\b \b");
             }
-        } 
+        }
         while (key.Key != ConsoleKey.Enter);
 
         Console.WriteLine();
@@ -479,9 +479,9 @@ public class Account
         bool geregistreerd = false;
         string accountOptie;
 
-        do 
+        do
         {
-            accountOptie = LidmaatschapAanvraag.Selecteren(new string[] {"Inloggen", "Account aanmaken","Account verwijderen","Quit"});
+            accountOptie = LidmaatschapAanvraag.Selecteren(new string[] { "Inloggen", "Account aanmaken", "Account verwijderen", "Quit" });
             switch (accountOptie)
             {
                 case "Inloggen":
@@ -494,32 +494,32 @@ public class Account
                     geregistreerd = Registreren();
                     break;
                 case "Account verwijderen":
-                    
-                    controleAccountGegevens(); 
+
+                    controleAccountGegevens();
                     bool inloggen = Inloggen();
                     if (inloggen == true)
                     {
-                        string AccVerwijderen = LidmaatschapAanvraag.Selecteren(new string[] {"Account verwijderen bevestigen","Quit"});
-                        
+                        string AccVerwijderen = LidmaatschapAanvraag.Selecteren(new string[] { "Account verwijderen bevestigen", "Quit" });
+
                         if (AccVerwijderen == "Account verwijderen bevestigen")
                         {
                             LidmaatschapAanvraag.Prompt("Account verwijderd");
                             JsonDataManager.DeleteAccountFromJson(email);
                             accountExists = false;
-                        } 
+                        }
                     }
                     break;
 
                 case "Quit":
                     return;
-            } 
+            }
         }
-        while (ingelogd == false && geregistreerd == false && accountOptie != "Quit" );
+        while (ingelogd == false && geregistreerd == false && accountOptie != "Quit");
 
 
         if (accountExists)
         {
-            LidmaatschapAanvraag.lidmaatschapOpties(lidmaatschapExists,email,leeftijd);
+            LidmaatschapAanvraag.lidmaatschapOpties(lidmaatschapExists, email, leeftijd);
         }
     }
 }
