@@ -503,16 +503,18 @@ public class Account
                 ErrorMessage("Te jong om lidmaatschap aan te vragen");
                 return false;
             }
-            Console.Write("Maak wachtwoord aan: ");
-            wachtwoord = Wachtwoord();
+
+            wachtwoord = WachtwoordChecker.Wachtwoord();
 
 
-            while (wachtwoord.Length < 7 || !wachtwoord.Any(char.IsUpper) || !wachtwoord.Any(char.IsDigit))
+            while (!(WachtwoordChecker.wachtwoordSterkte == "Wachtwoord sterk"))
             {
-                ErrorMessage("Ongeldig wachtwoord. Het wachtwoord moet minimaal 7 tekens lang zijn en minstens één hoofdletter en één cijfer bevatten.");
-                Console.Write("Maak wachtwoord aan: ");
-                wachtwoord = Wachtwoord();
+                Console.WriteLine("Ongeldig wachtwoord. Het wachtwoord moet minimaal 7 tekens lang zijn en minstens één hoofdletter, één cijfer en één symbool bevatten.");
+                Thread.Sleep(2500);
+                wachtwoord = WachtwoordChecker.Wachtwoord();
+
             }
+
             string hashedWachtwoord = Key.makeHash(wachtwoord);
             do
             {
@@ -568,6 +570,11 @@ public class Account
         Console.WriteLine();
         return wachtwoord;
     }
+
+
+
+
+
     public void AccountOpties()
     {
         do
@@ -685,5 +692,189 @@ class Menu
     {
         Account account = new Account();
         account.AccountOpties();
+    }
+}
+class WachtwoordChecker
+{
+    public static string wachtwoordSterkte;
+
+    public static string Wachtwoord()
+    {
+        int barLength = 20;
+        string wachtwoord = "";
+
+
+        while (true)
+        {
+            while (!Console.KeyAvailable)
+            {
+                // Calculate progress and draw the bar
+                Console.Clear(); // Clear the console window before redrawing
+                StartScreen.DisplayAsciiArt();
+                if (wachtwoord.Length > 0)
+                {
+                    DrawInputField(GetHiddenString(wachtwoord));
+                    int strength = CalculatePasswordStrength(wachtwoord);
+                    DrawProgressBar(strength, barLength);
+                    PrintStrengthMessage(strength);
+                }
+                else
+                {
+                    DrawInputField("   Maak wachtwoord aan");
+                    DrawProgressBar(0, barLength);
+                }
+                System.Threading.Thread.Sleep(100); // Wait 100 milliseconds before checking again
+            }
+
+            // Read the pressed key
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+            // Exit loop if Enter is pressed
+            if (keyInfo.Key == ConsoleKey.Enter)
+                break;
+            // Remove the last entered character if Backspace is pressed
+            else if (keyInfo.Key == ConsoleKey.Backspace)
+            {
+                if (wachtwoord.Length > 0)
+                {
+                    wachtwoord = wachtwoord.Substring(0, wachtwoord.Length - 1);
+                }
+            }
+            else if (char.IsControl(keyInfo.KeyChar))
+            {
+                // Ignore non-printable characters (control characters)
+                continue;
+            }
+            else
+            {
+                // Append the pressed key to the current input
+                wachtwoord += keyInfo.KeyChar;
+            }
+        }
+
+        return wachtwoord;
+    }
+
+    public static void DrawInputField(string wachtwoord)
+    {
+        int fieldWidth = 30; // Width of the input field
+        int passwordWidth = Math.Min(wachtwoord.Length, fieldWidth - 2); // Width of password text
+
+        // Draw the top of the field
+        Console.WriteLine("+" + new string('-', fieldWidth) + "+");
+
+        // Draw the input field
+        Console.ForegroundColor = ConsoleColor.Gray; // Change color to gray
+        Console.Write("|");
+        if (wachtwoord.Length > fieldWidth - 2)
+        {
+            // If password exceeds field width, display only the last 'fieldWidth - 3' characters
+            Console.Write("..." + wachtwoord.Substring(wachtwoord.Length - (fieldWidth - 5)));
+        }
+        else
+        {
+            // If password fits within field width, pad with spaces if needed
+            Console.Write(wachtwoord.PadRight(fieldWidth - 1));
+        }
+        Console.WriteLine(" |");
+        Console.ResetColor(); // Reset color to default
+
+        // Draw the bottom of the field
+        Console.WriteLine("+" + new string('-', fieldWidth) + "+");
+    }
+
+    public static void DrawProgressBar(int inputStrength, int barLength)
+    {
+        // Bereken de voortgang
+        double progress = (double)inputStrength / 100;
+
+        // Bereken hoeveel karakters gevuld moeten worden
+        int filledLength = (int)(barLength * progress);
+        string progressBar = new string('█', filledLength) + new string('-', barLength - filledLength);
+
+        // Omgeef de progressiebalk met lijnen
+        progressBar = "|" + progressBar + "|";
+
+        // Kies de kleur op basis van de sterkte
+        if (inputStrength < 50)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+        }
+        else if (inputStrength >= 50 && inputStrength < 80)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
+
+        // Teken de progressiebalk
+        Console.WriteLine(progressBar);
+        Console.ResetColor(); // Reset de kleur naar de standaardkleur
+    }
+    static void PrintStrengthMessage(int strength)
+    {
+        if (strength < 50)
+        {
+            wachtwoordSterkte = "Wachtwoord te zwak";
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            Console.WriteLine(wachtwoordSterkte);
+        }
+        else if (strength >= 50 && strength < 80)
+        {
+            wachtwoordSterkte = "Wachtwoord matig";
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            Console.WriteLine(wachtwoordSterkte);
+        }
+        else
+        {
+            wachtwoordSterkte = "Wachtwoord sterk";
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(wachtwoordSterkte);
+
+        }
+        Console.ResetColor();
+    }
+
+    static int CalculatePasswordStrength(string password)
+    {
+        int score = 0;
+
+        if (password.Length >= 8)
+            score += 25;
+        if (password.Length >= 12)
+            score += 25;
+
+        bool containsUppercase = false;
+        bool containsDigit = false;
+        bool containsSymbol = false;
+
+        foreach (char i in password)
+        {
+
+            if (char.IsUpper(i))
+                containsUppercase = true;
+            if (char.IsDigit(i))
+                containsDigit = true;
+            if (!char.IsLetterOrDigit(i))
+                containsSymbol = true;
+        }
+
+        if (containsUppercase)
+            score += 20;
+        if (containsDigit)
+            score += 20;
+        if (containsSymbol)
+            score += 10;
+
+        return score;
+    }
+
+    static string GetHiddenString(string wachtwoord)
+    {
+        return new string('*', wachtwoord.Length);
     }
 }
