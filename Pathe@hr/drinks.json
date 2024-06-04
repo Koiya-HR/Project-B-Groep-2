@@ -1,0 +1,44 @@
+{
+    "drinks": [
+        {
+            "Name": "Koffie",
+            "price": 2.0
+        },
+        {
+            "name": "Cappuccino",
+            "price": 2.0
+        },
+        {
+            "name": "Espresso",
+            "price": 2.0
+        },
+        {
+            "name": "Latte",
+            "price": 2.0
+        },
+        {
+            "name": "Groene Thee",
+            "price": 2.0
+        },
+        {
+            "name": "Zwarte Thee",
+            "price": 2.0
+        },
+        {
+            "name": "Kamillethee",
+            "price": 2.0
+        },
+        {
+            "name": "Muntthee",
+            "price": 2.0
+        },
+        {
+            "name": "Gemberthee",
+            "price": 2.0
+        },
+        {
+            "name": "Rooibosthee",
+            "price": 2.0
+        }
+    ]
+}

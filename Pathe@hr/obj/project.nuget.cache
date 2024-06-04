@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "zzYmqbefn53lLRUlgvOBincSqF4KjRMto5o/Qfao5IvRkBMcVruiqVg4BfXO2wOn5fLgaWIeY2MfFnxMWCch0w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ivarh\\OneDrive\\Documenten\\school\\semester_2\\ProjectB\\Pathe@hr - working\\Pathe@hr\\Pathe@hr.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ivarh\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

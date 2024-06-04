@@ -1,0 +1,44 @@
+[
+  {
+    "Achternaam": "H",
+    "Email": "123456@hr.com",
+    "Wachtwoord": "1234567",
+    "Leeftijd": 19,
+    "Klantnummer": 13814,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Drinks on me",
+    "DatumAanschaffing": "2024-05-23 13:54:47",
+    "PrijsLidmaatschap": 10.0,
+    "KortingsType": [
+      "gratis drankjes"
+    ]
+  },
+  {
+    "Achternaam": "mazlum",
+    "Email": "mina@gmail.com",
+    "Wachtwoord": "mina123",
+    "Leeftijd": 18,
+    "Klantnummer": 8000,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Unlimited",
+    "DatumAanschaffing": "2024-05-15 15:59:05",
+    "PrijsLidmaatschap": 30.0,
+    "KortingsType": [
+      "max 2 gratis tickets per aankoop"
+    ]
+  },
+  {
+    "Achternaam": "1234567",
+    "Email": "ivar123@gmail.com",
+    "Wachtwoord": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+    "Leeftijd": 33,
+    "Klantnummer": 11447,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Drinks on me",
+    "DatumAanschaffing": "2024-06-04 11:22:58",
+    "PrijsLidmaatschap": 10.0,
+    "KortingsType": [
+      "gratis drankjes"
+    ]
+  }
+]
