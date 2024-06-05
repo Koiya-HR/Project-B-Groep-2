@@ -142,7 +142,7 @@ public static class LidmaatschapAanvraag
             case "Quit":
                 break;
         }
-
+        // Extras.lidmaatschapPrijs = prijsLidmaatschap;
         if (keuzeTypeLidmaatschap != "Quit")
 
         // if zetten met als deze lidmaatschap al niet bestaat
@@ -182,7 +182,6 @@ public static class LidmaatschapAanvraag
             {
                 bevestigen = Selecteren(new string[] { "Betaling bevestigen", "Quit" });
             }
-
         }
 
         if (bevestigen == "Betaling bevestigen")
@@ -255,7 +254,7 @@ public static class LidmaatschapAanvraag
             if (lidmaatschapExists)
             {
 
-                choice1 = Selecteren(new string[] { "Lidmaatschap opzeggen", "Lidmaatschap wijzigen", "Uitloggen" });
+                choice1 = Selecteren(new string[] { "Lidmaatschap opzeggen", "Uitloggen" });
                 switch (choice1)
                 {
                     case "Lidmaatschap opzeggen":
@@ -269,11 +268,6 @@ public static class LidmaatschapAanvraag
 
                         }
 
-                        break;
-
-                    case "Lidmaatschap wijzigen":
-
-                        LidmaatschapAanvragen(email, leeftijd);
                         break;
 
                     case "Uitloggen":
@@ -316,31 +310,22 @@ public static class LidmaatschapAanvraag
         Console.WriteLine(prompt);
         Console.ResetColor();
         Thread.Sleep(1000);
-
-
     }
 }
-
 public class Account
 {
-    string email = "";
-
-
+    string email = null;
     Random random = new Random();
     JObject klant = null;
     JArray jsonAccounts;
-
     string juisteWachtwoord = "";
-
-    string achternaam;
+    string achternaam = null;
     string wachtwoord;
-
     bool accountExists;
     bool lidmaatschapExists;
     bool terug = false;
-
     int klantnummer;
-    int leeftijd;
+    int leeftijd = 1000;
     int x = 0;
     public static bool emailGevalideerd = false;
     public static string accountOptie;
@@ -351,21 +336,17 @@ public class Account
 
     public void emailInvoeren()
     {
+        Console.Clear();
         StartScreen.DisplayAsciiArt();
         emailGevalideerd = false;
 
-
         do
         {
-            Console.Write("Voer uw e-mailadres in: ");
-
-            if (Console.ReadKey(true).Key == ConsoleKey.Backspace)
+            email = ReadInputWithEscape("Voer uw e-mailadres in (druk op Escape om terug te gaan): ");
+            if (email == null)
             {
                 return;
             }
-
-
-            email = Console.ReadLine();
 
             emailGevalideerd = true;
             bool emailbestaat = emailBestaat(email);
@@ -378,12 +359,12 @@ public class Account
                     Console.Clear();
                     StartScreen.DisplayAsciiArt();
                     emailGevalideerd = false;
-
-
                 }
+
                 if (emailbestaat)
                 {
-
+                    Console.Clear();
+                    StartScreen.DisplayAsciiArt();
                     ErrorMessage("Deze e-mailadress wordt al gebruikt, probeer een andere e-mailadress.");
                     emailGevalideerd = false;
 
@@ -394,11 +375,11 @@ public class Account
                 if (!emailbestaat)
                 {
                     ErrorMessage("Account bestaat niet");
+                    Console.Clear();
+                    StartScreen.DisplayAsciiArt();
                     emailGevalideerd = false;
-
                 }
             }
-
         }
         while (emailGevalideerd == false);
 
@@ -441,8 +422,6 @@ public class Account
 
     }
 
-
-
     // Inloggen():
     // in deze functie wordt ingelogd
     // de waardes van het klant object worden meegegevn aan ieder variable 
@@ -452,17 +431,46 @@ public class Account
         StartScreen.DisplayAsciiArt();
         if (accountExists)
         {
-            Console.Write("Voer uw wachtwoord in: ");
+            Console.Write("Voer uw wachtwoord in (druk op Escape om terug te gaan): ");
             wachtwoord = Wachtwoord();
-            wachtwoord = Key.makeHash(wachtwoord);
+            if (wachtwoord == null)
+            {
+                email = null;
+                emailInvoeren();
+                return false;
+            }
+            else
+            {
+                wachtwoord = Key.makeHash(wachtwoord);
+            }
+
 
             while (wachtwoord != juisteWachtwoord)
             {
-                ErrorMessage("Wachtwoord is onjuist, probeer opnieuw.");
-                Console.Write("Voer uw wachtwoord in: ");
-                wachtwoord = Wachtwoord();
-                wachtwoord = Key.makeHash(wachtwoord);
+                Console.Clear();
+                StartScreen.DisplayAsciiArt();
 
+                if (wachtwoord.Length == 64)
+                {
+                    ErrorMessage("Voer alstublieft een wachtwoord in om verder te gaan ");
+                }
+                else
+                {
+                    ErrorMessage("Wachtwoord is onjuist, probeer opnieuw.");
+                    Console.Write("Voer uw wachtwoord in (druk op Escape om terug te gaan): ");
+                }
+
+                wachtwoord = Wachtwoord();
+                if (wachtwoord == null)
+                {
+                    email = null;
+                    emailInvoeren();
+                    return false;
+                }
+                else
+                {
+                    wachtwoord = Key.makeHash(wachtwoord);
+                }
             }
 
             leeftijd = int.Parse(klant["Leeftijd"].ToString());
@@ -471,6 +479,39 @@ public class Account
             return true;
         }
         return false;
+    }
+    public void AchternaamAanmaak()
+    {
+        Console.Clear();
+        StartScreen.DisplayAsciiArt();
+
+        achternaam = ReadInputWithEscape("Voer uw achternaam in (druk op Escape om terug te gaan): ");
+        if (achternaam == null)
+        {
+            email = null;
+            emailInvoeren();
+            return;
+        }
+
+
+    }
+    public void LeeftijdAanmaak()
+    {
+        Console.Clear();
+        StartScreen.DisplayAsciiArt();
+
+
+        string leeftijdString = ReadInputWithEscape("Voer uw leeftijd in (druk op Escape om terug te gaan): ");
+        if (leeftijdString == null)
+        {
+            achternaam = null;
+            AchternaamAanmaak();
+            return;
+        }
+        else
+        {
+            leeftijd = Convert.ToInt32(leeftijdString);
+        }
 
 
     }
@@ -485,37 +526,76 @@ public class Account
         Console.Clear();
         StartScreen.DisplayAsciiArt();
 
+        achternaam = null;
+        leeftijd = 1000;
+        string hashedWachtwoord = "";
 
         if (!accountExists)
 
         {
             bool klantnummerBestaat = false;
-
-            Console.Write("Voer uw achternaam in: ");
-            achternaam = Console.ReadLine();
-
-            Console.Write("Voer uw leeftijd in: ");
-            leeftijd = Convert.ToInt32(Console.ReadLine());
-
-
-            if (leeftijd < 18)
+            while (achternaam == null || leeftijd == 1000 || wachtwoord == null)
             {
-                ErrorMessage("Te jong om lidmaatschap aan te vragen");
-                return false;
+
+                if (achternaam == null)
+                {
+                    AchternaamAanmaak();
+                }
+                if (email == null)
+                {
+                    return false;
+                }
+
+                if (achternaam != null && leeftijd == 1000)
+                {
+                    LeeftijdAanmaak();
+                    if (leeftijd < 18)
+                    {
+                        ErrorMessage("Te jong om lidmaatschap aan te vragen");
+                        return false;
+                    }
+                }
+                if (email == null)
+                {
+                    return false;
+                }
+
+                if (achternaam != null && leeftijd != 1000)
+
+                {
+                    do
+                    {
+                        wachtwoord = WachtwoordChecker.Wachtwoord();
+
+
+                        if (wachtwoord == null)
+                        {
+                            leeftijd = 1000;
+                            LeeftijdAanmaak();
+                            break;
+
+                        }
+                        else
+                        {
+                            hashedWachtwoord = Key.makeHash(wachtwoord);
+
+                        }
+                        if (email == null)
+                        {
+                            return false;
+                        }
+
+                        if (!(WachtwoordChecker.wachtwoordSterkte == "Wachtwoord sterk"))
+                        {
+                            Console.WriteLine("Ongeldig wachtwoord. Het wachtwoord moet minimaal 7 tekens lang zijn en minstens één hoofdletter, één cijfer en één symbool bevatten.");
+                            Thread.Sleep(2500);
+                        }
+
+                    }
+                    while (!(WachtwoordChecker.wachtwoordSterkte == "Wachtwoord sterk"));
+                }
             }
 
-            wachtwoord = WachtwoordChecker.Wachtwoord();
-
-
-            while (!(WachtwoordChecker.wachtwoordSterkte == "Wachtwoord sterk"))
-            {
-                Console.WriteLine("Ongeldig wachtwoord. Het wachtwoord moet minimaal 7 tekens lang zijn en minstens één hoofdletter, één cijfer en één symbool bevatten.");
-                Thread.Sleep(2500);
-                wachtwoord = WachtwoordChecker.Wachtwoord();
-
-            }
-
-            string hashedWachtwoord = Key.makeHash(wachtwoord);
             do
             {
                 klantnummer = random.Next(2000, 20000);
@@ -534,6 +614,8 @@ public class Account
 
             JsonDataManager.AppendAccountToJson();
             accountExists = true;
+
+
             return true;
         }
         return false;
@@ -547,6 +629,12 @@ public class Account
         do
         {
             key = Console.ReadKey(true);
+
+            if ((key.Key == ConsoleKey.Escape))
+            {
+                return null;
+            }
+
             if (key.Key != ConsoleKey.Escape && key.Key != ConsoleKey.Enter)
             {
                 if (key.Key != ConsoleKey.Backspace)
@@ -563,16 +651,49 @@ public class Account
                     Console.Write(" ");
                     Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
                 }
+
             }
         }
-        while (key.Key != ConsoleKey.Enter);
+        while (key.Key != ConsoleKey.Enter && key.Key != ConsoleKey.Escape);
 
         Console.WriteLine();
         return wachtwoord;
     }
+    public static string ReadInputWithEscape(string prompt)
+    {
+        Console.Write(prompt);
+        string input = "";
+        while (true)
+        {
+            var keyInfo = Console.ReadKey(intercept: true);
+            if (keyInfo.Key == ConsoleKey.Escape)
+            {
+                return null;
+            }
+            else if (keyInfo.Key == ConsoleKey.Enter)
+            {
+                Console.WriteLine();
+                break;
+            }
 
+            else if (keyInfo.Key == ConsoleKey.Backspace)
+            {
+                if (input.Length > 0)
+                {
 
+                    input = input.Substring(0, input.Length - 1);
+                    Console.Write("\b \b");
+                }
+            }
 
+            else
+            {
+                Console.Write(keyInfo.KeyChar);
+                input += keyInfo.KeyChar;
+            }
+        }
+        return input;
+    }
 
 
     public void AccountOpties()
@@ -592,12 +713,8 @@ public class Account
                     if (emailGevalideerd)
                     {
                         Console.Clear();
-
                         ingelogd = Inloggen();
                     }
-
-
-
                     break;
                 case "Account aanmaken":
                     emailInvoeren();
@@ -610,16 +727,14 @@ public class Account
                     }
                     break;
 
-
                 case "Account verwijderen":
                     emailInvoeren();
 
                     if (emailGevalideerd)
                     {
-
                         Console.Clear();
-
                         bool inloggen = Inloggen();
+
                         if (inloggen == true)
                         {
                             string AccVerwijderen = LidmaatschapAanvraag.Selecteren(new string[] { "Account verwijderen bevestigen", "Quit" });
@@ -643,7 +758,6 @@ public class Account
             {
                 LidmaatschapAanvraag.lidmaatschapOpties(lidmaatschapExists, email, leeftijd);
             }
-
         }
         while (accountOptie != "Quit");
     }
@@ -655,7 +769,6 @@ public class Account
         Console.ResetColor();
         Thread.Sleep(3000);
     }
-
 
     // kijkt of er een lidmaatschap bestaat zo ja returnt het de bijbehorende korting
     public List<string> HuidigeLidmaatschap()
@@ -683,7 +796,6 @@ public class Account
         LidmaatschapAanvraag.LidmaatschapAanvragen(email, leeftijd);
     }
 
-
 }
 
 class Menu
@@ -694,6 +806,7 @@ class Menu
         account.AccountOpties();
     }
 }
+
 class WachtwoordChecker
 {
     public static string wachtwoordSterkte;
@@ -708,6 +821,7 @@ class WachtwoordChecker
         {
             while (!Console.KeyAvailable)
             {
+
                 // Calculate progress and draw the bar
                 Console.Clear(); // Clear the console window before redrawing
                 StartScreen.DisplayAsciiArt();
@@ -729,6 +843,10 @@ class WachtwoordChecker
             // Read the pressed key
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
+            if (keyInfo.Key == ConsoleKey.Escape)
+            {
+                return null;
+            }
             // Exit loop if Enter is pressed
             if (keyInfo.Key == ConsoleKey.Enter)
                 break;
@@ -754,7 +872,6 @@ class WachtwoordChecker
 
         return wachtwoord;
     }
-
     public static void DrawInputField(string wachtwoord)
     {
         int fieldWidth = 30; // Width of the input field
@@ -813,6 +930,8 @@ class WachtwoordChecker
         Console.WriteLine(progressBar);
         Console.ResetColor(); // Reset de kleur naar de standaardkleur
     }
+
+
     static void PrintStrengthMessage(int strength)
     {
         if (strength < 50)
