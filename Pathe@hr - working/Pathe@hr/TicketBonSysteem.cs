@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using Pathe_hr.obj;
 
 public class TicketBonSystem
 {
@@ -101,6 +102,7 @@ Drankjes:
         // If user selects "Bestelling annuleren", return
         if (selectedIndex == 1)
         {
+            Reservation.CancelReservation();
             return;
         }
 
@@ -111,7 +113,17 @@ Drankjes:
     // Placeholder method to process the selected option
     static void ProcessSelectedOption(string selectedOption)
     {
-        Console.WriteLine($"Selected option: {selectedOption}");
+        if (selectedOption == "Naar betalen")
+        {
+            Extras.paymentSystem.SelectPaymentMethodAndConfirm();
+        }
+        else if (selectedOption == "Bestelling annuleren")
+        {
+            Reservation.CancelReservation();
+            Extras.paymentSystem._onPaymentSuccess.Invoke();
+            return;
+        }
+        return;
         // roep hier de payment system aan
     }
 }

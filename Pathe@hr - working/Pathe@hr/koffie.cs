@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 public class Drink
 {
@@ -75,6 +76,12 @@ public class Koffie
         // If user selects "Nee", return
         if (selectedIndex == 1)
         {
+            Console.Clear();
+            string bonnetjedata = File.ReadAllText("bonnetje.json");
+            Bonnetje bonnetje = JsonConvert.DeserializeObject<Bonnetje>(bonnetjedata);
+            bonnetje.Drankjes = [];
+            string updatedbonnetje = JsonConvert.SerializeObject(bonnetje, Formatting.Indented);
+            File.WriteAllText("bonnetje.json", updatedbonnetje);
             return;
         }
 
@@ -193,11 +200,7 @@ public class Koffie
             if (File.Exists(filePath))
             {
                 var jsonData = File.ReadAllText(filePath);
-                var drinkList = JsonSerializer.Deserialize<DrinkList>(jsonData, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true,
-                    WriteIndented = true
-                });
+                var drinkList = JsonConvert.DeserializeObject<DrinkList>(jsonData);
                 Drinks = drinkList?.Drinks ?? new List<Drink>();
             }
             else
