@@ -11,7 +11,9 @@ using System.Text.Json.Serialization;
 public class Zaal
 {
     private bool isPaymentComplete;
-    private PaymentSystem paymentSystem;
+    public PaymentSystem paymentSystem;
+
+    private bool stopTimer = false;
     public int remainingTime = 120; // Total number of seconds for the countdown timer
     public const int maxRemainingTime = 120;
     public int numRows;
@@ -46,6 +48,7 @@ public class Zaal
         buildChairs();
         stoelArray = CreateStoelArray(numRows, chairsInRow);
         paymentSystem = new PaymentSystem(() => isPaymentComplete = true, () => remainingTime, selectedChairs);
+        Extras.paymentSystem = paymentSystem;
     }
     // vullen van events========================================================================================
 
@@ -129,10 +132,12 @@ public class Zaal
 
     // vullen van events========================================================================================
 
-    public void chooseChairs()
+    public void chooseChairs(bool onlyChooseChairs = false)
     {
+        isPaymentComplete = false;
+        stopTimer = false;
         bool chairsChosen = false;
-
+        remainingTime = maxRemainingTime;
         //makeEventChairs(); //fill the json with chairs (only do this if new events are made)
         chooseTickets();
         resetChairs();// maak stoelen weer allemaal vrij
@@ -162,7 +167,7 @@ public class Zaal
                     {
                         chairsChosen = true;
                         makeTickets();
-                        setChairsToTaken();
+                        //setChairsToTaken();
                         break;
                     }
                     else
@@ -197,6 +202,7 @@ public class Zaal
                     break;
                 case ConsoleKey.Escape:
                     deselectChairs();
+                    StopTimer();
                     return;
 
             }
@@ -222,9 +228,19 @@ public class Zaal
         }
     }
 
+    public void StopTimer()
+    {
+        stopTimer = true;
+    }
+
     public void deselectChairs()
     {
-
+        foreach (var chair in selectedChairs)
+        {
+            stoelArray[chair.row, chair.col].selected = false;
+            stoelArray[chair.row, chair.col].free = true;
+        }
+        selectedChairs.Clear();
     }
     public void setChairsToTaken()
     {
@@ -764,26 +780,36 @@ public class Zaal
     public void ShowCountdownTimer(int seconds)
     {
         Console.WriteLine("De timer is gestart...");
-        while (seconds >= 0)
+        while (seconds >= 0) // Blijf de timer uitvoeren totdat de tijd op is
         {
             if (isPaymentComplete)
                 return;
 
             remainingTime = seconds;
             Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write($"Resterende tijd: {seconds / 60:00}:{seconds % 60:00}   "); // De timer wordt hier geschreven
+            Console.Write($"Resterende tijd: {seconds / 60:00}:{seconds % 60:00}   ");
             if (seconds == 10)
             {
                 Console.WriteLine("Waarschuwing: U heeft nog 10 seconden!");
             }
-            Thread.Sleep(1000); // Wacht 1 seconde
+            Thread.Sleep(1000);
             seconds--;
-        }
 
+            // Controleer of de stopTimer vlag is ingesteld om de timer-thread te stoppen
+            if (stopTimer)
+            {
+                // Reset de stopTimer vlag voordat de methode wordt verlaten
+                stopTimer = false;
+                // Verlaat de methode
+                return;
+            }
+        }
         Console.WriteLine();
+
+        // Reset de stopTimer vlag nadat de loop is gestopt
+        stopTimer = false;
         Console.WriteLine("De timer is gestopt.");
         Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
         Extras.isTimeLeft = false;
     }
 }
-

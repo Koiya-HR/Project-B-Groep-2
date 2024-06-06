@@ -1,28 +1,11 @@
 {
-  "Filmnaam": "Oppenheimer",
-  "Drankjes": [
-    {
-      "Name": "Gemberthee",
-      "Count": 3
-    },
-    {
-      "Name": "Zwarte Thee",
-      "Count": 4
-    },
-    {
-      "Name": "Muntthee",
-      "Count": 1
-    }
-  ],
-  "Price": 16.0,
-  "starttijd": "2024-07-22T11:30:00",
-  "eindtijd": "2024-07-22T13:40:00",
-  "Locatie": "Delft",
+  "Filmnaam": "Joker",
+  "Drankjes": [],
+  "Price": 2.0,
+  "starttijd": "2024-07-27T11:30:00",
+  "eindtijd": "2024-07-27T13:40:00",
+  "Locatie": "Den Haag",
   "Stoelen": [
-    "05-05",
-    "05-06",
-    "05-07",
-    "05-08",
-    "05-09"
+    "01-07"
   ]
 }

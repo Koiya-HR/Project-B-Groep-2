@@ -2,7 +2,7 @@ namespace Pathe_hr.obj
 {
     public class PaymentSystem
     {
-        private Action _onPaymentSuccess;
+        public Action _onPaymentSuccess;
         private Func<int> _getSecondsRemaining;
 
         private List<(int, int)> _selectedChairs;
@@ -18,7 +18,7 @@ namespace Pathe_hr.obj
         {
             StartScreen.DisplayAsciiArt();
             Console.WriteLine("Kies een betaalmethode:");
-            string[] paymentOptions = { "iDEAL", "PayPal", "Credit/Debit", "Cash (op locatie)" };
+            string[] paymentOptions = { "iDEAL", "PayPal", "Credit/Debit", "Cash (op locatie)", "Bestelling annuleren" };
             int selectedIndex = DisplayMenu(paymentOptions);
 
             // Betaal bevestiging afdrukken
@@ -44,10 +44,16 @@ namespace Pathe_hr.obj
                     Console.WriteLine("U gaat met Cash op locatie betalen");
                     Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
                     break;
+                case "Bestelling annuleren":
+                    Reservation.CancelReservation();
+                    Console.WriteLine("bestelling geannuleerd");
+                    Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
+                    break;
                 default:
                     Console.WriteLine("Onbekende betaalmethode");
                     break;
             }
+            Extras.zaal.setChairsToTaken();
             _onPaymentSuccess.Invoke();
             Console.ReadKey();
         }

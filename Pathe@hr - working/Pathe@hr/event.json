@@ -444,7 +444,7 @@
       {
         "Row": 4,
         "Col": 7,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 4,
@@ -6483,7 +6483,7 @@
       {
         "Row": 4,
         "Col": 4,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 4,
@@ -8591,42 +8591,42 @@
       {
         "Row": 5,
         "Col": 2,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
         "Col": 3,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
         "Col": 4,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
         "Col": 5,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
         "Col": 6,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
         "Col": 7,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
         "Col": 8,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
         "Col": 9,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
@@ -9405,27 +9405,27 @@
       {
         "Row": 3,
         "Col": 3,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
         "Col": 4,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
         "Col": 5,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
         "Col": 6,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
         "Col": 7,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
@@ -15174,7 +15174,7 @@
       {
         "Row": 0,
         "Col": 6,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 0,
@@ -15264,7 +15264,7 @@
       {
         "Row": 1,
         "Col": 4,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 1,
@@ -15369,7 +15369,7 @@
       {
         "Row": 2,
         "Col": 5,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 2,
@@ -15449,7 +15449,7 @@
       {
         "Row": 3,
         "Col": 1,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
@@ -15464,7 +15464,7 @@
       {
         "Row": 3,
         "Col": 4,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
@@ -15549,7 +15549,7 @@
       {
         "Row": 4,
         "Col": 1,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 4,
@@ -15649,7 +15649,7 @@
       {
         "Row": 5,
         "Col": 1,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
@@ -15664,17 +15664,17 @@
       {
         "Row": 5,
         "Col": 4,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
         "Col": 5,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
         "Col": 6,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
@@ -17572,7 +17572,7 @@
       {
         "Row": 4,
         "Col": 2,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 4,
@@ -23321,7 +23321,7 @@
       {
         "Row": 1,
         "Col": 1,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 1,
@@ -26668,7 +26668,7 @@
       {
         "Row": 4,
         "Col": 5,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 4,
