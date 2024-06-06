@@ -223,10 +223,9 @@ public class Zaal
         {
             // Wait for the payment confirmation
             Koffie.Drank();
-            TicketBonSystem.betaalSysteem();
+            TicketBonSystem.betaalSysteem(selectedChairs, stoelArray);
             //paymentSystem.SelectPaymentMethodAndConfirm();
         }
-        TicketBonSystem.SetZaalInstance(this);
     }
 
     public void StopTimer()
