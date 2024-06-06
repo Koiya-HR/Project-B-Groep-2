@@ -13,6 +13,31 @@ public class Bioscoop
         Name = name;
     }
 
+
+    private void SaveSelectedFilm(string filmnaam)
+    {
+        var bonnetjePath = "bonnetje.json"; // pad naar bonnetje.json
+        if (File.Exists(bonnetjePath))
+        {
+            // Laad het bonnetje uit het bestand
+            string bonnetjeJson = File.ReadAllText(bonnetjePath);
+            var bonnetje = JsonSerializer.Deserialize<Dictionary<string, object>>(bonnetjeJson);
+
+            // Update de filmnaam
+            bonnetje["Filmnaam"] = filmnaam;
+
+
+            // Sla het bijgewerkte bonnetje terug op
+            var updatedBonnetjeJson = JsonSerializer.Serialize(bonnetje, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(bonnetjePath, updatedBonnetjeJson);
+        }
+        else
+        {
+            Console.WriteLine("Bonnetje niet gevonden.");
+        }
+    }
+
+
     public void ChooseMovies(Zaal zaal) // methode om films te kiezen
     {
         SetMovies(); // films worden geladen uit json bestand
@@ -65,7 +90,7 @@ public class Bioscoop
                 case ConsoleKey.Enter:
                     Console.WriteLine($"Gekozen film is {Movies[currentMovieId].Titel}");
                     Extras.gekozenFilm = Movies[currentMovieId].Titel; // gekozen film in extra zetten
-
+                    SaveSelectedFilm(Extras.gekozenFilm);
                     return true;
                 case ConsoleKey.Escape:
                     return false; // uit het programma
@@ -345,159 +370,3 @@ public class Bioscoop
         }
     }
 }
-
-
-// using Newtonsoft.Json;
-// using Newtonsoft.Json.Linq;
-// using System;
-// using System.Collections.Generic;
-// using System.IO;
-
-// public class Bioscoop
-// {
-//     public string Location;
-//     public List<Film>? allMovies { get; private set; }
-
-//     private bool movieChosen = false;
-
-//     public Bioscoop(string location)
-//     {
-//         Location = location;
-//         MakeMovies();
-//     }
-
-//     public void ChooseMovies(Zaal zaal)
-//     {
-//         FilmsFilterenOpGenre.Filteren();
-//         int returnCode = ShowMovies();
-//         if (returnCode != -1 && returnCode != -2) // -1 is geen film gekozen en -2 is geen films aanwezig
-//         {
-//             zaal.chooseChairs();
-//         }
-
-//     }
-
-
-//     public int ShowMovies()
-//     {
-//         MakeMovies();
-//         if (allMovies != null)
-//         {
-//             int currentMovieID = 0;
-//             if (movieChosen)
-//             {
-//                 Console.Clear();
-//                 movieChosen = false;
-
-//                 foreach (Film movie in allMovies)
-//                 {
-//                     movie.isCurrentMovie = false;
-//                 }
-//                 allMovies[0].isCurrentMovie = true;
-//             }
-//             else
-//             {
-//                 Console.Clear();
-//                 //currentMovieID = 0;
-//                 allMovies[currentMovieID].isCurrentMovie = true;
-
-//             }
-//             Film.PrintControllInfo();
-//             allMovies[currentMovieID].PrintMovie();
-//             if (currentMovieID + 2 < allMovies.Count)
-//             {
-//                 allMovies[currentMovieID + 1].PrintMovie();
-//                 allMovies[currentMovieID + 2].PrintMovie();
-//             }
-//             else if (currentMovieID + 1 < allMovies.Count)
-//             {
-//                 allMovies[currentMovieID + 1].PrintMovie();
-//             }
-//             while (true)
-//             {
-//                 ConsoleKeyInfo keyInfo = Console.ReadKey();
-//                 Console.Clear();
-//                 switch (keyInfo.Key)
-//                 {
-//                     case ConsoleKey.W or ConsoleKey.UpArrow:
-//                         if (currentMovieID > 0)
-//                         {
-//                             allMovies[currentMovieID].isCurrentMovie = false;
-//                             currentMovieID--;
-//                             allMovies[currentMovieID].isCurrentMovie = true;
-//                         }
-//                         break;
-//                     case ConsoleKey.S or ConsoleKey.DownArrow:
-//                         if (currentMovieID < allMovies.Count - 1)
-//                         {
-//                             allMovies[currentMovieID].isCurrentMovie = false;
-//                             currentMovieID++;
-//                             allMovies[currentMovieID].isCurrentMovie = true;
-//                         }
-//                         break;
-//                     case ConsoleKey.Enter:
-//                         Console.Clear();
-//                         movieChosen = true;
-//                         Console.WriteLine($"Gekozen film is {allMovies[currentMovieID].Titel}");
-//                         Extras.gekozenFilm = allMovies[currentMovieID].Titel;
-//                         Extras.EventID = 1;
-//                         return currentMovieID; // Index van de gekozen film
-//                     case ConsoleKey.Escape:
-//                         Console.Clear();
-//                         movieChosen = false;
-//                         return -1; //no movie chosen
-//                 }
-//                 Film.PrintControllInfo();
-//                 for (int i = 0; i < allMovies.Count; i++)
-//                 {
-//                     if (allMovies[i].isCurrentMovie && i != 0 && i < allMovies.Count - 1)
-//                     {
-//                         allMovies[i - 1].PrintMovie();
-//                         allMovies[i].PrintMovie();
-//                         allMovies[i + 1].PrintMovie();
-//                     }
-//                     else if (allMovies[i].isCurrentMovie && i != 0 && i == allMovies.Count - 1)
-//                     {
-//                         allMovies[i - 2].PrintMovie();
-//                         allMovies[i - 1].PrintMovie();
-//                         allMovies[i].PrintMovie();
-//                     }
-//                     else if (allMovies[i].isCurrentMovie && i == 0 && i < allMovies.Count - 1)
-//                     {
-//                         allMovies[i].PrintMovie();
-//                         allMovies[i + 1].PrintMovie();
-//                         allMovies[i + 2].PrintMovie();
-//                     }
-//                 }
-//             }
-//         }
-//         else
-//         {
-//             Console.WriteLine("Geen films beschikbaar.");
-//             return -2;// no movies 
-//         }
-
-//     }
-
-
-//     public void MakeMovies()
-//     {
-//         string filePath = "films.json";
-//         if (File.Exists(filePath))
-//         {
-//             string jsonContent = File.ReadAllText(filePath);
-//             var settings = new JsonSerializerSettings
-//             {
-//                 TypeNameHandling = TypeNameHandling.Auto
-//             };
-//             allMovies = JsonConvert.DeserializeObject<List<Film>>(jsonContent, settings)!;
-//         }
-//         else
-//         {
-//             Console.WriteLine("wrong filepath, films.json not found");
-//         }
-
-
-
-//     }
-// }
