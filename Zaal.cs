@@ -14,8 +14,8 @@ public class Zaal
     public PaymentSystem paymentSystem;
 
     private bool stopTimer = false;
-    public int remainingTime = 120; // Total number of seconds for the countdown timer
-    public const int maxRemainingTime = 120;
+    public int remainingTime = 20; // Total number of seconds for the countdown timer
+    public const int maxRemainingTime = 20;
     public int numRows;
     public int chairsInRow;
     public List<Stoel> chairs { get; } = new();
@@ -809,6 +809,7 @@ public class Zaal
 
         // Reset de stopTimer vlag nadat de loop is gestopt
         stopTimer = false;
+        deselectChairs();
         Console.WriteLine("De timer is gestopt.");
         Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
         Extras.isTimeLeft = false;
