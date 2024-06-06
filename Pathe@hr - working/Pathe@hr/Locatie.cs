@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 public class Location
 {
@@ -119,6 +121,7 @@ public class Location
                 else if (choice.Key == ConsoleKey.Enter)
                 {
                     Extras.EventID = filteredEvents[eventIndex].EventID;
+                    writeEventToBonnetje();
                 }
                 else if (choice.Key == ConsoleKey.Escape)
                 {
@@ -180,27 +183,38 @@ public class Location
 
     public static void ReadEventsFromJson()
     {
-        var filePath = "event.json";
+        string filePath = "event.json";
+        string jsonData = File.ReadAllText(filePath);
+        Events = JsonConvert.DeserializeObject<List<Event>>(jsonData);
+    }
 
-        try
+
+
+    public static void writeEventToBonnetje()
+    {
+        DateTime startTijd;
+        DateTime eindTijd;
+        string locatie;
+
+        for (int i = 0; i < Events.Count; i++)
         {
-            if (File.Exists(filePath))
+            if (Events[i].EventID == Extras.EventID)
             {
-                var jsonData = File.ReadAllText(filePath);
-                Events = JsonSerializer.Deserialize<List<Event>>(jsonData, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true,
-                    Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
-                })!;
+                startTijd = Events[i].StartTijd;
+                eindTijd = Events[i].EindTijd;
+                locatie = Events[i].Locatie;
+
+                string bonnetjedata = File.ReadAllText("bonnetje.json");
+                Bonnetje bonnetje = JsonConvert.DeserializeObject<Bonnetje>(bonnetjedata);
+
+                bonnetje.starttijd = startTijd;
+                bonnetje.eindtijd = eindTijd;
+                bonnetje.Locatie = locatie;
+
+                string updatedbonnetje = JsonConvert.SerializeObject(bonnetje, Formatting.Indented);
+                File.WriteAllText("bonnetje.json", updatedbonnetje);
+                break;
             }
-            else
-            {
-                Console.WriteLine("Events file not found.");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"An error occurred while reading the events file: {ex.Message}");
         }
     }
 }

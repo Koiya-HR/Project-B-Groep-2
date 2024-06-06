@@ -1,0 +1,42 @@
+[
+  {
+    "Film": "Oppenheimer",
+    "StoelRow": 4,
+    "StoelCol": 4,
+    "EventID": 20,
+    "StoelNaam": "05-05",
+    "Prijs": 18.0
+  },
+  {
+    "Film": "Oppenheimer",
+    "StoelRow": 4,
+    "StoelCol": 5,
+    "EventID": 20,
+    "StoelNaam": "05-06",
+    "Prijs": 18.0
+  },
+  {
+    "Film": "Oppenheimer",
+    "StoelRow": 4,
+    "StoelCol": 6,
+    "EventID": 20,
+    "StoelNaam": "05-07",
+    "Prijs": 18.0
+  },
+  {
+    "Film": "Oppenheimer",
+    "StoelRow": 4,
+    "StoelCol": 7,
+    "EventID": 20,
+    "StoelNaam": "05-08",
+    "Prijs": 18.0
+  },
+  {
+    "Film": "Oppenheimer",
+    "StoelRow": 4,
+    "StoelCol": 8,
+    "EventID": 20,
+    "StoelNaam": "05-09",
+    "Prijs": 18.0
+  }
+]

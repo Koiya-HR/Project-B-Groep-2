@@ -1,33 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-/*
-
-format tickets
-
-[
-    {
-        "FilmID":1,
-        "StoelRow":5,
-        "StoelCol":14,
-        "EventID":1,
-        "StoelNaam": "05-14",
-        "Prijs": 18.00
-    },
-    {
-        "FilmID":2,
-        "StoelRow":3,
-        "StoelCol":10,
-        "EventID":2,
-        "StoelNaam": "03-10",
-        "Prijs": 18.00
-    }
-]
-
-*/
-
-
-
 static class Reservation
 {
     public static void CancelReservation()

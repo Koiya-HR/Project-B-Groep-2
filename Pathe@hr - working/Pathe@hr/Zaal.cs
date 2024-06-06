@@ -1,6 +1,12 @@
 using Pathe_hr.obj;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 //resetChairs(); om zaal stoelen te deselecteren=======================================================================
 public class Zaal
 {
@@ -123,7 +129,7 @@ public class Zaal
 
     // vullen van events========================================================================================
 
-    public void chooseChairs(bool onlyChooseChairs = false)
+    public void chooseChairs()
     {
         bool chairsChosen = false;
 
@@ -211,7 +217,8 @@ public class Zaal
         {
             // Wait for the payment confirmation
             Koffie.Drank();
-            paymentSystem.SelectPaymentMethodAndConfirm();
+            TicketBonSystem.betaalSysteem();
+            //paymentSystem.SelectPaymentMethodAndConfirm();
         }
     }
 
@@ -250,6 +257,9 @@ public class Zaal
     private void makeTickets()
     {
         List<Ticket> tickets = new();
+        string bonnetjedata = File.ReadAllText("bonnetje.json");
+        Bonnetje bonnetje = JsonConvert.DeserializeObject<Bonnetje>(bonnetjedata);
+        bonnetje.Stoelen = [];
         foreach ((int row, int col) stoel in selectedChairs)
         {
             string stoelNaam = Stoel.makeChairName(stoel.row, stoel.col);
@@ -262,11 +272,18 @@ public class Zaal
                 Extras.EventID,
                 ticketPrijs
             ));
+            bonnetje.Stoelen.Add(stoelNaam);
         }
-        string json = JsonConvert.SerializeObject(tickets, Formatting.Indented);
-        File.WriteAllText("tickets.json", json);
 
+
+        string ticketsJson = JsonConvert.SerializeObject(tickets, Formatting.Indented);
+        File.WriteAllText("tickets.json", ticketsJson);
+
+
+        string bonnetjesJson = JsonConvert.SerializeObject(bonnetje, Formatting.Indented);
+        File.WriteAllText("bonnetje.json", bonnetjesJson);
     }
+
 
     public void checkTicketExists()
     {

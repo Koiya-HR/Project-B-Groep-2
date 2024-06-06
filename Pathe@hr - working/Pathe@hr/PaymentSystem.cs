@@ -59,11 +59,13 @@ namespace Pathe_hr.obj
             while (Extras.isTimeLeft)
             {
                 Console.Clear();
+                /*
                 Console.WriteLine("Informatie:");
                 foreach (var chair in _selectedChairs)
                 {
                     Console.WriteLine($"- Rij: {chair.Item1 + 1}, Stoel: {chair.Item2 + 1}");
                 }
+                */
                 Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
                 for (int i = 0; i < options.Length; i++)
                 {
@@ -95,7 +97,7 @@ namespace Pathe_hr.obj
                         selectedIndex = (selectedIndex == options.Length - 1) ? 0 : selectedIndex + 1;
                         break;
                     case ConsoleKey.F:
-                        Extras.zaal.chooseChairs(true);
+                        Extras.zaal.chooseChairs();
                         break;
                     case ConsoleKey.Enter:
                         Extras.zaal.fillChairs();
