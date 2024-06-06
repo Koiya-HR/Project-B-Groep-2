@@ -2,7 +2,6 @@ public class StartScreen
 {
     public static void Screen(Menu lidmaatschapMenu)
     {
-        //zaal.makeEventChairs();
         Zaal zaal = Extras.zaal;
         Bioscoop bios = Extras.bios;
         while (true)

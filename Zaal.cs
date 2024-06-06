@@ -1,7 +1,7 @@
 using Pathe_hr.obj;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+//resetChairs(); om zaal stoelen te deselecteren=======================================================================
 public class Zaal
 {
     private bool isPaymentComplete;
@@ -68,7 +68,7 @@ public class Zaal
         }
     }
 
-    public void resetChairs()
+    public void resetChairs()// 
     {
         for (int i = 0; i < stoelArray.GetLength(0); i++)
         {

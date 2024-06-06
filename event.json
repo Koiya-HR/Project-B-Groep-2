@@ -11218,7 +11218,7 @@
       {
         "Row": 1,
         "Col": 2,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 1,
@@ -24660,7 +24660,7 @@
       {
         "Row": 4,
         "Col": 7,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 4,
