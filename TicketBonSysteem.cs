@@ -6,22 +6,18 @@ using Pathe_hr.obj;
 
 public class TicketBonSystem
 {
-    private static Zaal zaalInstance;
 
-    public static void SetZaalInstance(Zaal zaal)
+    public static void DeselectChairs(List<(int row, int col)> selectedChairs, Stoel[,] stoelArray)
     {
-        zaalInstance = zaal;
-    }
-
-    public static void DeselectChairs()
-    {
-        if (zaalInstance != null)
+        foreach (var chair in selectedChairs)
         {
-            zaalInstance.deselectChairs();
+            stoelArray[chair.row, chair.col].selected = false;
+            stoelArray[chair.row, chair.col].free = true;
         }
+        selectedChairs.Clear();
     }
 
-    public static void betaalSysteem()
+    public static void betaalSysteem(List<(int row, int col)> selectedChairs, Stoel[,] stoelArray)
     {
         ConsoleKeyInfo choice; // Stores user input
         int selectedIndex = 0; // Index of the selected option
@@ -119,26 +115,26 @@ Drankjes:
         {
             Extras.stopTimer = true;
             Reservation.CancelReservation();
-            TicketBonSystem.DeselectChairs();
+            DeselectChairs(selectedChairs, stoelArray);
             return;
         }
 
         // Process payment or continue with other actions
-        ProcessSelectedOption(options[selectedIndex]);
+        ProcessSelectedOption(options[selectedIndex], selectedChairs, stoelArray);
     }
 
     // Placeholder method to process the selected option
-    static void ProcessSelectedOption(string selectedOption)
+    static void ProcessSelectedOption(string selectedOption, List<(int row, int col)> selectedChairs, Stoel[,] stoelArray)
     {
         if (selectedOption == "Naar betalen")
         {
-            Extras.paymentSystem.SelectPaymentMethodAndConfirm();
+            Extras.paymentSystem.SelectPaymentMethodAndConfirm(selectedChairs, stoelArray);
         }
         else if (selectedOption == "Bestelling annuleren")
         {
             Extras.stopTimer = true;
             Reservation.CancelReservation();
-            TicketBonSystem.DeselectChairs();
+            DeselectChairs(selectedChairs, stoelArray);
             Extras.paymentSystem._onPaymentSuccess.Invoke();
             return;
         }
