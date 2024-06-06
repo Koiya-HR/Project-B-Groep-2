@@ -16,4 +16,6 @@ public static class Extras
     public static int numTickets; // aantal tickets 
     public static double lidmaatschapPrijs; // prijs voor lidmaatschap, hoeft niet op bonnetje
 
+    public static bool stopTimer = false;
+
 }

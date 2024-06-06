@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "Film": "Joker",
+    "StoelRow": 0,
+    "StoelCol": 3,
+    "EventID": 25,
+    "StoelNaam": "01-04",
+    "Prijs": 18.0
+  }
+]

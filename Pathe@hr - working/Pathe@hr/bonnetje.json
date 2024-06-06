@@ -1,11 +1,24 @@
 {
   "Filmnaam": "Joker",
-  "Drankjes": [],
-  "Price": 2.0,
+  "Drankjes": [
+    {
+      "Name": "Koffie",
+      "Count": 1
+    },
+    {
+      "Name": "Cappuccino",
+      "Count": 1
+    },
+    {
+      "Name": "Gemberthee",
+      "Count": 3
+    }
+  ],
+  "Price": 10.0,
   "starttijd": "2024-07-27T11:30:00",
   "eindtijd": "2024-07-27T13:40:00",
   "Locatie": "Den Haag",
   "Stoelen": [
-    "01-07"
+    "01-04"
   ]
 }
