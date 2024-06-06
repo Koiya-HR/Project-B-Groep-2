@@ -1,64 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-
-public class Chair
-{
-    public int Row { get; set; }
-    public int Col { get; set; }
-    public bool Taken { get; set; }
-}
-
-public class Event
-{
-    public string Locatie { get; set; }
-    public int EventID { get; set; }
-    public string MovieID { get; set; }
-    public List<Chair> Chairs { get; set; }
-    public DateTime StartTijd { get; set; }
-    public DateTime EindTijd { get; set; }
-
-    private string Color { get; set; } = "\u001b[0m";
-    private const string ResetColor = "\u001b[0m";
-    private const string HighlightColor = "\u001b[38;2;250;156;55m";
-
-    public void PrintControllInfo()
-    {
-        Console.WriteLine($"\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
-        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mPIJL OMHOOG\u001b[0m en \u001b[38;2;250;156;55mOMLAAG\u001b[0m om door de lijst te gaan \ndruk \u001b[38;2;250;156;55mSPATIE\u001b[0m om te selecteren \ndruk \u001b[38;2;250;156;55mBACKSPACE\u001b[0m om terug te gaan");
-        Console.WriteLine($"\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
-    }
-
-    public void PrintEvent(bool isHighlighted)
-    {
-        SetColor(isHighlighted);
-        Console.WriteLine($"{Color}====================================================================================================================={ResetColor}");
-        Console.WriteLine($"{HighlightColor}Start tijd:\u001b[0m {StartTijd:dd-MM-yyyy HH:mm:ss}");
-        Console.WriteLine($"{HighlightColor}Eind tijd:\u001b[0m {EindTijd:dd-MM-yyyy HH:mm:ss}");
-        Console.WriteLine($"{Color}====================================================================================================================={ResetColor}");
-    }
-
-    private void SetColor(bool isHighlighted)
-    {
-        if (isHighlighted)
-        {
-            Color = "\u001b[38;2;58;156;58m";
-        }
-        else
-        {
-            Color = ResetColor;
-        }
-    }
-}
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 public class Location
 {
-    private static List<Event> Events { get; set; }
+    private static List<Event>? Events { get; set; }
 
-    public static void Main()
+    public static bool chooseLocation()
     {
         // Read events from JSON file
         ReadEventsFromJson();
@@ -66,16 +19,20 @@ public class Location
         if (Events == null || Events.Count == 0)
         {
             Console.WriteLine("Geen evenementen beschikbaar.");
-            return;
+            return false;
         }
 
         // Initialize variables
         ConsoleKeyInfo choice; // Stores user input
-        int selectedIndex = 0; // Index of the selected option
+        int selectedIndex = 0; // Index of the selected option for locations
+        int eventIndex = 0; // Index of the selected option for events on chosen location
         string[] locations = { "Den Haag", "Rotterdam", "Delft" };
 
         // Initial prompt
-        Console.WriteLine("Op welk locatie zou u deze film willen bekijken?");
+
+        StartScreen.DisplayAsciiArt();
+        Console.WriteLine();
+        Console.WriteLine($"Op welke locatie wilt u een reservering maken voor {Extras.gekozenFilm}");
         do
         {
             // Display options and highlight selected option
@@ -93,6 +50,18 @@ public class Location
             {
                 selectedIndex++;
             }
+            else if (choice.Key == ConsoleKey.Enter)
+            {
+                //door
+            }
+
+            else if (choice.Key == ConsoleKey.Escape)
+            {
+                //terug gaan naar film kiezen
+                return false;
+            }
+
+
 
             // Move cursor up to overwrite previous options
             Console.SetCursorPosition(0, Console.CursorTop - locations.Length);
@@ -102,38 +71,59 @@ public class Location
         // Clear console and reset variables
         Console.Clear();
         string selectedLocation = locations[selectedIndex];
-        Console.WriteLine($"U hebt gekozen voor: {selectedLocation}");
-        Console.WriteLine("Beschikbare evenementen:");
+        // Console.WriteLine($"U hebt gekozen voor: {selectedLocation}");
+        // Console.WriteLine("Beschikbare evenementen:");
 
         // Filter and display events for the selected location
-        var filteredEvents = Events.FindAll(e => e.Locatie.Equals(selectedLocation, StringComparison.OrdinalIgnoreCase));
+        List<Event> filteredEvents = Events.FindAll(e => e.Locatie!.Equals(selectedLocation, StringComparison.OrdinalIgnoreCase) &&
+        e.MovieID!.Equals(Extras.gekozenFilm, StringComparison.OrdinalIgnoreCase));
 
         if (filteredEvents.Count == 0)
         {
-            Console.WriteLine("Geen evenementen beschikbaar voor deze locatie.");
+            Console.Clear();
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine();
+            Console.WriteLine($"Geen evenementen beschikbaar op deze locatie voor de film {Extras.gekozenFilm}.");
+            Console.WriteLine("druk op een toets op terug te gaan...");
+            Console.ReadKey();
+            return false;
         }
         else
         {
-            selectedIndex = 0; // Reset selected index for events
+
             do
             {
+                Console.Clear();
+                StartScreen.DisplayAsciiArt();
+                Console.WriteLine();
+                Console.WriteLine($"Hoelaat Wilt u een reservering maken voor {Extras.gekozenFilm} op lokatie {selectedLocation}");
                 // Print control info
-                filteredEvents[selectedIndex].PrintControllInfo();
+                filteredEvents[eventIndex].PrintControllInfo();
 
                 // Display events and highlight selected event
-                DisplayEvents(filteredEvents, selectedIndex);
+                DisplayEvents(filteredEvents, eventIndex);
 
                 // Capture user input
                 choice = Console.ReadKey(true);
 
                 // Update selected index based on arrow keys
-                if (choice.Key == ConsoleKey.UpArrow && selectedIndex > 0)
+                if (choice.Key == ConsoleKey.UpArrow && eventIndex > 0)
                 {
-                    selectedIndex--;
+                    eventIndex--;
                 }
-                else if (choice.Key == ConsoleKey.DownArrow && selectedIndex < filteredEvents.Count - 1)
+                else if (choice.Key == ConsoleKey.DownArrow && eventIndex < filteredEvents.Count - 1)
                 {
-                    selectedIndex++;
+                    eventIndex++;
+                }
+                else if (choice.Key == ConsoleKey.Enter)
+                {
+                    Extras.EventID = filteredEvents[eventIndex].EventID;
+                    writeEventToBonnetje();
+                }
+                else if (choice.Key == ConsoleKey.Escape)
+                {
+                    //terug gaan naar film kiezen
+                    return false;
                 }
 
                 // Move cursor up to overwrite previous events
@@ -141,6 +131,7 @@ public class Location
                 ClearLinesAbove(Console.CursorTop, linesToClear);
 
             } while (choice.Key != ConsoleKey.Enter);
+            return true;
         }
     }
 
@@ -162,11 +153,11 @@ public class Location
         }
     }
 
-    private static void DisplayEvents(List<Event> events, int selectedIndex)
+    private static void DisplayEvents(List<Event> events, int eventIndex)
     {
         for (int i = 0; i < events.Count; i++)
         {
-            events[i].PrintEvent(i == selectedIndex);
+            events[i].PrintEvent(i == eventIndex);
         }
     }
 
@@ -189,27 +180,40 @@ public class Location
 
     public static void ReadEventsFromJson()
     {
-        var filePath = "events.json";
+        var filePath = "event.json";
 
-        try
+        var jsonData = File.ReadAllText(filePath);
+        Events = JsonConvert.DeserializeObject<List<Event>>(jsonData);
+    }
+
+    public static void writeEventToBonnetje()
+    {
+
+        DateTime startTijd;
+        DateTime eindTijd;
+        string locatie;
+        for (int i = 0; i < Events.Count; i++)
         {
-            if (File.Exists(filePath))
+            if (Events[i].EventID == Extras.EventID)
             {
-                var jsonData = File.ReadAllText(filePath);
-                Events = JsonSerializer.Deserialize<List<Event>>(jsonData, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true,
-                    Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
-                });
+                startTijd = Events[i].StartTijd;
+                eindTijd = Events[i].EindTijd;
+                locatie = Events[i].Locatie;
+
+
+                string bonnetjedata = File.ReadAllText("bonnetje.json");
+                Bonnetje bonnetje = JsonConvert.DeserializeObject<Bonnetje>(bonnetjedata);
+
+
+                bonnetje.starttijd = startTijd;
+                bonnetje.eindtijd = eindTijd;
+                bonnetje.Locatie = locatie;
+
+                string updatedbonnetje = JsonConvert.SerializeObject(bonnetje, Formatting.Indented);
+
+                File.WriteAllText("bonnetje.json", updatedbonnetje);
+                break;
             }
-            else
-            {
-                Console.WriteLine("Events file not found.");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"An error occurred while reading the events file: {ex.Message}");
         }
     }
 }
