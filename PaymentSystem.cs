@@ -2,28 +2,37 @@ namespace Pathe_hr.obj
 {
     public class PaymentSystem
     {
-        public bool isTimeLeft = true;
-        private Action _onPaymentSuccess;
+        public Action _onPaymentSuccess;
         private Func<int> _getSecondsRemaining;
 
         private List<(int, int)> _selectedChairs;
 
+        public void DeselectChairs2(List<(int row, int col)> selectedChairs, Stoel[,] stoelArray)
+        {
+            foreach (var chair in selectedChairs)
+            {
+                stoelArray[chair.row, chair.col].selected = false;
+                stoelArray[chair.row, chair.col].free = true;
+            }
+            selectedChairs.Clear();
+        }
         public PaymentSystem(Action onPaymentSuccess, Func<int> getSecondsRemaining, List<(int, int)> selectedChairs)
         {
             _onPaymentSuccess = onPaymentSuccess;
             _getSecondsRemaining = getSecondsRemaining;
             _selectedChairs = selectedChairs;
         }
-            
-        public void SelectPaymentMethodAndConfirm()
+
+        public void SelectPaymentMethodAndConfirm(List<(int row, int col)> selectedChairs, Stoel[,] stoelArray)
         {
+            StartScreen.DisplayAsciiArt();
             Console.WriteLine("Kies een betaalmethode:");
-            string[] paymentOptions = { "iDEAL", "PayPal", "Credit/Debit", "Cash (op locatie)" };
+            string[] paymentOptions = { "iDEAL", "PayPal", "Credit/Debit", "Cash (op locatie)", "Bestelling annuleren" };
             int selectedIndex = DisplayMenu(paymentOptions);
 
             // Betaal bevestiging afdrukken
 
-            if (!isTimeLeft)
+            if (!Extras.isTimeLeft)
                 return;
 
             switch (paymentOptions[selectedIndex])
@@ -41,35 +50,44 @@ namespace Pathe_hr.obj
                     Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
                     break;
                 case "Cash (op locatie)":
-                    Console.WriteLine("U heeft betaald met Cash");
+                    Console.WriteLine("U gaat met Cash op locatie betalen");
+                    Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
+                    break;
+                case "Bestelling annuleren":
+                    Reservation.CancelReservation();
+                    DeselectChairs2(selectedChairs, stoelArray);
+                    Console.WriteLine("bestelling geannuleerd");
                     Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
                     break;
                 default:
                     Console.WriteLine("Onbekende betaalmethode");
                     break;
             }
+            Extras.zaal.setChairsToTaken();
             _onPaymentSuccess.Invoke();
             Console.ReadKey();
         }
 
-          private int DisplayMenu(string[] options)
+        private int DisplayMenu(string[] options)
         {
             int selectedIndex = 0;
 
-            while (isTimeLeft)
+            while (Extras.isTimeLeft)
             {
                 Console.Clear();
+                /*
                 Console.WriteLine("Informatie:");
                 foreach (var chair in _selectedChairs)
                 {
                     Console.WriteLine($"- Rij: {chair.Item1 + 1}, Stoel: {chair.Item2 + 1}");
-                } 
+                }
+                */
                 Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
-                    { 
-                        Console.BackgroundColor = ConsoleColor.Gray; 
+                    {
+                        Console.BackgroundColor = ConsoleColor.Gray;
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write("=> ");
                     }
@@ -94,7 +112,11 @@ namespace Pathe_hr.obj
                     case ConsoleKey.DownArrow:
                         selectedIndex = (selectedIndex == options.Length - 1) ? 0 : selectedIndex + 1;
                         break;
+                    case ConsoleKey.F:
+                        Extras.zaal.chooseChairs();
+                        break;
                     case ConsoleKey.Enter:
+                        Extras.zaal.fillChairs();
                         return selectedIndex;
                 }
             }
