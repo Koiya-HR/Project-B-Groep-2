@@ -1,10 +1,10 @@
 public class StartScreen
 {
-    public static void Screen(Zaal zaal, Bioscoop bios, Menu lidmaatschapMenu)
+    public static void Screen(Menu lidmaatschapMenu)
     {
         //zaal.makeEventChairs();
-        Extras.zaal = zaal;
-        Extras.bios = bios;
+        Zaal zaal = Extras.zaal;
+        Bioscoop bios = Extras.bios;
         while (true)
         {
             DisplayAsciiArt();

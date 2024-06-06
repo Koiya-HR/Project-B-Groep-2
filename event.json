@@ -5354,12 +5354,12 @@
       {
         "Row": 3,
         "Col": 0,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
         "Col": 1,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
@@ -6068,7 +6068,7 @@
       {
         "Row": 0,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 0,
@@ -8086,7 +8086,7 @@
       {
         "Row": 0,
         "Col": 1,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 0,
@@ -9210,7 +9210,7 @@
       {
         "Row": 1,
         "Col": 4,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 1,
@@ -15144,12 +15144,12 @@
       {
         "Row": 0,
         "Col": 0,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 0,
         "Col": 1,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 0,
@@ -15159,12 +15159,12 @@
       {
         "Row": 0,
         "Col": 3,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 0,
         "Col": 4,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 0,
@@ -15544,7 +15544,7 @@
       {
         "Row": 4,
         "Col": 0,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 4,
@@ -26248,7 +26248,7 @@
       {
         "Row": 0,
         "Col": 1,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 0,

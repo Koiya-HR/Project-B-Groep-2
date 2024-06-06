@@ -7,10 +7,10 @@ public class Program
 
     public static void Main()
     {
-        Zaal zaal = new(10, 20);
+        Extras.zaal = new(10, 20);
         Menu lidmaatschapMenu = new();
-        Bioscoop bios = new("schouwbeurgplein");
-        StartScreen.Screen(zaal, bios, lidmaatschapMenu); // startscherm van alihan
+        Extras.bios = new("schouwbeurgplein");
+        StartScreen.Screen(lidmaatschapMenu); // startscherm van alihan
     }
 
     public static void showTickets()

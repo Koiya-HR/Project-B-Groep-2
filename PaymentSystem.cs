@@ -41,7 +41,7 @@ namespace Pathe_hr.obj
                     Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
                     break;
                 case "Cash (op locatie)":
-                    Console.WriteLine("U heeft betaald met Cash");
+                    Console.WriteLine("U gaat met Cash op locatie betalen");
                     Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
                     break;
                 default:
@@ -94,7 +94,11 @@ namespace Pathe_hr.obj
                     case ConsoleKey.DownArrow:
                         selectedIndex = (selectedIndex == options.Length - 1) ? 0 : selectedIndex + 1;
                         break;
+                    case ConsoleKey.F:
+                        Extras.zaal.chooseChairs(true);
+                        break;
                     case ConsoleKey.Enter:
+                        Extras.zaal.fillChairs();
                         return selectedIndex;
                 }
             }

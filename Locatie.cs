@@ -76,6 +76,9 @@ public class Location
         List<Event> filteredEvents = Events.FindAll(e => e.Locatie!.Equals(selectedLocation, StringComparison.OrdinalIgnoreCase) &&
         e.MovieID!.Equals(Extras.gekozenFilm, StringComparison.OrdinalIgnoreCase));
 
+
+
+
         if (filteredEvents.Count == 0)
         {
             Console.Clear();
@@ -94,7 +97,7 @@ public class Location
                 Console.Clear();
                 StartScreen.DisplayAsciiArt();
                 Console.WriteLine();
-                Console.WriteLine($"Hoelaat Wilt u een reservering maken voor {Extras.gekozenFilm} op lokatie {selectedLocation}");
+                Console.WriteLine($"Hoelaat Wilt u een reservering maken voor {Extras.gekozenFilm} op locatie {selectedLocation}");
                 // Print control info
                 filteredEvents[eventIndex].PrintControllInfo();
 

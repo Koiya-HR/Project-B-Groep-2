@@ -1,7 +1,7 @@
 using Pathe_hr.obj;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-//deselecteer stoelen
+
 public class Zaal
 {
     private bool isPaymentComplete;
@@ -52,26 +52,32 @@ public class Zaal
         string json = File.ReadAllText(filePath);
         List<Event> events = JsonConvert.DeserializeObject<List<Event>>(json)!;
 
-        //do stuff
-        Event? currentEvent = events.FirstOrDefault(e => e.EventID == Extras.EventID);
-        if (currentEvent == null)
+        for (int i = 0; i < events.Count; i++)
         {
-            Console.WriteLine("Event not found.");
-            return;
-        }
-        foreach (EventChair stoel in currentEvent.Chairs!)
-        {
-            if (stoel.Taken)
+            if (events[i].EventID == Extras.EventID)
             {
-                stoelArray[stoel.Row, stoel.Col].free = false;
+                foreach (EventChair stoel in events[i].Chairs!)
+                {
+                    if (stoel.Taken)
+                    {
+                        stoelArray[stoel.Row, stoel.Col].free = false;
+                        stoelArray[stoel.Row, stoel.Col].selected = false;
+                    }
+                }
             }
         }
+    }
 
-
-        //string updatedJson = JsonConvert.SerializeObject(events, Formatting.Indented);
-
-        // Write the updated JSON back to the file
-        //File.WriteAllText(filePath, updatedJson);
+    public void resetChairs()
+    {
+        for (int i = 0; i < stoelArray.GetLength(0); i++)
+        {
+            for (int j = 0; j < stoelArray.GetLength(0); j++)
+            {
+                stoelArray[i, j].free = true;
+                stoelArray[i, j].selected = false;
+            }
+        }
     }
 
     public void makeEventChairs()
@@ -117,14 +123,16 @@ public class Zaal
 
     // vullen van events========================================================================================
 
-    public void chooseChairs()
+    public void chooseChairs(bool onlyChooseChairs = false)
     {
         bool chairsChosen = false;
-        //makeEventChairs(); fill the json with chairs (only do this if new events are made)
+
+        //makeEventChairs(); //fill the json with chairs (only do this if new events are made)
         chooseTickets();
+        resetChairs();// maak stoelen weer allemaal vrij
+        fillChairs();// laad in de stoelen van gekozen event
         printInfo();
-        fillChairs();//zet verkochte stoelen op bezet
-        PrintStoelArray();
+        PrintStoelArray();// print de gevulde stoelen
         // Start the countdown timer in a separate thread
         timerCursorPositionTop = Console.CursorTop;
         Thread timerThread = new Thread(() => ShowCountdownTimer(remainingTime));
@@ -149,7 +157,6 @@ public class Zaal
                         chairsChosen = true;
                         makeTickets();
                         setChairsToTaken();
-                        fillChairs();
                         break;
                     }
                     else
