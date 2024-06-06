@@ -182,12 +182,14 @@ public class Koffie
 
         // Clear console and display final order
         Console.Clear();
+        /*
         Console.WriteLine("Uw bestelling:");
         foreach (KeyValuePair<string, int> pair in drinkCount)
         {
             Console.WriteLine($"{pair.Value} - {pair.Key}");
         }
         Console.WriteLine($"Totaal: {totalCost} Euro");
+        */
         UpdateBonnetjeJson(drinkCount, totalCost);
     }
 

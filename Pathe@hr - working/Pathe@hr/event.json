@@ -15154,12 +15154,12 @@
       {
         "Row": 0,
         "Col": 2,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 0,
         "Col": 3,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 0,
@@ -15749,7 +15749,7 @@
       {
         "Row": 6,
         "Col": 1,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 6,
