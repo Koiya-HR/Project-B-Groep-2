@@ -32,7 +32,11 @@ public class Location
 
         StartScreen.DisplayAsciiArt();
         Console.WriteLine();
-        Console.WriteLine($"Op welke locatie wilt u een reservering maken voor {Extras.gekozenFilm}");
+        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+        Console.WriteLine($"--> Op welke locatie wilt u een reservering maken voor {Extras.gekozenFilm}");
+        Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren\nDruk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan naar het hoofdmenu");
+        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+
         do
         {
             // Display options and highlight selected option
@@ -99,9 +103,14 @@ public class Location
                 Console.Clear();
                 StartScreen.DisplayAsciiArt();
                 Console.WriteLine();
-                Console.WriteLine($"Hoelaat Wilt u een reservering maken voor {Extras.gekozenFilm} op locatie {selectedLocation}");
+                Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+                Console.WriteLine($"--> Hoelaat Wilt u een reservering maken voor {Extras.gekozenFilm} op locatie {selectedLocation}");
+                Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren\nDruk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan naar het hoofdmenu");
+                Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+
+
                 // Print control info
-                filteredEvents[eventIndex].PrintControllInfo();
+                //filteredEvents[eventIndex].PrintControllInfo();
 
                 // Display events and highlight selected event
                 DisplayEvents(filteredEvents, eventIndex);

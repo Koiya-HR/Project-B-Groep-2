@@ -40,10 +40,16 @@ public class Koffie
 
         // Initial prompt
         Console.Clear();
-        Console.WriteLine("Voordat u verder gaat met uw bestelling, wilt u nog iets te drinken bestellen?");
+        StartScreen.DisplayAsciiArt();
+        Console.WriteLine();
+        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+        Console.WriteLine("--> Voordat u verder gaat met uw bestelling, wilt u nog iets te drinken bestellen?");
+        Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren");
+        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
         do
         {
             // Display options and highlight selected option
+
             for (int i = 0; i < 2; i++)
             {
                 if (i == selectedIndex)
@@ -57,6 +63,9 @@ public class Koffie
 
             // Capture user input
             choice = Console.ReadKey(true);
+
+            if (!Extras.isTimeLeft)
+                return;
 
             // Update selected index based on arrow keys
             if (choice.Key == ConsoleKey.UpArrow && selectedIndex > 0)
@@ -90,9 +99,15 @@ public class Koffie
         selectedIndex = 0;
 
         // Drink selection prompt
-        Console.WriteLine("U kunt kiezen uit de volgende dranken, druk op \u001b[38;2;250;156;55mSpace\u001b[0m om te selecteren en \u001b[38;2;250;156;55mEnter\u001b[0m om akkoord te gaan, en \u001b[38;2;250;156;55mBackspace\u001b[0m om selectie te verwijderen");
+        StartScreen.DisplayAsciiArt();
+        Console.WriteLine();
+        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+        Console.WriteLine("--> U kunt kiezen uit de volgende dranken:");
+        Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren");
+        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
         Console.WriteLine($"Totaal: {totalCost} Euro");
         Console.WriteLine("-----------------------------");
+
 
         do
         {
@@ -113,6 +128,9 @@ public class Koffie
 
             // Capture user input
             choice = Console.ReadKey(true);
+
+            if (!Extras.isTimeLeft)
+                return;
 
             // Update selected index based on arrow keys
             if (choice.Key == ConsoleKey.UpArrow && selectedIndex > 0)
@@ -142,7 +160,14 @@ public class Koffie
                 totalCost += Drinks[selectedIndex].Price;
                 Console.Clear();
                 // Display updated order
-                Console.WriteLine("U kunt kiezen uit de volgende dranken:");
+                StartScreen.DisplayAsciiArt();
+                Console.WriteLine();
+                Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+                Console.WriteLine("--> U kunt kiezen uit de volgende dranken:");
+                Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren");
+                Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+
+
                 Console.WriteLine("Uw bestelling:");
                 foreach (KeyValuePair<string, int> pair in drinkCount)
                 {
@@ -191,6 +216,7 @@ public class Koffie
         Console.WriteLine($"Totaal: {totalCost} Euro");
         */
         UpdateBonnetjeJson(drinkCount, totalCost);
+
     }
 
     public static void ReadDrinksFromJson()
@@ -242,13 +268,15 @@ public class Koffie
                 JArray drinksArray = new JArray();
                 foreach (var drink in drinkCount)
                 {
+                    Extras.drankPrijs += 2;
                     JObject drinkObject = new JObject
-                {
-                    { "Name", drink.Key },  // Change "Name" to match the JSON structure of drinks.json
-                    { "Count", drink.Value }
-                };
+                    {
+                        { "Name", drink.Key },  // Change "Name" to match the JSON structure of drinks.json
+                        { "Count", drink.Value }
+                    };
                     drinksArray.Add(drinkObject);
                 }
+                Extras.completePrijs = Extras.drankPrijs + Extras.ticketPrijs;
 
 
                 // Add the drinks array to the bonnetjeObject
@@ -273,5 +301,3 @@ public class Koffie
         }
     }
 }
-
-
