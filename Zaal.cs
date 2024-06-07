@@ -138,6 +138,7 @@ public class Zaal
         stopTimer = false;
         bool chairsChosen = false;
         remainingTime = maxRemainingTime;
+        Extras.isTimeLeft = true;
         //makeEventChairs(); //fill the json with chairs (only do this if new events are made)
         chooseTickets();
         resetChairs();// maak stoelen weer allemaal vrij
@@ -223,7 +224,8 @@ public class Zaal
         {
             // Wait for the payment confirmation
             Koffie.Drank();
-            TicketBonSystem.betaalSysteem(selectedChairs, stoelArray);
+            if (Extras.isTimeLeft)
+                 TicketBonSystem.betaalSysteem(selectedChairs, stoelArray);
             //paymentSystem.SelectPaymentMethodAndConfirm();
         }
     }
@@ -777,41 +779,43 @@ public class Zaal
         }
     }
 
-    public void ShowCountdownTimer(int seconds)
-    {
-        Console.WriteLine("De timer is gestart...");
-        while (seconds >= 0) // Blijf de timer uitvoeren totdat de tijd op is
-        {
-            if (isPaymentComplete)
-                return;
+      public void ShowCountdownTimer(int seconds)
+  {
+      Console.WriteLine("De timer is gestart...");
+      while (seconds >= 0) // Blijf de timer uitvoeren totdat de tijd op is
+      {
+          if (isPaymentComplete)
+              return;
 
-            remainingTime = seconds;
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write($"Resterende tijd: {seconds / 60:00}:{seconds % 60:00}   ");
-            if (seconds == 10)
-            {
-                Console.WriteLine("Waarschuwing: U heeft nog 10 seconden!");
-            }
-            Thread.Sleep(1000);
-            seconds--;
+          remainingTime = seconds;
+          Console.SetCursorPosition(0, Console.CursorTop);
+          Console.Write(new string(' ', Console.WindowWidth));
+          Console.SetCursorPosition(0, Console.CursorTop);
+          Console.Write($"Resterende tijd: {seconds / 60:00}:{seconds % 60:00} ");
+          if (seconds == 10)
+          {
+              Console.Write("Waarschuwing: U heeft nog 10 seconden!");
+          }
+          Thread.Sleep(1000);
+          seconds--;
 
-            // Controleer of de stopTimer vlag is ingesteld om de timer-thread te stoppen
-            if (stopTimer || Extras.stopTimer)
-            {
-                // Reset de stopTimer vlag voordat de methode wordt verlaten
-                stopTimer = false;
-                Extras.stopTimer = false;
-                // Verlaat de methode
-                return;
-            }
-        }
-        Console.WriteLine();
+          // Controleer of de stopTimer vlag is ingesteld om de timer-thread te stoppen
+          if (stopTimer || Extras.stopTimer)
+          {
+              // Reset de stopTimer vlag voordat de methode wordt verlaten
+              stopTimer = false;
+              Extras.stopTimer = false;
+              // Verlaat de methode
+              return;
+          }
+      }
+      Console.WriteLine();
 
-        // Reset de stopTimer vlag nadat de loop is gestopt
-        stopTimer = false;
-        deselectChairs();
-        Console.WriteLine("De timer is gestopt.");
-        Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
-        Extras.isTimeLeft = false;
-    }
+      // Reset de stopTimer vlag nadat de loop is gestopt
+      stopTimer = false;
+      deselectChairs();
+      Console.WriteLine("De timer is gestopt.");
+      Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
+      Extras.isTimeLeft = false;
+  }
 }
