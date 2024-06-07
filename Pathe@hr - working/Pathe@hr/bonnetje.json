@@ -7,18 +7,18 @@
     },
     {
       "Name": "Cappuccino",
-      "Count": 1
+      "Count": 2
     },
     {
-      "Name": "Gemberthee",
-      "Count": 3
+      "Name": "Espresso",
+      "Count": 5
     }
   ],
-  "Price": 10.0,
-  "starttijd": "2024-07-27T11:30:00",
-  "eindtijd": "2024-07-27T13:40:00",
-  "Locatie": "Den Haag",
+  "Price": 16.0,
+  "starttijd": "2024-07-18T11:30:00",
+  "eindtijd": "2024-07-18T13:40:00",
+  "Locatie": "Rotterdam",
   "Stoelen": [
-    "01-04"
+    "02-03"
   ]
 }

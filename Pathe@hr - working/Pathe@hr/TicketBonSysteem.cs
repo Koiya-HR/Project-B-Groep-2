@@ -60,10 +60,16 @@ public class TicketBonSystem
 
         // Calculate total price
         double totalPrice = drankjesArray.Sum(d => d.GetProperty("Count").GetInt32() * singlePrice);
+        Console.Clear();
+        StartScreen.DisplayAsciiArt();
+        Console.WriteLine();
+        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+        Console.WriteLine($"Gebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren\nDruk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan naar het hoofdmenu");
+        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
 
         Console.WriteLine($@"
-==================================================================================================================================================
-Film: {filmnaam}
+=====================================================================================================================
+Film: {filmnaam}                                                                                                     
 Datum & Tijd: {starttijd}
 Eind Tijd: {eindtijd}
 Locatie: {locatie}
@@ -72,7 +78,7 @@ Stoelen:
 Drankjes:
     {drankjes}
                 Totale Prijs: €{totalPrice,5:F2}
-==================================================================================================================================================
+=====================================================================================================================
         ");
 
         // Menu options
@@ -94,6 +100,8 @@ Drankjes:
 
             // Capture user input
             choice = Console.ReadKey(true);
+            if (!Extras.isTimeLeft)
+                return;
 
             // Update selected index based on arrow keys
             if (choice.Key == ConsoleKey.UpArrow && selectedIndex > 0)

@@ -25,8 +25,6 @@ namespace Pathe_hr.obj
 
         public void SelectPaymentMethodAndConfirm(List<(int row, int col)> selectedChairs, Stoel[,] stoelArray)
         {
-            StartScreen.DisplayAsciiArt();
-            Console.WriteLine("Kies een betaalmethode:");
             string[] paymentOptions = { "iDEAL", "PayPal", "Credit/Debit", "Cash (op locatie)", "Bestelling annuleren" };
             int selectedIndex = DisplayMenu(paymentOptions);
 
@@ -82,7 +80,12 @@ namespace Pathe_hr.obj
                     Console.WriteLine($"- Rij: {chair.Item1 + 1}, Stoel: {chair.Item2 + 1}");
                 }
                 */
-                Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+                StartScreen.DisplayAsciiArt();
+                Console.WriteLine();
+                Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+                Console.WriteLine("--> Kies een betaalmethode:");
+                Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren\nDruk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan naar het hoofdmenu");
+                Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
