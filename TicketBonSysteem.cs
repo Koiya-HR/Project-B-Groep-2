@@ -94,7 +94,9 @@ Drankjes:
 
             // Capture user input
             choice = Console.ReadKey(true);
-
+            
+            if (!Extras.isTimeLeft)
+                return;
             // Update selected index based on arrow keys
             if (choice.Key == ConsoleKey.UpArrow && selectedIndex > 0)
             {
