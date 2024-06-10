@@ -165,11 +165,33 @@ public class Location
         }
     }
 
+
     private static void DisplayEvents(List<Event> events, int eventIndex)
     {
-        for (int i = 0; i < events.Count; i++)
+        // Check if the event list is empty
+        if (events.Count == 0)
         {
-            events[i].PrintEvent(i == eventIndex);
+            Console.WriteLine("No events to display.");
+            return;
+        }
+
+        // Calculate the starting index based on the eventIndex
+        int startIndex = Math.Max(0, eventIndex - 1);
+
+        // Calculate the ending index based on the starting index
+        int endIndex = Math.Min(startIndex + 3, events.Count - 1);
+
+        // Print the events within the range [startIndex, endIndex]
+        for (int i = startIndex; i <= endIndex; i++)
+        {
+            if (i == eventIndex)
+            {
+                events[i].PrintEvent(true); // Print the current event
+            }
+            else
+            {
+                events[i].PrintEvent(false); // Print other events
+            }
         }
     }
 

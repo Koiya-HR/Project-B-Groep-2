@@ -87,7 +87,7 @@ public class Stoel
                 chairColor = "\u001b[48;2;255;92;108m";
                 break;
             case "green":
-                chairColor = "\u001b[48;2;105;212;99m";
+                chairColor = "\u001b[48;2;255;255;255m";
                 break;
             case "yellow":
                 chairColor = "\u001b[48;2;230;214;76m";
@@ -99,7 +99,7 @@ public class Stoel
                 chairColor = "\u001b[48;2;32;85;245m";
                 break;
             case "orange":
-                chairColor = "\u001b[48;2;217;164;17m";
+                chairColor = "\u001b[48;2;250;125;0m";
                 break;
             case "darkBlue":
                 chairColor = "\u001b[48;2;2;15;191m";

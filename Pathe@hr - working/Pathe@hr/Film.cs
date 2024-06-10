@@ -7,7 +7,6 @@ public class Film
 
     public string? Omschrijving { get; set; }
 
-    public string? ReleaseDatum { get; set; }
 
     public int Duur { get; set; }
 
@@ -27,26 +26,18 @@ public class Film
         }
     }
 
-    public string? GetFormattedReleaseDatum()
-    {
-        if (DateTime.TryParse(ReleaseDatum, out DateTime releaseDate))
-        {
-            return releaseDate.ToString("d-M-yyyy HH:mm:ss");
-        }
-        return ReleaseDatum;
-    }
 
     public static void PrintControllInfo()
     {
         Console.WriteLine($"\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
-        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mPIJL OMHOOG\u001b[0m en \u001b[38;2;250;156;55mOMLAAG\u001b[0m om door de lijst te gaan \ndruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren \ndruk \u001b[38;2;250;156;55mF\u001b[0m om te filteren op acteur \ndruk \u001b[38;2;250;156;55mG\u001b[0m om te filteren op genre \ndruk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan");
+        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren \ndruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren \ndruk \u001b[38;2;250;156;55mF\u001b[0m om te zoeken op acteur \ndruk \u001b[38;2;250;156;55mG\u001b[0m om te zoeken op genre \ndruk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan");
         Console.WriteLine($"\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
     }
 
     public static void PrintInfoFilterActor()
     {
         Console.WriteLine($"\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
-        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mPIJL OMHOOG\u001b[0m en \u001b[38;2;250;156;55mOMLAAG\u001b[0m om door de lijst te gaan \ndruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren \ndruk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan");
+        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren \ndruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren \ndruk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan");
         Console.WriteLine($"\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
     }
     public void PrintMovie()
@@ -54,28 +45,37 @@ public class Film
         setStatusColourMovie();
         Console.WriteLine($"{Color}====================================================================================================================={resetColorMovie}");
         Console.WriteLine("\u001b[38;2;250;156;55mTitel:\u001b[0m " + Titel);
-
-        if (Genres != null && Genres.Any())
+        if (isCurrentMovie)
         {
-            Console.WriteLine("\u001b[38;2;250;156;55mGenres:\u001b[0m " + string.Join(", ", Genres));
+            if (Genres != null && Genres.Any())
+            {
+                Console.WriteLine("\u001b[38;2;250;156;55mGenres:\u001b[0m " + string.Join(", ", Genres));
+            }
+            else
+            {
+                Console.WriteLine("\u001b[38;2;250;156;55mGenres:\u001b[0m ");
+            }
+
+            if (Acteurs != null && Acteurs.Any())
+            {
+                Console.WriteLine("\u001b[38;2;250;156;55mActeurs:\u001b[0m " + string.Join(", ", Acteurs));
+            }
+            else
+            {
+                Console.WriteLine("\u001b[38;2;250;156;55mActeurs:\u001b[0m ");
+            }
+            Console.WriteLine("\u001b[38;2;250;156;55mDuur(in minuten):\u001b[0m " + Duur);
+            Console.WriteLine("\u001b[38;2;250;156;55mOmschrijving:\u001b[0m " + Omschrijving);
         }
         else
         {
-            Console.WriteLine("\u001b[38;2;250;156;55mGenres:\u001b[0m ");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
-        if (Acteurs != null && Acteurs.Any())
-        {
-            Console.WriteLine("\u001b[38;2;250;156;55mActeurs:\u001b[0m " + string.Join(", ", Acteurs));
-        }
-        else
-        {
-            Console.WriteLine("\u001b[38;2;250;156;55mActeurs:\u001b[0m ");
-        }
-
-        Console.WriteLine("\u001b[38;2;250;156;55mDatum:\u001b[0m " + GetFormattedReleaseDatum());
-        Console.WriteLine("\u001b[38;2;250;156;55mDuur(in minuten):\u001b[0m " + Duur);
-        Console.WriteLine("\u001b[38;2;250;156;55mOmschrijving:\u001b[0m " + Omschrijving);
         Console.WriteLine($"{Color}====================================================================================================================={resetColorMovie}");
     }
 }

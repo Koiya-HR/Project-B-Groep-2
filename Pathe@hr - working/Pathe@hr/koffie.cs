@@ -103,7 +103,11 @@ public class Koffie
         Console.WriteLine();
         Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
         Console.WriteLine("--> U kunt kiezen uit de volgende dranken:");
-        Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren");
+        Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu" +
+        $"\nDruk \u001b[38;2;250;156;55mSPATIE\u001b[0m om een drankje te selecteren, als u meer wilt druk dan vaker" +
+        $"\nDruk \u001b[38;2;250;156;55mBACKSPACE\u001b[0m om een drankje minder te selecteren, als u meer dan 1 wilt deselecteren druk dan vaker" +
+        $"\nDruk \u001b[38;2;250;156;55mENTER\u001b[0m door te gaan");
+
         Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
         Console.WriteLine($"Totaal: {totalCost} Euro");
         Console.WriteLine("-----------------------------");
@@ -164,7 +168,11 @@ public class Koffie
                 Console.WriteLine();
                 Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
                 Console.WriteLine("--> U kunt kiezen uit de volgende dranken:");
-                Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren");
+                Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu" +
+                $"\nDruk \u001b[38;2;250;156;55mSPATIE\u001b[0m om een drankje te selecteren, als u meer wilt druk dan vaker" +
+                $"\nDruk \u001b[38;2;250;156;55mBACKSPACE\u001b[0m om een drankje minder te selecteren, als u meer dan 1 wilt deselecteren druk dan vaker" +
+                $"\nDruk \u001b[38;2;250;156;55mENTER\u001b[0m door te gaan");
+
                 Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
 
 
@@ -191,8 +199,16 @@ public class Koffie
                     }
                     totalCost -= Drinks[selectedIndex].Price;
                     Console.Clear();
-                    // Display updated order
-                    Console.WriteLine("U kunt kiezen uit de volgende dranken:");
+                    StartScreen.DisplayAsciiArt();
+                    Console.WriteLine();
+                    Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+                    Console.WriteLine("--> U kunt kiezen uit de volgende dranken:");
+                    Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu" +
+                    $"\nDruk \u001b[38;2;250;156;55mSPATIE\u001b[0m om een drankje te selecteren, als u meer wilt druk dan vaker" +
+                    $"\nDruk \u001b[38;2;250;156;55mBACKSPACE\u001b[0m om een drankje minder te selecteren, als u meer dan 1 wilt deselecteren druk dan vaker" +
+                    $"\nDruk \u001b[38;2;250;156;55mENTER\u001b[0m door te gaan");
+
+                    Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
                     Console.WriteLine("Uw bestelling:");
                     foreach (KeyValuePair<string, int> pair in drinkCount)
                     {
@@ -268,7 +284,7 @@ public class Koffie
                 JArray drinksArray = new JArray();
                 foreach (var drink in drinkCount)
                 {
-                    Extras.drankPrijs += 2;
+                    Extras.drankPrijs += 2 * drink.Value;
                     JObject drinkObject = new JObject
                     {
                         { "Name", drink.Key },  // Change "Name" to match the JSON structure of drinks.json

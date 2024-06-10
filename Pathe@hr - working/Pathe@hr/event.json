@@ -1,5 +1,2023 @@
 [
   {
+    "Locatie": "Rotterdam",
+    "EventID": 31,
+    "MovieID": "Joker",
+    "StartTijd": "2024-07-18T09:00:00",
+    "EindTijd": "2024-07-18T11:10:00",
+    "Chairs": [
+      {
+        "Row": 0,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 19,
+        "Taken": false
+      }
+    ]
+  },
+  {
+    "Locatie": "Rotterdam",
+    "EventID": 30,
+    "MovieID": "Joker",
+    "StartTijd": "2024-07-18T13:30:00",
+    "EindTijd": "2024-07-18T15:40:00",
+    "Chairs": [
+      {
+        "Row": 0,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 0,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 5,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 6,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 7,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 8,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 9,
+        "Col": 19,
+        "Taken": false
+      }
+    ]
+  },
+  {
     "Locatie": "Den Haag",
     "EventID": 10,
     "MovieID": "The Martian",
@@ -444,7 +2462,7 @@
       {
         "Row": 4,
         "Col": 7,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 4,
@@ -4370,7 +6388,7 @@
       {
         "Row": 3,
         "Col": 5,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
@@ -5354,12 +7372,12 @@
       {
         "Row": 3,
         "Col": 0,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
@@ -6173,319 +8191,319 @@
       {
         "Row": 1,
         "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 1,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 4,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 5,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 6,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 7,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 2,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 0,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 1,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 2,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 3,
         "Taken": true
       },
       {
-        "Row": 1,
-        "Col": 3,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 4,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 5,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 6,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 7,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 8,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 9,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 10,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 11,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 12,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 13,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 14,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 15,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 16,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 17,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 18,
-        "Taken": false
-      },
-      {
-        "Row": 1,
-        "Col": 19,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 0,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 1,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 2,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 3,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 4,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 5,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 6,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 7,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 8,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 9,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 10,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 11,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 12,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 13,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 14,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 15,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 16,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 17,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 18,
-        "Taken": false
-      },
-      {
-        "Row": 2,
-        "Col": 19,
-        "Taken": false
-      },
-      {
         "Row": 3,
-        "Col": 0,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 1,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 2,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 3,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 4,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 5,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 6,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 7,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 8,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 9,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 10,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 11,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 12,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 13,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 14,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 15,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 16,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 17,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 18,
-        "Taken": false
-      },
-      {
-        "Row": 3,
-        "Col": 19,
-        "Taken": false
-      },
-      {
-        "Row": 4,
-        "Col": 0,
-        "Taken": false
-      },
-      {
-        "Row": 4,
-        "Col": 1,
-        "Taken": false
-      },
-      {
-        "Row": 4,
-        "Col": 2,
-        "Taken": false
-      },
-      {
-        "Row": 4,
-        "Col": 3,
-        "Taken": false
-      },
-      {
-        "Row": 4,
         "Col": 4,
         "Taken": true
       },
       {
+        "Row": 3,
+        "Col": 5,
+        "Taken": true
+      },
+      {
+        "Row": 3,
+        "Col": 6,
+        "Taken": true
+      },
+      {
+        "Row": 3,
+        "Col": 7,
+        "Taken": true
+      },
+      {
+        "Row": 3,
+        "Col": 8,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 9,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 10,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 11,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 12,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 13,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 14,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 15,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 16,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 17,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 18,
+        "Taken": false
+      },
+      {
+        "Row": 3,
+        "Col": 19,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 0,
+        "Taken": true
+      },
+      {
+        "Row": 4,
+        "Col": 1,
+        "Taken": true
+      },
+      {
+        "Row": 4,
+        "Col": 2,
+        "Taken": true
+      },
+      {
+        "Row": 4,
+        "Col": 3,
+        "Taken": false
+      },
+      {
+        "Row": 4,
+        "Col": 4,
+        "Taken": false
+      },
+      {
         "Row": 4,
         "Col": 5,
         "Taken": false
@@ -6548,17 +8566,17 @@
       {
         "Row": 4,
         "Col": 17,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 4,
         "Col": 18,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 4,
         "Col": 19,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 5,
@@ -6673,17 +8691,17 @@
       {
         "Row": 6,
         "Col": 2,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 6,
         "Col": 3,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 6,
         "Col": 4,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 6,
@@ -7177,17 +9195,17 @@
       {
         "Row": 1,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
         "Col": 2,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
         "Col": 3,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
@@ -8086,7 +10104,7 @@
       {
         "Row": 0,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 0,
@@ -8591,42 +10609,42 @@
       {
         "Row": 5,
         "Col": 2,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 3,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 4,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 5,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 6,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 7,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 8,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 9,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
@@ -9210,27 +11228,27 @@
       {
         "Row": 1,
         "Col": 4,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
         "Col": 5,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
         "Col": 6,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
         "Col": 7,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
         "Col": 8,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
@@ -9305,7 +11323,7 @@
       {
         "Row": 2,
         "Col": 3,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 2,
@@ -9405,27 +11423,27 @@
       {
         "Row": 3,
         "Col": 3,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
         "Col": 4,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
         "Col": 5,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
         "Col": 6,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
         "Col": 7,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
@@ -10519,27 +12537,27 @@
       {
         "Row": 4,
         "Col": 4,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 4,
         "Col": 5,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 4,
         "Col": 6,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 4,
         "Col": 7,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 4,
         "Col": 8,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 4,
@@ -11218,7 +13236,7 @@
       {
         "Row": 1,
         "Col": 2,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
@@ -13626,22 +15644,22 @@
       {
         "Row": 5,
         "Col": 0,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 2,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 3,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
@@ -15149,17 +17167,17 @@
       {
         "Row": 0,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 0,
         "Col": 2,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 0,
         "Col": 3,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 0,
@@ -15174,7 +17192,7 @@
       {
         "Row": 0,
         "Col": 6,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 0,
@@ -15244,22 +17262,22 @@
       {
         "Row": 1,
         "Col": 0,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
         "Col": 2,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 1,
         "Col": 3,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 1,
@@ -15269,12 +17287,12 @@
       {
         "Row": 1,
         "Col": 5,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 1,
         "Col": 6,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 1,
@@ -15354,12 +17372,12 @@
       {
         "Row": 2,
         "Col": 2,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 2,
         "Col": 3,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 2,
@@ -15449,7 +17467,7 @@
       {
         "Row": 3,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
@@ -15464,7 +17482,7 @@
       {
         "Row": 3,
         "Col": 4,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
@@ -15474,12 +17492,12 @@
       {
         "Row": 3,
         "Col": 6,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
         "Col": 7,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
@@ -15489,17 +17507,17 @@
       {
         "Row": 3,
         "Col": 9,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
         "Col": 10,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
         "Col": 11,
-        "Taken": false
+        "Taken": true
       },
       {
         "Row": 3,
@@ -15544,12 +17562,12 @@
       {
         "Row": 4,
         "Col": 0,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 4,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 4,
@@ -15649,7 +17667,7 @@
       {
         "Row": 5,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
@@ -15664,17 +17682,17 @@
       {
         "Row": 5,
         "Col": 4,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 5,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
         "Col": 6,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,
@@ -15749,7 +17767,7 @@
       {
         "Row": 6,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 6,
@@ -17372,17 +19390,17 @@
       {
         "Row": 2,
         "Col": 2,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 2,
         "Col": 3,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 2,
         "Col": 4,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 2,
@@ -17572,7 +19590,7 @@
       {
         "Row": 4,
         "Col": 2,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 4,
@@ -21189,7 +23207,7 @@
     ]
   },
   {
-    "Locatie": "rotterdam",
+    "Locatie": "Rotterdam",
     "EventID": 1,
     "MovieID": "Joker",
     "StartTijd": "2024-05-31T19:40:00",
@@ -21498,12 +23516,12 @@
       {
         "Row": 3,
         "Col": 0,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
@@ -22198,7 +24216,7 @@
     ]
   },
   {
-    "Locatie": "rotterdam",
+    "Locatie": "Rotterdam",
     "EventID": 1,
     "MovieID": "Joker",
     "StartTijd": "2024-05-30T17:40:00",
@@ -23321,7 +25339,7 @@
       {
         "Row": 1,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 1,
@@ -24660,7 +26678,7 @@
       {
         "Row": 4,
         "Col": 7,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 4,
@@ -26248,7 +28266,7 @@
       {
         "Row": 0,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 0,
@@ -26463,27 +28481,27 @@
       {
         "Row": 2,
         "Col": 4,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 2,
         "Col": 5,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 2,
         "Col": 6,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 2,
         "Col": 7,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 2,
         "Col": 8,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 2,
@@ -26543,12 +28561,12 @@
       {
         "Row": 3,
         "Col": 0,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
         "Col": 1,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 3,
@@ -26668,7 +28686,7 @@
       {
         "Row": 4,
         "Col": 5,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 4,
@@ -26753,7 +28771,7 @@
       {
         "Row": 5,
         "Col": 2,
-        "Taken": true
+        "Taken": false
       },
       {
         "Row": 5,

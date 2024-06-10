@@ -1,3 +1,16 @@
 [
-  
+  {
+    "Achternaam": "hendriks",
+    "Email": "beerhendriks@xs4all.nl",
+    "Wachtwoord": "D6393BA47D04A2DBF16FFDC92FBB1602DF7D6C2F789AB2A91808C7A438A7EF21",
+    "Leeftijd": 18,
+    "Klantnummer": 12251,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Unlimited",
+    "DatumAanschaffing": "2024-06-09 23:14:16",
+    "PrijsLidmaatschap": 30.0,
+    "KortingsType": [
+      "max 2 gratis tickets per aankoop"
+    ]
+  }
 ]
