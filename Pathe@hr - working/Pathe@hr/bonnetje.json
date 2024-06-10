@@ -2,23 +2,21 @@
   "Filmnaam": "Joker",
   "Drankjes": [
     {
-      "Name": "Koffie",
+      "Name": "Espresso",
       "Count": 1
     },
     {
-      "Name": "Cappuccino",
+      "Name": "Muntthee",
       "Count": 2
-    },
-    {
-      "Name": "Espresso",
-      "Count": 5
     }
   ],
-  "Price": 16.0,
-  "starttijd": "2024-07-18T11:30:00",
-  "eindtijd": "2024-07-18T13:40:00",
+  "Price": 6.0,
+  "starttijd": "2024-05-31T19:40:00",
+  "eindtijd": "2024-05-31T21:56:00",
   "Locatie": "Rotterdam",
   "Stoelen": [
-    "02-03"
+    "05-01",
+    "05-02",
+    "05-03"
   ]
 }

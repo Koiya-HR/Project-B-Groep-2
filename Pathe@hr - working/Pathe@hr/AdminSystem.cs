@@ -316,24 +316,6 @@ public class AdminSystem
         Console.Write("Omschrijving: ");
         string? omschrijving = Console.ReadLine();
 
-        // Datum en tijd invoeren
-        string releaseDatum;
-        while (true)
-        {
-            Console.Write("Release datum en tijd (yyyy-MM-ddTHH:mm:ss): ");
-            Console.WriteLine("Voorbeeld: 2024-05-14T16:30:00");
-            string inputDatumTijd = Console.ReadLine();
-            if (DateTime.TryParseExact(inputDatumTijd, "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDatumTijd))
-            {
-                releaseDatum = parsedDatumTijd.ToString("yyyy-MM-ddTHH:mm:ss");
-                break;
-            }
-            else
-            {
-                Console.WriteLine("Ongeldige datum of tijd. Voer de datum en tijd in het formaat yyyy-MM-ddTHH:mm:ss in.");
-            }
-        }
-
         int duur;
         while (true)
         {
@@ -356,7 +338,6 @@ public class AdminSystem
             Genres = genres,
             Acteurs = acteurs,
             Omschrijving = omschrijving,
-            ReleaseDatum = releaseDatum,
             Duur = duur
         };
 
@@ -576,27 +557,6 @@ public class AdminSystem
                 selectedFilm.Omschrijving = Console.ReadLine();
                 break;
             case 5:
-                // Datum en tijd invoeren
-                string releaseDatum;
-                while (true)
-                {
-                    Console.Write("Voer de nieuwe release datum en tijd van de film in (yyyy-MM-ddTHH:mm:ss): ");
-                    Console.WriteLine("Voorbeeld: 2024-05-14T16:30:00");
-                    string inputDatumTijd = Console.ReadLine();
-                    if (DateTime.TryParseExact(inputDatumTijd, "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDatumTijd))
-                    {
-                        releaseDatum = parsedDatumTijd.ToString("yyyy-MM-ddTHH:mm:ss");
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ongeldige datum of tijd. Voer de datum en tijd in het formaat yyyy-MM-ddTHH:mm:ss in.");
-                        Console.WriteLine("Voorbeeld: 2024-05-14T16:30:00");
-                    }
-                }
-                selectedFilm.ReleaseDatum = releaseDatum;
-                break;
-            case 6:
                 int duur;
                 while (true)
                 {
@@ -766,8 +726,6 @@ public class AdminSystem
             case 4:
                 return $"4. Omschrijving: {selectedFilm.Omschrijving}";
             case 5:
-                return $"5. Release datum: {selectedFilm.ReleaseDatum}";
-            case 6:
                 return $"6. Duur: {selectedFilm.Duur} minuten";
             default:
                 return "";

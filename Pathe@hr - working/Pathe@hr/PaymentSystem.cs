@@ -31,30 +31,35 @@ namespace Pathe_hr.obj
             // Betaal bevestiging afdrukken
 
             if (!Extras.isTimeLeft)
+            {
                 return;
-
+            }
+            Console.Clear();
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine();
             switch (paymentOptions[selectedIndex])
             {
                 case "iDEAL":
-                    Console.WriteLine("U heeft betaald met iDEAL");
+
+                    Console.WriteLine("\u001b[38;2;105;212;99mU heeft betaald met iDEAL\u001b[0m");
                     Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
                     break;
                 case "PayPal":
-                    Console.WriteLine("U heeft betaald met PayPal");
+                    Console.WriteLine("\u001b[38;2;105;212;99mU heeft betaald met PayPal\u001b[0m");
                     Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
                     break;
                 case "Credit/Debit":
-                    Console.WriteLine("U heeft betaald met Credit/Debit");
+                    Console.WriteLine("\u001b[38;2;105;212;99mU heeft betaald met Credit/Debit\u001b[0m");
                     Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
                     break;
                 case "Cash (op locatie)":
-                    Console.WriteLine("U gaat met Cash op locatie betalen");
+                    Console.WriteLine("\u001b[38;2;105;212;99mU gaat met Cash op locatie betalen\u001b[0m");
                     Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
                     break;
                 case "Bestelling annuleren":
                     Reservation.CancelReservation();
                     DeselectChairs2(selectedChairs, stoelArray);
-                    Console.WriteLine("bestelling geannuleerd");
+                    Console.WriteLine("\u001b[38;2;230;214;76mbestelling geannuleerd\u001b[0m");
                     Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
                     break;
                 default:
@@ -63,6 +68,7 @@ namespace Pathe_hr.obj
             }
             Extras.zaal.setChairsToTaken();
             _onPaymentSuccess.Invoke();
+            Extras.resetMoney();
             Console.ReadKey();
         }
 
@@ -84,7 +90,7 @@ namespace Pathe_hr.obj
                 Console.WriteLine();
                 Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
                 Console.WriteLine("--> Kies een betaalmethode:");
-                Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren\nDruk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan naar het hoofdmenu");
+                Console.WriteLine($"\nGebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren");
                 Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
                 for (int i = 0; i < options.Length; i++)
                 {

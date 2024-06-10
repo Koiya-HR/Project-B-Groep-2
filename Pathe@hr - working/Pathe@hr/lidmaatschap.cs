@@ -336,12 +336,12 @@ public class Account
 
     public void emailInvoeren()
     {
-        Console.Clear();
-        StartScreen.DisplayAsciiArt();
-        emailGevalideerd = false;
 
+        emailGevalideerd = false;
         do
         {
+            Console.Clear();
+            StartScreen.DisplayAsciiArt();
             email = ReadInputWithEscape("Voer uw e-mailadres in (druk op Escape om terug te gaan): ");
             if (email == null)
             {
@@ -665,6 +665,7 @@ public class Account
         string input = "";
         while (true)
         {
+
             var keyInfo = Console.ReadKey(intercept: true);
             if (keyInfo.Key == ConsoleKey.Escape)
             {

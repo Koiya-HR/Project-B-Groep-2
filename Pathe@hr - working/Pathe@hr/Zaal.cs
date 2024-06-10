@@ -7,15 +7,14 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-//resetChairs(); om zaal stoelen te deselecteren=======================================================================
 public class Zaal
 {
     private bool isPaymentComplete;
     public PaymentSystem paymentSystem;
 
     private bool stopTimer = false;
-    public int remainingTime = 20; // Total number of seconds for the countdown timer
-    public const int maxRemainingTime = 20;
+    public int remainingTime = 3600; // Total number of seconds for the countdown timer
+    public const int maxRemainingTime = 3600;
     public int numRows;
     public int chairsInRow;
     public List<Stoel> chairs { get; } = new();
@@ -305,15 +304,33 @@ public class Zaal
     }
 
 
-    public void checkTicketExists()
+    public void CheckTicketExists()
     {
-        string jsonData = File.ReadAllText("tickets.json");
+        try
+        {
+            string jsonData = File.ReadAllText("tickets.json");
+            if (string.IsNullOrWhiteSpace(jsonData))
+            {
+                remainingTime = maxRemainingTime;
+                return;
+            }
 
-        List<Ticket> tickets = JsonConvert.DeserializeObject<List<Ticket>>(jsonData);
-        if (tickets.Count == 0)
+            List<Ticket> tickets = JsonConvert.DeserializeObject<List<Ticket>>(jsonData)!;
+            if (tickets == null || tickets.Count == 0)
+            {
+                remainingTime = maxRemainingTime;
+                return;
+            }
+
+        }
+        catch (FileNotFoundException)
         {
             remainingTime = maxRemainingTime;
-            return;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+            remainingTime = maxRemainingTime;
         }
     }
 
@@ -330,8 +347,9 @@ public class Zaal
 
             Console.WriteLine();
             Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
-            Console.WriteLine("--> Bent u minder valide");
-            Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mPIJL TOETSEN\u001b[0m om te bewegen, druk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren en door te gaan");
+            Console.WriteLine("--> Bent u of iemand in uw groep minder valide of heeft u een gangpad stoel nodig");
+            Console.WriteLine("    Gangpad stoelen zijn bestemd voor mindervaliden");
+            Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren, druk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren en door te gaan");
             Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
             for (int choise = 1; choise <= 2; choise++)
             {
@@ -383,28 +401,51 @@ public class Zaal
             }
         }
         Console.Clear();
-        StartScreen.DisplayAsciiArt();
-
+        bool tooLow = false;
+        bool noInt = false;
         while (normalRunning)
         {
             int tempNor;
+            Console.Clear();
+            StartScreen.DisplayAsciiArt();
             Console.WriteLine();
             Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
-            Console.WriteLine("--> Hoeveel kaartjes wilt u, er is een maximum van 12 per aankoop");
-            Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mPIJL TOETSEN\u001b[0m om te bewegen, druk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren en door te gaan");
-            Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
-
-
-
-            if (int.TryParse(Console.ReadLine(), out tempNor) && tempNor >= 0)
+            if (tooLow)
             {
+                Console.WriteLine("\u001b[38;2;247;104;96mAlleen waarden boven 0\u001b[0m");
+                tooLow = false;
+            }
+            if (noInt)
+            {
+                Console.WriteLine("\u001b[38;2;247;104;96mFoute input, type een getal tussen 1 en 12\u001b[0m");
+                noInt = false;
+            }
+            Console.WriteLine("--> Hoeveel kaartjes wilt u, er is een maximum van 12 per aankoop");
+            Console.WriteLine("\n\u001b[38;2;250;156;55mVOER\u001b[0m het aantal tickets dat u wilt bestellen in en druk op \u001b[38;2;250;156;55mENTER\u001b[0m");
+            Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+            Console.Write("Aantal tickets : ");
+
+            if (int.TryParse(Console.ReadLine(), out tempNor))
+            {
+
+                if (tempNor > 0)
+                {
+
+                }
                 if (tempNor > 12)
                 {
                     bool askYesOrNo = true;
                     while (askYesOrNo)
                     {
                         Console.Clear();
-                        Console.WriteLine("U heeft meer dan 12 kaartjes geselecteerd, u mag maximaal 12 kaartjes selecteren. wilt u doorgaan met 12 kaartjes?");
+                        StartScreen.DisplayAsciiArt();
+                        Console.WriteLine();
+                        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+                        Console.WriteLine("\u001b[38;2;247;104;96mU heeft meer dan 12 kaartjes geselecteerd, u mag maximaal 12 kaartjes selecteren.\u001b[0m");
+                        Console.WriteLine("--> Wilt u doorgaan met 12 kaartjes?");
+                        Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mENTER\u001b[0m om door te gaan");
+                        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+
                         for (int choise = 1; choise <= 2; choise++)
                         {
                             if (choise == normalSelectedOption)
@@ -436,9 +477,7 @@ public class Zaal
                                     normalRunning = false;
                                     break;
                                 case 2:
-                                    //normalRunning = true;//hier gebleven
                                     askYesOrNo = false;
-                                    //normalRunning = true;
                                     break;
                             }
                         }
@@ -454,24 +493,29 @@ public class Zaal
                         }
                     }
                 }
-                if (numInvalideTickets >= 1)
+                else if (tempNor <= 0)
+                {
+                    tooLow = true;
+                }
+                if (numInvalideTickets >= 1 && !tooLow && !noInt)
                 {
                     numNormaleTickets = tempNor - 1;
                 }
-                else
+                else if (!tooLow && !noInt)
                 {
                     numNormaleTickets = tempNor;
                 }
                 Console.Clear();
             }
-            else if (tempNor < 0)
+            else
             {
-                Console.WriteLine("Alleen positieve waarden graag");
+                noInt = true;
             }
             if (tempNor > 0 && tempNor <= 12)
             {
                 normalRunning = false;
             }
+
 
         }
     }
@@ -675,14 +719,15 @@ public class Zaal
 
     private void printInfo()
     {
-        Console.WriteLine("Gebruik \u001b[38;2;250;156;55mW A S D\u001b[0m of de \u001b[38;2;250;156;55mPIJL KNOPPEN\u001b[0m om te bewegen, druk \u001b[38;2;250;156;55mSPATIE\u001b[0m om te selecteren en deselecteren en druk \u001b[38;2;250;156;55mENTER\u001b[0m om door te gaan");
+        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren, druk \u001b[38;2;250;156;55mSPATIE\u001b[0m om te selecteren en deselecteren en druk \u001b[38;2;250;156;55mENTER\u001b[0m om door te gaan");
         Console.WriteLine((numInvalideTickets == 1) ? $"U heeft \u001b[38;2;250;156;55m{numInvalideTickets}\u001b[0m zijkant stoel om te selecteren" : $"U heeft \u001b[38;2;250;156;55m{numInvalideTickets}\u001b[0m zijkant stoelen om te selecteren");
         Console.WriteLine((numNormaleTickets == 1) ? $"U heeft nog \u001b[38;2;250;156;55m{numNormaleTickets}\u001b[0m stoel om te selecteren" : $"U heeft nog \u001b[38;2;250;156;55m{numNormaleTickets}\u001b[0m stoelen om te selecteren");
-        Console.WriteLine("\u001b[48;2;230;214;76m   \u001b[0m : vrij \n" +
-                            "\u001b[48;2;110;110;110m   \u001b[0m : bezet \n" +
-                            "\u001b[48;2;32;85;245m   \u001b[0m : geselecteerd \n" +
-                            "\u001b[48;2;105;212;99m   \u001b[0m : U bent hier\n" +
-                            "\u001b[48;2;217;164;17m   \u001b[0m : zijkant stoel");
+        Console.WriteLine("\u001b[48;2;230;214;76m   \u001b[0m : Vrij \n" +
+                            "\u001b[48;2;110;110;110m   \u001b[0m : Bezet \n" +
+                            "\u001b[48;2;32;85;245m   \u001b[0m : Geselecteerd \n" +
+                            "\u001b[48;2;255;255;255m   \u001b[0m : U bent hier\n" +
+                            "\u001b[48;2;250;125;0m   \u001b[0m : Zijkant stoel\n" +
+                            "\u001b[48;2;247;104;96m   \u001b[0m : Deze stoel kunt u niet selecteren");
 
         Console.WriteLine("                " + "==============================================================================================================");
         Console.WriteLine("                " + "                                                 BEELDSCHERM");

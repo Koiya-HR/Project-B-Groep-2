@@ -18,4 +18,14 @@ public static class Extras
 
     public static bool stopTimer = false;
 
+    public static void resetMoney()
+    {
+        ticketPrijs = 0;
+        numTickets = 0;
+        lidmaatschapPrijs = 0;
+        drankPrijs = 0;
+        completePrijs = 0;
+    }
+
+
 }

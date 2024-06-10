@@ -312,7 +312,7 @@ public class Bioscoop
     {
         Console.Clear(); // scherm clearen
 
-        Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+        Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
         Console.WriteLine("Druk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan");
         Console.WriteLine("Selecteer een acteur:\n");
 
@@ -336,7 +336,7 @@ public class Bioscoop
     {
         Console.Clear(); // scherm clearen
 
-        Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+        Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
         Console.WriteLine("Druk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan");
         Console.WriteLine("Selecteer een genre:\n");
 
