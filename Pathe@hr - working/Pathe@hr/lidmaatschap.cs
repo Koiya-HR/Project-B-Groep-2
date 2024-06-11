@@ -347,7 +347,6 @@ public class Account
             {
                 return;
             }
-
             emailGevalideerd = true;
             bool emailbestaat = emailBestaat(email);
 

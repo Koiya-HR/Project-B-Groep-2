@@ -186,7 +186,7 @@ Drankjes:
                 double huidigeTicketPrijs = Extras.ticketPrijs;
                 double huidigeDrankPrijs = Extras.drankPrijs;
                 bool lidmToegepast = LidmaatschapInvoer.LidmaatschapInvoeren();
-                if (lidmToegepast == true)
+                if (lidmToegepast)
                 {
                     double aantalEuroKorting = huidigePrijs - Extras.completePrijs;
 
