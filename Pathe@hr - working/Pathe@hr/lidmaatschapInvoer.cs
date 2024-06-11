@@ -42,7 +42,11 @@ public class LidmaatschapInvoer
                         break;
 
                     case "Terug":
-                        StartScreen.DisplayAsciiArt();
+                        if (!Extras.lidmaatschapToegepast)
+                        {
+                            TicketBonSystem.printNormalBon();
+                        }
+
                         return false;
                 }
             }

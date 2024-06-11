@@ -26,5 +26,59 @@
     "KortingsType": [
       "50% korting op tickets"
     ]
+  },
+  {
+    "Achternaam": "h",
+    "Email": "hoihoihoi@gmail.com",
+    "Wachtwoord": "736A9149A51F73529C56AD7470742CD1C9FE12707D51CBEE1B57CADF3E941FD2",
+    "Leeftijd": 19,
+    "Klantnummer": 6918,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Drinks on me",
+    "DatumAanschaffing": "2024-06-11 20:49:26",
+    "PrijsLidmaatschap": 10.0,
+    "KortingsType": [
+      "max 2 gratis drankjes per ticket"
+    ]
+  },
+  {
+    "Achternaam": "h",
+    "Email": "hoihoi@gmail.com",
+    "Wachtwoord": "0A852E50B8791C3F808DDBA4A1AEF510CB04FA5A34C583C3D7EBD2DCF50053FB",
+    "Leeftijd": 19,
+    "Klantnummer": 9534,
+    "Lidmaatschap": false,
+    "TypeLidmaatschap": "",
+    "DatumAanschaffing": null,
+    "PrijsLidmaatschap": 0.0,
+    "KortingsType": []
+  },
+  {
+    "Achternaam": "FaslefsnoAFS",
+    "Email": "dagdagdag@gmail.com",
+    "Wachtwoord": "06574EC11E1311C7398C4F25A2177863145D5C766855C5E7C5BF5EF316DDA6EB",
+    "Leeftijd": 19,
+    "Klantnummer": 12977,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Unlimited",
+    "DatumAanschaffing": "2024-06-11 21:12:39",
+    "PrijsLidmaatschap": 30.0,
+    "KortingsType": [
+      "max 2 gratis tickets per aankoop"
+    ]
+  },
+  {
+    "Achternaam": "g",
+    "Email": "hoihoihoih@gmail.com",
+    "Wachtwoord": "736A9149A51F73529C56AD7470742CD1C9FE12707D51CBEE1B57CADF3E941FD2",
+    "Leeftijd": 19,
+    "Klantnummer": 19280,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Half price",
+    "DatumAanschaffing": "2024-06-11 21:25:00",
+    "PrijsLidmaatschap": 20.5,
+    "KortingsType": [
+      "50% korting op tickets"
+    ]
   }
 ]

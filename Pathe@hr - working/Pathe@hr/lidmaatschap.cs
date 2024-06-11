@@ -172,15 +172,15 @@ public static class LidmaatschapAanvraag
         string bevestigen = "";
         Console.WriteLine($"Te betalen: €{prijsLidmaatschap}");
         Thread.Sleep(5000);
-        string betaalOptie = Selecteren(new string[] { "Betalen", "Quit" });
+        string betaalOptie = Selecteren(new string[] { "Betalen", "Terug gaan" });
 
         if (betaalOptie == "Betalen")
         {
-            string bank = Selecteren(new string[] { "American Express", "Mastercard", "Google Pay", "Apple Pay", "IDEAL", "VISA", "PayPal", "Quit" });
+            string bank = Selecteren(new string[] { "iDEAL", "PayPal", "Credit/Debit", "Cash (op locatie)", "Terug gaan" });
 
-            if (bank != "Quit")
+            if (bank != "Terug gaan")
             {
-                bevestigen = Selecteren(new string[] { "Betaling bevestigen", "Quit" });
+                bevestigen = Selecteren(new string[] { "Betaling bevestigen", "Terug gaan" });
             }
         }
 
@@ -704,7 +704,7 @@ public class Account
             bool geregistreerd = false;
             emailGevalideerd = false;
 
-            accountOptie = LidmaatschapAanvraag.Selecteren(new string[] { "Inloggen", "Account aanmaken", "Account verwijderen", "Quit" });
+            accountOptie = LidmaatschapAanvraag.Selecteren(new string[] { "Inloggen", "Account aanmaken", "Account verwijderen", "Terug gaan" });
             switch (accountOptie)
             {
                 case "Inloggen":
@@ -749,7 +749,7 @@ public class Account
                     }
                     break;
 
-                case "Quit":
+                case "Terug gaan":
                     return;
             }
 
@@ -759,7 +759,7 @@ public class Account
                 LidmaatschapAanvraag.lidmaatschapOpties(lidmaatschapExists, email, leeftijd);
             }
         }
-        while (accountOptie != "Quit");
+        while (accountOptie != "Terug gaan");
     }
 
     public static void ErrorMessage(string message)
