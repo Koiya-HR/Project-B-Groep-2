@@ -42,6 +42,7 @@ public class LidmaatschapInvoer
                         break;
 
                     case "Terug":
+                        StartScreen.DisplayAsciiArt();
                         return false;
                 }
             }

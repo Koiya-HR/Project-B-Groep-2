@@ -12,5 +12,19 @@
     "KortingsType": [
       "max 2 gratis tickets per aankoop"
     ]
+  },
+  {
+    "Achternaam": "h",
+    "Email": "asdf@\u0000\u0000hogeschool@hr.com",
+    "Wachtwoord": "A25804A814B98AD7C7E3CC816792C485557C2D0FC455C4B8D76A2EE1892394C8",
+    "Leeftijd": 19,
+    "Klantnummer": 18962,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Half price",
+    "DatumAanschaffing": "2024-06-11 11:10:42",
+    "PrijsLidmaatschap": 20.5,
+    "KortingsType": [
+      "50% korting op tickets"
+    ]
   }
 ]

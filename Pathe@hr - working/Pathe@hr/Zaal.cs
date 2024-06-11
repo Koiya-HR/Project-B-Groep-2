@@ -215,7 +215,7 @@ public class Zaal
             printInfo();
             PrintStoelArray();
             printNotifications();
-            Console.Write($"Resterende tijd: {remainingTime / 60:00}:{remainingTime % 60:00}   ");
+            Console.Write($"\u001b[38;2;247;104;96mResterende tijd: {remainingTime / 60:00}:{remainingTime % 60:00}\u001b[0m");
         }
 
         // If chairs were chosen and timer has not expired, proceed to payment menu
@@ -347,7 +347,7 @@ public class Zaal
 
             Console.WriteLine();
             Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
-            Console.WriteLine("--> Bent u of iemand in uw groep minder valide of heeft u een gangpad stoel nodig");
+            Console.WriteLine("--> Heeft u een gangpad stoel nodig");
             Console.WriteLine("    Gangpad stoelen zijn bestemd voor mindervaliden");
             Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren, druk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren en door te gaan");
             Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
@@ -856,10 +856,10 @@ public class Zaal
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write($"Resterende tijd: {seconds / 60:00}:{seconds % 60:00} ");
+            Console.Write($"\u001b[38;2;247;104;96mResterende tijd: {seconds / 60:00}:{seconds % 60:00} \u001b[0m");
             if (seconds == 10)
             {
-                Console.Write("Waarschuwing: U heeft nog 10 seconden!");
+                Console.Write("\u001b[38;2;247;104;96mWaarschuwing: U heeft nog 10 seconden!\u001b[0m");
             }
             Thread.Sleep(1000);
             seconds--;
