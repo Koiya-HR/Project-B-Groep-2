@@ -1,3 +1,4 @@
+//aangepast
 using System;
 using System.IO;
 using System.Linq;
@@ -5,9 +6,14 @@ using System.Text.Json;
 using Pathe_hr.obj;
 
 
-public class TicketBonSystem
+public static class TicketBonSystem
 {
-
+    public static string filmnaam;
+    public static DateTime starttijd;
+    public static DateTime eindtijd;
+    public static string locatie;
+    public static string stoelen;
+    public static string drankjes;
     public static void DeselectChairs(List<(int row, int col)> selectedChairs, Stoel[,] stoelArray)
     {
         foreach (var chair in selectedChairs)
@@ -70,25 +76,41 @@ public class TicketBonSystem
         var root = document.RootElement;
 
         // Extract values from the JSON
-        string filmnaam = root.GetProperty("Filmnaam").GetString();
-        DateTime starttijd = root.GetProperty("starttijd").GetDateTime();
-        DateTime eindtijd = root.GetProperty("eindtijd").GetDateTime();
-        string locatie = root.GetProperty("Locatie").GetString();
+        filmnaam = root.GetProperty("Filmnaam").GetString();
+        starttijd = root.GetProperty("starttijd").GetDateTime();
+        eindtijd = root.GetProperty("eindtijd").GetDateTime();
+        locatie = root.GetProperty("Locatie").GetString();
 
         // Define the single price for each drink
         double singlePrice = 2.0;
 
-        // Extracting Stoelen array and format to display each on a new line
-        var stoelenArray = root.GetProperty("Stoelen").EnumerateArray();
-        //string string stoelen = maakStoelenList(stoelenArray); testing
+        var stoelenArray = root.GetProperty("Stoelen").EnumerateArray().ToList();
+        List<string> formattedStoelen = new List<string>();
 
-        string stoelen = string.Join("\n    ", stoelenArray.Select(s =>
+        // Loop through the seats and format them in pairs
+        for (int i = 0; i < stoelenArray.Count; i += 2)
         {
-            var split = s.GetString().Split('-');
-            string rij = split[0];
-            string stoel = split[1];
-            return $"rij: {rij} stoel: {stoel}";
-        }));
+            var firstSeat = stoelenArray[i].GetString().Split('-');
+            string rij1 = firstSeat[0];
+            string stoel1 = firstSeat[1];
+
+            // Check if there is a second seat in the pair
+            if (i + 1 < stoelenArray.Count)
+            {
+                var secondSeat = stoelenArray[i + 1].GetString().Split('-');
+                string rij2 = secondSeat[0];
+                string stoel2 = secondSeat[1];
+                formattedStoelen.Add($"rij: {rij1} stoel: {stoel1}   rij: {rij2} stoel: {stoel2}");
+            }
+            else
+            {
+                // If there is no second seat, leave it empty
+                formattedStoelen.Add($"rij: {rij1} stoel: {stoel1}");
+            }
+        }
+
+        // Combine the formatted strings into a single string with new lines
+        stoelen = string.Join("\n    ", formattedStoelen);
         //=======================================================================================================
 
 
@@ -123,41 +145,23 @@ public class TicketBonSystem
 
 
         var drankjesArray = root.GetProperty("Drankjes").EnumerateArray();
-        string drankjes = string.Join("\n    ", drankjesArray.Select(d =>
+        drankjes = string.Join("\n    ", drankjesArray.Select(d =>
         {
             int count = d.GetProperty("Count").GetInt32();
             string name = d.GetProperty("Name").GetString();
             double totalPriceDrink = count * singlePrice;
-            return $"x{count} {name,-15} €{totalPriceDrink,5:F2}";
+            return $"x{count} {name,-8} €{totalPriceDrink,5:F2}";
         }));
 
         // Calculate total price
         double totalPrice = drankjesArray.Sum(d => d.GetProperty("Count").GetInt32() * singlePrice);
+        totalPrice += Extras.completePrijs;
 
         if (Extras.drankPrijs == 0)
         {
             Extras.completePrijs = Extras.ticketPrijs;
         }
-        Console.Clear();
-        StartScreen.DisplayAsciiArt();
-        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
-        Console.WriteLine($"Gebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren\nDruk op \u001b[38;2;250;156;55mF\u001b[0m om lidmaatschap te gebruiken");
-        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
-        Console.WriteLine($@"
-=====================================================================================================================
-Film: {filmnaam}                                                                                                     
-Datum & Tijd: {starttijd}
-Eind Tijd: {eindtijd}
-Locatie: {locatie}
-Stoelen:
-    {stoelen}
-Aantal Tickets:     {Extras.numTickets}
-Prijs Tickets:      €{Extras.ticketPrijs,5:F2}
-Drankjes:
-    {drankjes}
-                Totale Prijs: €{Extras.completePrijs,5:F2}
-=====================================================================================================================
-        ");
+        printNormalBon();
 
 
         // Menu options
@@ -185,8 +189,9 @@ Drankjes:
                 double huidigePrijs = Extras.completePrijs;
                 double huidigeTicketPrijs = Extras.ticketPrijs;
                 double huidigeDrankPrijs = Extras.drankPrijs;
-                bool lidmToegepast = LidmaatschapInvoer.LidmaatschapInvoeren();
-                if (lidmToegepast)
+                Extras.noShowTimer = true;
+                Extras.lidmaatschapToegepast = LidmaatschapInvoer.LidmaatschapInvoeren();
+                if (Extras.lidmaatschapToegepast)
                 {
                     double aantalEuroKorting = huidigePrijs - Extras.completePrijs;
 
@@ -203,25 +208,23 @@ Drankjes:
                     Console.ResetColor();
 
                     Console.WriteLine($@"
-            =====================================================================================================================
-            Film: {filmnaam}                                                                                                     
-            Datum & Tijd: {starttijd}
-            Eind Tijd: {eindtijd}
-            Locatie: {locatie}
-            Stoelen:
-                {stoelen}
-            Aantal Tickets: {Extras.numTickets}
-            Prijs Tickets: €{huidigeTicketPrijs,5:F2}
+=====================================================================================================================
+Film: {filmnaam}                                                                                                     
+Datum & Tijd: {starttijd}
+Eind Tijd: {eindtijd}
+Locatie: {locatie}
+Stoelen:
+    {stoelen}
+Aantal Tickets: {Extras.numTickets}
+Prijs Tickets: €{huidigeTicketPrijs,5:F2}
+Drankjes: 
+{drankjes}
+Prijs Drankjes: €{huidigeDrankPrijs,5:F2}
+Korting: € - {aantalEuroKorting,5:F2}
+Totale Prijs: €{Extras.completePrijs,5:F2}
+=====================================================================================================================
 
-            Drankjes:
-                {drankjes}
-            Prijs Drankjes: €{huidigeDrankPrijs,5:F2}
-
-            Korting: € - {aantalEuroKorting}
-                            Totale Prijs: €{Extras.completePrijs,5:F2}
-            =====================================================================================================================
-                    ");
-                    //string[] options = { "Naar betalen", "Bestelling annuleren" };
+        ");                  //string[] options = { "Naar betalen", "Bestelling annuleren" };
                 }
             }
 
@@ -238,8 +241,11 @@ Drankjes:
                 selectedIndex++;
             }
 
-            // Move cursor up to overwrite previous options
-            Console.SetCursorPosition(0, Console.CursorTop - 2);
+            int newPosition = Console.CursorTop - 2;
+            if (newPosition >= 0)
+            {
+                Console.SetCursorPosition(0, newPosition);
+            }
 
 
 
@@ -251,25 +257,31 @@ Drankjes:
             Extras.stopTimer = true;
             Reservation.CancelReservation();
             DeselectChairs(selectedChairs, stoelArray);
+            Extras.completePrijs = 0.0;
+            Extras.numTickets = 0;
+            Extras.ticketPrijs = 0.0;
+            Extras.drankPrijs = 0.0;
+            Extras.lidmaatschapToegepast = false;
             Console.Clear();
             StartScreen.DisplayAsciiArt();
             Console.WriteLine();
             Console.WriteLine("\u001b[38;2;230;214;76mbestelling geannuleerd\u001b[0m");
             Console.WriteLine("Druk op een toets om terug te keren naar het hoofdmenu.");
             Console.ReadKey();
+
             return;
         }
 
         // Process payment or continue with other actions
-        ProcessSelectedOption(options[selectedIndex], selectedChairs, stoelArray);
+        ProcessSelectedOption(options[selectedIndex], selectedChairs, stoelArray, filmnaam, starttijd, eindtijd, locatie, stoelen, drankjes, totalPrice, Extras.numTickets, Extras.ticketPrijs);
     }
 
     // Placeholder method to process the selected option
-    static void ProcessSelectedOption(string selectedOption, List<(int row, int col)> selectedChairs, Stoel[,] stoelArray)
+    static void ProcessSelectedOption(string selectedOption, List<(int row, int col)> selectedChairs, Stoel[,] stoelArray, string filmnaam, DateTime starttijd, DateTime eindtijd, string locatie, string stoelen, string drankjes, double totalPrice, int numTickets, double ticketPrijs)
     {
         if (selectedOption == "Naar betalen")
         {
-            Extras.paymentSystem.SelectPaymentMethodAndConfirm(selectedChairs, stoelArray);
+            Extras.paymentSystem.SelectPaymentMethodAndConfirm(selectedOption, selectedChairs, stoelArray, filmnaam, starttijd, eindtijd, locatie, stoelen, drankjes, totalPrice, Extras.numTickets, Extras.ticketPrijs, Extras.completePrijs);
         }
         else if (selectedOption == "Bestelling annuleren")
         {
@@ -277,9 +289,39 @@ Drankjes:
             Reservation.CancelReservation();
             DeselectChairs(selectedChairs, stoelArray);
             Extras.paymentSystem._onPaymentSuccess.Invoke();
+            Extras.completePrijs = 0.0;
+            Extras.numTickets = 0;
+            Extras.ticketPrijs = 0.0;
+            Extras.drankPrijs = 0.0;
+            Extras.noShowTimer = false;
+            Extras.lidmaatschapToegepast = false;
+
             return;
         }
         return;
     }
-}
+    public static void printNormalBon()
+    {
+        Console.Clear();
+        StartScreen.DisplayAsciiArt();
+        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+        Console.WriteLine($"Gebruik de \u001b[38;2;250;156;55mPIJLTOETSEN\u001b[0m om te navigeren door dit menu \nDruk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren\nDruk op \u001b[38;2;250;156;55mF\u001b[0m om lidmaatschap te gebruiken");
+        Console.WriteLine("\u001b[38;2;250;156;55m=====================================================================================================================\u001b[0m");
+        Console.WriteLine($@"
+=====================================================================================================================
+Film: {TicketBonSystem.filmnaam}
+Datum & Tijd: {TicketBonSystem.starttijd}
+Eind Tijd: {TicketBonSystem.eindtijd}
+Locatie: {TicketBonSystem.locatie}
+Stoelen:
+    {TicketBonSystem.stoelen}
+Aantal Tickets:    {Extras.numTickets}
+Prijs Tickets:     €{Extras.ticketPrijs,5:F2}
+Drankjes:
+    {TicketBonSystem.drankjes}
+Totale Prijs:      €{Extras.completePrijs,5:F2}
+=====================================================================================================================
 
+        ");
+    }
+}

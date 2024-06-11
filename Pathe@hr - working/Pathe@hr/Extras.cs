@@ -17,6 +17,8 @@ public static class Extras
     public static double lidmaatschapPrijs; // prijs voor lidmaatschap, hoeft niet op bonnetje
 
     public static bool stopTimer = false;
+    public static bool noShowTimer = false;
+    public static bool lidmaatschapToegepast = false;
 
     public static void resetMoney()
     {

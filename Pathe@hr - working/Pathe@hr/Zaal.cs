@@ -13,8 +13,8 @@ public class Zaal
     public PaymentSystem paymentSystem;
 
     private bool stopTimer = false;
-    public int remainingTime = 3600; // Total number of seconds for the countdown timer
-    public const int maxRemainingTime = 3600;
+    public int remainingTime = 900; // Total number of seconds for the countdown timer
+    public const int maxRemainingTime = 900;
     public int numRows;
     public int chairsInRow;
     public List<Stoel> chairs { get; } = new();
@@ -853,16 +853,20 @@ public class Zaal
                 return;
 
             remainingTime = seconds;
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write($"\u001b[38;2;247;104;96mResterende tijd: {seconds / 60:00}:{seconds % 60:00} \u001b[0m");
-            if (seconds == 10)
+            if (!Extras.noShowTimer)
             {
-                Console.Write("\u001b[38;2;247;104;96mWaarschuwing: U heeft nog 10 seconden!\u001b[0m");
+                Console.SetCursorPosition(0, Console.CursorTop);
+                Console.Write(new string(' ', Console.WindowWidth));
+                Console.SetCursorPosition(0, Console.CursorTop);
+                Console.Write($"\u001b[38;2;247;104;96mResterende tijd: {seconds / 60:00}:{seconds % 60:00} \u001b[0m");
+                if (seconds == 10)
+                {
+                    Console.Write("\u001b[38;2;247;104;96mWaarschuwing: U heeft nog 10 seconden!\u001b[0m");
+                }
+                Thread.Sleep(1000);
+                seconds--;
             }
-            Thread.Sleep(1000);
-            seconds--;
+
 
             // Controleer of de stopTimer vlag is ingesteld om de timer-thread te stoppen
             if (stopTimer || Extras.stopTimer)
