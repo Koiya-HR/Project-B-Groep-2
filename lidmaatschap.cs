@@ -149,7 +149,6 @@ public static class LidmaatschapAanvraag
         {
             StartScreen.DisplayAsciiArt();
 
-            Console.WriteLine($"Gekozen Lidmaatschap: {typeLidmaatschap}\nBijbehorende korting: {string.Join(", ", KortingsType)}\nPrijs: €{prijsLidmaatschap}");
         }
         else
         {
@@ -170,17 +169,17 @@ public static class LidmaatschapAanvraag
     public static bool Betalen()
     {
         string bevestigen = "";
-        Console.WriteLine($"Te betalen: €{prijsLidmaatschap}");
-        Thread.Sleep(5000);
-        string betaalOptie = Selecteren(new string[] { "Betalen", "Quit" });
+
+        string betaalOptie = Selecteren(new string[] { "Betalen", "Quit" }, $"Gekozen Lidmaatschap: {typeLidmaatschap}\nBijbehorende korting: {string.Join(", ", KortingsType)}\nPrijs: €{prijsLidmaatschap}\nTe betalen: €{prijsLidmaatschap}\n");
+
 
         if (betaalOptie == "Betalen")
         {
-            string bank = Selecteren(new string[] { "American Express", "Mastercard", "Google Pay", "Apple Pay", "IDEAL", "VISA", "PayPal", "Quit" });
+            string bank = Selecteren(new string[] { "IDEAL", "Debit/Credit", "PayPal", "Quit" });
 
             if (bank != "Quit")
             {
-                bevestigen = Selecteren(new string[] { "Betaling bevestigen", "Quit" });
+                bevestigen = Selecteren(new string[] { "Betaling bevestigen", "Betaling annuleren" });
             }
         }
 
@@ -191,6 +190,8 @@ public static class LidmaatschapAanvraag
         }
         else
         {
+            Account.ErrorMessage("Betaling is geannuleerd");
+
             return false;
         }
     }
@@ -199,18 +200,23 @@ public static class LidmaatschapAanvraag
     // in deze functie krijgt de gebruiker de optie om dingen te selecteren
     public static string Selecteren(string[] Opties, string message = "")
     {
-
         string[] opties = Opties;
         int geselecteerdeIndex = 0;
+        Console.Clear();
 
         while (true)
         {
             Console.Clear();
             StartScreen.DisplayAsciiArt();
+
+            Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren, druk \u001b[38;2;250;156;55mENTER\u001b[0m om te selecteren en door te gaan");
+            Console.WriteLine();
+
             if (message != "")
             {
                 Console.WriteLine(message);
             }
+
             for (int i = 0; i < opties.Length; i++)
             {
                 if (i == geselecteerdeIndex)
@@ -228,6 +234,7 @@ public static class LidmaatschapAanvraag
 
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
             Console.Clear();
+
             switch (keyInfo.Key)
             {
                 case ConsoleKey.UpArrow:
@@ -363,14 +370,15 @@ public class Account
 
                 if (emailbestaat)
                 {
+                    ErrorMessage("Deze e-mailadress wordt al gebruikt, probeer een andere e-mailadress.");
                     Console.Clear();
                     StartScreen.DisplayAsciiArt();
-                    ErrorMessage("Deze e-mailadress wordt al gebruikt, probeer een andere e-mailadress.");
+
                     emailGevalideerd = false;
 
                 }
             }
-            else if (accountOptie == "Inloggen")
+            else if (accountOptie == "Inloggen" || accountOptie == "Account verwijderen")
             {
                 if (!emailbestaat)
                 {
@@ -444,7 +452,6 @@ public class Account
                 wachtwoord = Key.makeHash(wachtwoord);
             }
 
-
             while (wachtwoord != juisteWachtwoord)
             {
                 Console.Clear();
@@ -492,14 +499,11 @@ public class Account
             emailInvoeren();
             return;
         }
-
-
     }
     public void LeeftijdAanmaak()
     {
         Console.Clear();
         StartScreen.DisplayAsciiArt();
-
 
         string leeftijdString = ReadInputWithEscape("Voer uw leeftijd in (druk op Escape om terug te gaan): ");
         if (leeftijdString == null)
@@ -512,8 +516,6 @@ public class Account
         {
             leeftijd = Convert.ToInt32(leeftijdString);
         }
-
-
     }
 
     // Registreren():
@@ -695,7 +697,6 @@ public class Account
         return input;
     }
 
-
     public void AccountOpties()
     {
         do
@@ -703,6 +704,7 @@ public class Account
             bool ingelogd = false;
             bool geregistreerd = false;
             emailGevalideerd = false;
+            Console.WriteLine();
 
             accountOptie = LidmaatschapAanvraag.Selecteren(new string[] { "Inloggen", "Account aanmaken", "Account verwijderen", "Quit" });
             switch (accountOptie)
@@ -761,7 +763,6 @@ public class Account
         }
         while (accountOptie != "Quit");
     }
-
     public static void ErrorMessage(string message)
     {
         Console.ForegroundColor = ConsoleColor.Red;
@@ -795,10 +796,9 @@ public class Account
     {
         LidmaatschapAanvraag.LidmaatschapAanvragen(email, leeftijd);
     }
-
 }
 
-class Menu
+public class Menu
 {
     public void LidmaatschapSysteem()
     {
@@ -825,6 +825,7 @@ class WachtwoordChecker
                 // Calculate progress and draw the bar
                 Console.Clear(); // Clear the console window before redrawing
                 StartScreen.DisplayAsciiArt();
+                Console.WriteLine("*Gebruik direct de toetsen om het wachtwoord in te typen*\n");
                 if (wachtwoord.Length > 0)
                 {
                     DrawInputField(GetHiddenString(wachtwoord));
@@ -899,7 +900,6 @@ class WachtwoordChecker
         // Draw the bottom of the field
         Console.WriteLine("+" + new string('-', fieldWidth) + "+");
     }
-
     public static void DrawProgressBar(int inputStrength, int barLength)
     {
         // Bereken de voortgang
@@ -930,8 +930,6 @@ class WachtwoordChecker
         Console.WriteLine(progressBar);
         Console.ResetColor(); // Reset de kleur naar de standaardkleur
     }
-
-
     static void PrintStrengthMessage(int strength)
     {
         if (strength < 50)
