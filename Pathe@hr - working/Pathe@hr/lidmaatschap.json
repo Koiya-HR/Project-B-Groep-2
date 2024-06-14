@@ -80,5 +80,77 @@
     "KortingsType": [
       "50% korting op tickets"
     ]
+  },
+  {
+    "Achternaam": "g",
+    "Email": "iasadw@asd.ca",
+    "Wachtwoord": "736A9149A51F73529C56AD7470742CD1C9FE12707D51CBEE1B57CADF3E941FD2",
+    "Leeftijd": 19,
+    "Klantnummer": 5689,
+    "Lidmaatschap": false,
+    "TypeLidmaatschap": "",
+    "DatumAanschaffing": null,
+    "PrijsLidmaatschap": 0.0,
+    "KortingsType": []
+  },
+  {
+    "Achternaam": "as",
+    "Email": "sdasdasd@.ca",
+    "Wachtwoord": "3B503D518A83F72C360C97100F69860731C27992C167A140FD477D7E9EC42D8F",
+    "Leeftijd": 99,
+    "Klantnummer": 2024,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Senior",
+    "DatumAanschaffing": "2024-06-13 14:46:39",
+    "PrijsLidmaatschap": 15.0,
+    "KortingsType": [
+      "25% korting op tickets",
+      "max 2 gratis drankjes per bestelling"
+    ]
+  },
+  {
+    "Achternaam": "ad",
+    "Email": "hsdfsd@fsd.ca",
+    "Wachtwoord": "4157F0B611364DD65CD714B3623C8D2ADD4913296D71A98B107DF1CF5F932D15",
+    "Leeftijd": 99,
+    "Klantnummer": 3792,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Senior",
+    "DatumAanschaffing": "2024-06-13 21:39:17",
+    "PrijsLidmaatschap": 15.0,
+    "KortingsType": [
+      "25% korting op tickets",
+      "max 2 gratis drankjes per bestelling"
+    ]
+  },
+  {
+    "Achternaam": "gndjid",
+    "Email": "grsnuifds@sfdf.com",
+    "Wachtwoord": "A659B1AD5D42B22A2DC6D2E820703F494B2D95E922EA15CB6B358ADB5D3DBC9A",
+    "Leeftijd": 99,
+    "Klantnummer": 18777,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Senior",
+    "DatumAanschaffing": "2024-06-13 21:43:13",
+    "PrijsLidmaatschap": 15.0,
+    "KortingsType": [
+      "25% korting op tickets",
+      "max 2 gratis drankjes per bestelling"
+    ]
+  },
+  {
+    "Achternaam": "h",
+    "Email": "gdhjasldhdsd@sdgf.com",
+    "Wachtwoord": "A659B1AD5D42B22A2DC6D2E820703F494B2D95E922EA15CB6B358ADB5D3DBC9A",
+    "Leeftijd": 99,
+    "Klantnummer": 2002,
+    "Lidmaatschap": true,
+    "TypeLidmaatschap": "Senior",
+    "DatumAanschaffing": "2024-06-13 21:52:40",
+    "PrijsLidmaatschap": 15.0,
+    "KortingsType": [
+      "25% korting op tickets",
+      "max 2 gratis drankjes per bestelling"
+    ]
   }
 ]

@@ -165,9 +165,10 @@ public class Location
         }
     }
 
-
     private static void DisplayEvents(List<Event> events, int eventIndex)
     {
+
+
         // Check if the event list is empty
         if (events.Count == 0)
         {
@@ -175,11 +176,20 @@ public class Location
             return;
         }
 
+        // Sort events by StartTijd in ascending order
+        events.Sort((a, b) => a.StartTijd.CompareTo(b.StartTijd));
+
+        // Calculate the number of events to display (always 5)
+        int numberOfEventsToShow = 5;
+
         // Calculate the starting index based on the eventIndex
-        int startIndex = Math.Max(0, eventIndex - 1);
+        int startIndex = Math.Max(0, eventIndex - (numberOfEventsToShow / 2));
 
         // Calculate the ending index based on the starting index
-        int endIndex = Math.Min(startIndex + 3, events.Count - 1);
+        int endIndex = Math.Min(startIndex + numberOfEventsToShow - 1, events.Count - 1);
+
+        // Adjust startIndex again if the endIndex is at the edge of the list
+        startIndex = Math.Max(0, endIndex - (numberOfEventsToShow - 1));
 
         // Print the events within the range [startIndex, endIndex]
         for (int i = startIndex; i <= endIndex; i++)
@@ -194,6 +204,34 @@ public class Location
             }
         }
     }
+    // private static void DisplayEvents(List<Event> events, int eventIndex)
+    // {
+    //     // Check if the event list is empty
+    //     if (events.Count == 0)
+    //     {
+    //         Console.WriteLine("No events to display.");
+    //         return;
+    //     }
+
+    //     // Calculate the starting index based on the eventIndex
+    //     int startIndex = Math.Max(0, eventIndex - 1);
+
+    //     // Calculate the ending index based on the starting index
+    //     int endIndex = Math.Min(startIndex + 3, events.Count - 1);
+
+    //     // Print the events within the range [startIndex, endIndex]
+    //     for (int i = startIndex; i <= endIndex; i++)
+    //     {
+    //         if (i == eventIndex)
+    //         {
+    //             events[i].PrintEvent(true); // Print the current event
+    //         }
+    //         else
+    //         {
+    //             events[i].PrintEvent(false); // Print other events
+    //         }
+    //     }
+    // }
 
     private static void ClearLinesAbove(int cursorTop, int linesToClear)
     {

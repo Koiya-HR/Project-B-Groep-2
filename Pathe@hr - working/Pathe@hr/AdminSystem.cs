@@ -227,6 +227,7 @@ public class AdminSystem
         string[] options = { "Doorgaan met toevoegen van een film", "Terug naar het hoofdmenu" };
 
         while (true)
+
         {
             Console.Clear();
             StartScreen.DisplayAsciiArt();
@@ -271,14 +272,14 @@ public class AdminSystem
 
         Console.WriteLine("\nFilm toevoegen:");
 
-        Console.Write("Titel van de film: ");
+        Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de titel van de film in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
         string? naam = Console.ReadLine();
 
         // Genres invoeren
         List<string> genres;
         while (true)
         {
-            Console.Write("Genres (gescheiden door komma's): ");
+            Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m het genre (gescheiden door komma's) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
             Console.WriteLine("Voorbeeld: Drama, Actie");
             string? genreInput = Console.ReadLine();
             genres = genreInput.Split(',').Select(g => g.Trim()).ToList();
@@ -290,7 +291,7 @@ public class AdminSystem
             }
             else
             {
-                Console.WriteLine("Voer minimaal twee genres gescheiden door komma's in.");
+                Console.WriteLine("\u001b[38;2;250;156;55mVOER\u001b[0m minimaal twee genres gescheiden door komma's in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
             }
         }
 
@@ -298,9 +299,9 @@ public class AdminSystem
         List<string> acteurs;
         while (true)
         {
-            Console.Write("Acteurs (gescheiden door komma's): ");
+            Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de acteurs (gescheiden door komma's) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
             Console.WriteLine("Voorbeeld: Dwayne Johnson, Sylvester Stallone");
-            string? acteursInput = Console.ReadLine();
+            string acteursInput = Console.ReadLine();
             acteurs = acteursInput.Split(',').Select(a => a.Trim()).ToList();
 
             // Controleren of er minimaal twee acteurs zijn ingevoerd
@@ -310,16 +311,17 @@ public class AdminSystem
             }
             else
             {
-                Console.WriteLine("Voer minimaal twee acteurs gescheiden door komma's in.");
+                Console.WriteLine("\u001b[38;2;250;156;55mVOER\u001b[0m minimaal twee acteurs gescheiden door komma's in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
             }
         }
-        Console.Write("Omschrijving: ");
+        Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de omschrijving van de film in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
         string? omschrijving = Console.ReadLine();
 
         int duur;
         while (true)
         {
-            Console.Write("Duur (in minuten): ");
+            Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de duur (in minuten en getallen) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
+            Console.WriteLine("Voorbeeld: 120");
             string inputDuur = Console.ReadLine();
             try
             {
@@ -328,7 +330,7 @@ public class AdminSystem
             }
             catch (FormatException)
             {
-                Console.WriteLine("Ongeldige invoer. Voer een getal in voor de duur.");
+                Console.WriteLine("Ongeldige invoer. \u001b[38;2;250;156;55mVOER\u001b[0m een getal in voor de duur (in minuten en getallen) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
             }
         }
 
@@ -505,7 +507,7 @@ public class AdminSystem
         switch (fieldToEditIndex)
         {
             case 1:
-                Console.Write("Voer de nieuwe titel van de film in: ");
+                Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de nieuwe titel van de film in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                 selectedFilm.Titel = Console.ReadLine();
                 break;
             case 2:
@@ -513,7 +515,7 @@ public class AdminSystem
                 List<string> genres;
                 while (true)
                 {
-                    Console.Write("Voer het nieuwe genre van de film in (gescheiden door komma's): ");
+                    Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m het nieuwe genre van de film in (gescheiden door komma's) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                     Console.WriteLine("Voorbeeld: Drama, Actie");
                     string genreInput = Console.ReadLine();
                     genres = genreInput.Split(',').Select(g => g.Trim()).ToList();
@@ -525,7 +527,7 @@ public class AdminSystem
                     }
                     else
                     {
-                        Console.WriteLine("Voer minimaal twee genres gescheiden door komma's in.");
+                        Console.WriteLine("\u001b[38;2;250;156;55mVOER\u001b[0m minimaal twee genres gescheiden door komma's in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m:");
                     }
                 }
                 selectedFilm.Genres = genres;
@@ -535,7 +537,7 @@ public class AdminSystem
                 List<string> acteurs;
                 while (true)
                 {
-                    Console.Write("Voer de nieuwe acteurs van de film in (gescheiden door komma's): ");
+                    Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de nieuwe acteurs van de film in (gescheiden door komma's) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                     Console.WriteLine("Voorbeeld: Dwayne Johnson, Sylvester Stallone");
                     string acteurInput = Console.ReadLine();
                     acteurs = acteurInput.Split(',').Select(a => a.Trim()).ToList();
@@ -547,20 +549,21 @@ public class AdminSystem
                     }
                     else
                     {
-                        Console.WriteLine("Voer minimaal twee acteurs gescheiden door komma's in.");
+                        Console.WriteLine("\u001b[38;2;250;156;55mVOER\u001b[0m minimaal twee acteurs gescheiden door komma's in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                     }
                 }
                 selectedFilm.Acteurs = acteurs;
                 break;
             case 4:
-                Console.Write("Voer de nieuwe omschrijving van de film in: ");
+                Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de nieuwe omschrijving van de film in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                 selectedFilm.Omschrijving = Console.ReadLine();
                 break;
             case 5:
                 int duur;
                 while (true)
                 {
-                    Console.Write("Voer de nieuwe duur van de film in (in minuten): ");
+                    Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de nieuwe duur van de film in (in minuten en getallen) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
+                    Console.WriteLine("Voorbeeld: 120");
                     string inputDuur = Console.ReadLine();
                     if (int.TryParse(inputDuur, out duur))
                     {
@@ -569,7 +572,7 @@ public class AdminSystem
                     }
                     else
                     {
-                        Console.WriteLine("Ongeldige invoer. Voer een geheel getal in voor de duur.");
+                        Console.WriteLine("Ongeldige invoer. \u001b[38;2;250;156;55mVOER\u001b[0m een geheel getal in voor de duur (in minuten en getallen) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                     }
                 }
                 break;
@@ -663,7 +666,7 @@ public class AdminSystem
             Console.Clear();
             StartScreen.DisplayAsciiArt();
             Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
-            Console.WriteLine("Kies de index van de film die u wilt verwijderen:");
+            Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m op de index van de film die u wilt verwijderen:");
             for (int i = 0; i < films.Count; i++)
             {
                 if (i == selectedIndex)
@@ -729,6 +732,21 @@ public class AdminSystem
                 return $"6. Duur: {selectedFilm.Duur} minuten";
             default:
                 return "";
+        }
+    }
+
+    public static bool Login(string email, string password)
+    {
+        string adminEmail = "admin12@gmail.com";
+        string adminPassword = "admin12";
+
+        if (email == adminEmail && password == adminPassword)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

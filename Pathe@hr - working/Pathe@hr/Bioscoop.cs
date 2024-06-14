@@ -88,7 +88,6 @@ public class Bioscoop
                         return true; // laat de genres en filter op genre zien
                     break;
                 case ConsoleKey.Enter:
-                    Console.WriteLine($"Gekozen film is {Movies[currentMovieId].Titel}");
                     Extras.gekozenFilm = Movies[currentMovieId].Titel; // gekozen film in extra zetten
                     SaveSelectedFilm(Extras.gekozenFilm);
                     return true;
@@ -164,7 +163,6 @@ public class Bioscoop
                         currentMovieId++; // ga naar de volgende gefilterde film
                     break;
                 case ConsoleKey.Enter:
-                    Console.WriteLine($"Gekozen film is {filteredMovies[currentMovieId].Titel}");
                     Extras.gekozenFilm = filteredMovies[currentMovieId].Titel; // gekozen film in extra zetten
 
                     isFilteringByActor = false;
@@ -242,7 +240,6 @@ public class Bioscoop
                         currentMovieId++; // ga naar de volgende gefilterde film
                     break;
                 case ConsoleKey.Enter:
-                    Console.WriteLine($"Gekozen film is {filteredMovies[currentMovieId].Titel}");
                     Extras.gekozenFilm = filteredMovies[currentMovieId].Titel; // gekozen film in extra zetten
 
                     isFilteringByGenre = false;
@@ -308,51 +305,106 @@ public class Bioscoop
         }
     }
 
-    public void PrintActors(List<string> actors, int currentActorId) // methode om acteurs te printen
+    public void PrintActors(List<string> actors, int currentActorId)
     {
-        Console.Clear(); // scherm clearen
+        const int windowSize = 9;
+        int halfWindowSize = windowSize / 2;
+        var filteredActors = actors
+        .Where(actor => !string.IsNullOrEmpty(actor) && char.IsLetter(actor[0]))
+        .OrderBy(actor => actor) // Sort alphabetically
+        .ToList();
 
+        Console.Clear(); // Clear the screen
+        StartScreen.DisplayAsciiArt();
         Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
         Console.WriteLine("Druk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan");
         Console.WriteLine("Selecteer een acteur:\n");
 
-        for (var i = 0; i < actors.Count; i++)
+        int startIndex;
+        int endIndex;
+
+        if (currentActorId < halfWindowSize)
+        {
+            // Near the beginning
+            startIndex = 0;
+            endIndex = Math.Min(windowSize, filteredActors.Count);
+        }
+        else if (currentActorId > filteredActors.Count - halfWindowSize - 1)
+        {
+            // Near the end
+            startIndex = Math.Max(0, filteredActors.Count - windowSize);
+            endIndex = filteredActors.Count;
+        }
+        else
+        {
+            // Centered
+            startIndex = currentActorId - halfWindowSize;
+            endIndex = Math.Min(startIndex + windowSize, filteredActors.Count);
+        }
+
+        for (int i = startIndex; i < endIndex; i++)
         {
             if (i == currentActorId)
             {
-                Console.BackgroundColor = ConsoleColor.Gray; // markeer de huidige acteur
+                Console.BackgroundColor = ConsoleColor.Gray; // Highlight the current actor
                 Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine($"{actors[i]}"); // print de huidige acteur
+                Console.WriteLine($"{filteredActors[i]}"); // Print the current actor
             }
             else
             {
-                Console.WriteLine($"{actors[i]}"); // print de andere acteurs
+                Console.WriteLine($"{filteredActors[i]}"); // Print the other actors
             }
-            Console.ResetColor(); // kleuren reseten
+            Console.ResetColor(); // Reset colors
         }
     }
 
-    public void PrintGenres(List<string> genres, int currentGenreId) // methode om genres te printen
-    {
-        Console.Clear(); // scherm clearen
 
+    public void PrintGenres(List<string> genres, int currentGenreId)
+    {
+        const int windowSize = 9;
+        int halfWindowSize = windowSize / 2;
+
+        Console.Clear(); // Clear the screen
+        StartScreen.DisplayAsciiArt();
         Console.WriteLine("\nGebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
         Console.WriteLine("Druk \u001b[38;2;250;156;55mESCAPE\u001b[0m om terug te gaan");
         Console.WriteLine("Selecteer een genre:\n");
 
-        for (var i = 0; i < genres.Count; i++)
+        int startIndex;
+        int endIndex;
+
+        if (currentGenreId < halfWindowSize)
+        {
+            // Near the beginning
+            startIndex = 0;
+            endIndex = Math.Min(windowSize, genres.Count);
+        }
+        else if (currentGenreId > genres.Count - halfWindowSize - 1)
+        {
+            // Near the end
+            startIndex = Math.Max(0, genres.Count - windowSize);
+            endIndex = genres.Count;
+        }
+        else
+        {
+            // Centered
+            startIndex = currentGenreId - halfWindowSize;
+            endIndex = Math.Min(startIndex + windowSize, genres.Count);
+        }
+
+        for (int i = startIndex; i < endIndex; i++)
         {
             if (i == currentGenreId)
             {
-                Console.BackgroundColor = ConsoleColor.Gray; // markeer het huidige genre
+                Console.BackgroundColor = ConsoleColor.Gray; // Highlight the current genre
                 Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine($"{genres[i]}"); // print het huidige genre
+                Console.WriteLine($"{genres[i]}"); // Print the current genre
             }
             else
             {
-                Console.WriteLine($"{genres[i]}"); // print de andere genres
+                Console.WriteLine($"{genres[i]}"); // Print the other genres
             }
-            Console.ResetColor(); // kleuren reseten
+            Console.ResetColor(); // Reset colors
         }
     }
 

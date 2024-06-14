@@ -83,6 +83,8 @@ namespace Pathe_hr.obj
                 // Verstuur het e-mailbericht
                 SendReceiptByEmail(emailAddress, filmnaam, starttijd, eindtijd, locatie, stoelen, drankjes, completePrijs, numTickets, ticketPrijs, selectedPaymentMethod);
             }
+            Console.WriteLine("druk op een toets om terug naar het hoofdmenu te gaan...");
+            Console.ReadKey();
         }
 
         public static void SendReceiptByEmail(string emailAddress, string filmnaam, DateTime starttijd, DateTime eindtijd, string locatie, string stoelen, string drankjes, double totalPrice, int numTickets, double ticketPrijs, string paymentMethod)
@@ -172,8 +174,6 @@ namespace Pathe_hr.obj
                 StartScreen.DisplayAsciiArt();
                 Console.WriteLine($"Het bonnetje wordt naar uw e-mailadres \u001b[38;2;105;212;99m{emailAddress}\u001b[0m gestuurd.");
                 Console.WriteLine("Wij wensen u een fijne voorstelling bij ArtBios");
-                Console.WriteLine("U wordt nu teruggebracht naar het hoofdmenu");
-                Thread.Sleep(7000);
             }
 
             // Geef true terug als 'Ja' is geselecteerd, anders false

@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "Film": "Joker",
+    "StoelRow": 4,
+    "StoelCol": 2,
+    "EventID": 51,
+    "StoelNaam": "05-03",
+    "Prijs": 18.0
+  },
+  {
+    "Film": "Joker",
+    "StoelRow": 4,
+    "StoelCol": 3,
+    "EventID": 51,
+    "StoelNaam": "05-04",
+    "Prijs": 18.0
+  },
+  {
+    "Film": "Joker",
+    "StoelRow": 4,
+    "StoelCol": 4,
+    "EventID": 51,
+    "StoelNaam": "05-05",
+    "Prijs": 18.0
+  },
+  {
+    "Film": "Joker",
+    "StoelRow": 4,
+    "StoelCol": 5,
+    "EventID": 51,
+    "StoelNaam": "05-06",
+    "Prijs": 18.0
+  },
+  {
+    "Film": "Joker",
+    "StoelRow": 4,
+    "StoelCol": 6,
+    "EventID": 51,
+    "StoelNaam": "05-07",
+    "Prijs": 18.0
+  }
+]
