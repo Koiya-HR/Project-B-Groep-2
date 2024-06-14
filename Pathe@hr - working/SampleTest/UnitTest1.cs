@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using SampleTest; // Ensure this namespace matches the one in which Stoel is defined
+using SampleTest;
 
 namespace SampleTest
 {
@@ -13,7 +13,6 @@ namespace SampleTest
         [TestInitialize]
         public void Setup()
         {
-            // Initialize a list of chairs with the desired number of rows and columns
             int rows = 3;
             int columns = 3;
             chairs = new List<Stoel>();
@@ -26,10 +25,8 @@ namespace SampleTest
                 }
             }
 
-            // Create the stoelArray using the CreateStoelArray method
             stoelArray = CreateStoelArray(rows, columns);
-            stoelArray[2, 2].selected = true;// zet stoel op selected
-            // Verify that all elements are properly initialized
+            stoelArray[2, 2].selected = true;
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
@@ -48,7 +45,6 @@ namespace SampleTest
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    // Assign each chair from the list to the 2D array
                     array[i, j] = chairs[index++];
                 }
             }
