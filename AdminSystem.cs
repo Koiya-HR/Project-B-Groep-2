@@ -8,144 +8,147 @@ using System.Globalization;
 public class AdminSystem
 {
     static List<Film> films = new List<Film>();
-    static string path = "movies.json";
+    static string path = "films.json";
 
     public static void Inlogscherm()
-{
-    string adminEmail = "admin12@gmail.com";
-    string adminPassword = "admin12";
-
-    bool isLoggedIn = false;
-    Console.Clear();
-    int selectedIndex = 0;
-    string[] options = { "Doorgaan met inloggen", "Terug naar het hoofdmenu" };
-
-    while (true)
     {
+        string adminEmail = "admin12@gmail.com";
+        string adminPassword = "admin12";
+
+        bool isLoggedIn = false;
         Console.Clear();
-        Console.WriteLine("Wat wilt u doen?");
-        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
-        for (int i = 0; i < options.Length; i++)
-        {
-            if (i == selectedIndex)
-            {
-                Console.BackgroundColor = ConsoleColor.Gray;
-                Console.ForegroundColor = ConsoleColor.Black;
-            }
-            Console.WriteLine(options[i]);
-            Console.ResetColor();
-        }
+        int selectedIndex = 0;
+        string[] options = { "Doorgaan met inloggen", "Terug naar het hoofdmenu" };
 
-        ConsoleKeyInfo key = Console.ReadKey(true);
-        if (key.Key == ConsoleKey.UpArrow)
+        while (true)
         {
-            selectedIndex = Math.Max(0, selectedIndex - 1);
-        }
-        else if (key.Key == ConsoleKey.DownArrow)
-        {
-            selectedIndex = Math.Min(options.Length - 1, selectedIndex + 1);
-        }
-        else if (key.Key == ConsoleKey.Enter)
-        {
-            if (selectedIndex == 0)
-            {
-                break;
-            }
-            else if (selectedIndex == 1)
-            {
-                return;
-            }
-        }
-    } 
-
-    Console.Clear();
-
-    while (true)
-    {
-        Console.WriteLine("Welkom bij het Adminsysteem!");
-        Console.WriteLine("Voer uw e-mailadres in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om uw wachtwoord in te voeren: ");
-        string? inputEmail = Console.ReadLine();
-
-        // Controleer of email niet leeg is 
-        if (string.IsNullOrWhiteSpace(inputEmail))
-        {
-            Console.Write("E-mailadres mag niet leeg zijn. Druk op een toets om opnieuw te proberen.");
-            Console.ReadKey();
             Console.Clear();
-            continue; // Lus wordt opnieuw geroepen
-        }
-
-        Console.WriteLine("Voer uw wachtwoord in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om door te gaan: ");
-        string? inputPassword = Console.ReadLine();
-
-        // Controleer of wachtwoord niet leeg is
-        if (string.IsNullOrWhiteSpace(inputPassword))
-        {
-            Console.Write("Wachtwoord mag niet leeg zijn. Druk op een toets om opnieuw te proberen.");
-            Console.ReadKey();
-            Console.Clear();
-            continue; // Lus wordt opnieuw geroepen
-        }
-
-        if (inputEmail == adminEmail && inputPassword == adminPassword)
-        {
-            Console.WriteLine("\nU bent nu ingelogd!");
-            Thread.Sleep(1000);
-            isLoggedIn = true;
-            break; // Uit de lus als inloggegevens correct zijn
-        }
-        else
-        {
-            Console.WriteLine("\nOngeldige inloggegevens. Wat wilt u doen?");
-            int retrySelectedIndex = 0;
-            string[] retryOptions = { "Opnieuw inloggen", "Terug naar het hoofdmenu" };
-
-            while (true)
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
+            Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+            for (int i = 0; i < options.Length; i++)
             {
+                if (i == selectedIndex)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+                Console.WriteLine(options[i]);
+                Console.ResetColor();
+            }
+
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.UpArrow)
+            {
+                selectedIndex = Math.Max(0, selectedIndex - 1);
+            }
+            else if (key.Key == ConsoleKey.DownArrow)
+            {
+                selectedIndex = Math.Min(options.Length - 1, selectedIndex + 1);
+            }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                if (selectedIndex == 0)
+                {
+                    break;
+                }
+                else if (selectedIndex == 1)
+                {
+                    return;
+                }
+            }
+        }
+
+        Console.Clear();
+
+        while (true)
+        {
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
+            Console.WriteLine("Welkom bij het Adminsysteem!");
+            Console.WriteLine("Voer uw e-mailadres in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om uw wachtwoord in te voeren: ");
+            string? inputEmail = Console.ReadLine();
+
+            // Controleer of email niet leeg is 
+            if (string.IsNullOrWhiteSpace(inputEmail))
+            {
+                Console.Write("E-mailadres mag niet leeg zijn. Druk op een toets om opnieuw te proberen.");
+                Console.ReadKey();
                 Console.Clear();
-                Console.WriteLine("Ongeldige inloggegevens. Wat wilt u doen?");
-                Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
-                for (int i = 0; i < retryOptions.Length; i++)
-                {
-                    if (i == retrySelectedIndex)
-                    {
-                        Console.BackgroundColor = ConsoleColor.Gray;
-                        Console.ForegroundColor = ConsoleColor.Black;
-                    }
-                    Console.WriteLine(retryOptions[i]);
-                    Console.ResetColor();
-                }
+                continue; // Lus wordt opnieuw geroepen
+            }
 
-                ConsoleKeyInfo key2 = Console.ReadKey(true);
-                if (key2.Key == ConsoleKey.UpArrow)
+            Console.WriteLine("Voer uw wachtwoord in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om door te gaan: ");
+            string? inputPassword = Console.ReadLine();
+
+            // Controleer of wachtwoord niet leeg is
+            if (string.IsNullOrWhiteSpace(inputPassword))
+            {
+                Console.Write("Wachtwoord mag niet leeg zijn. Druk op een toets om opnieuw te proberen.");
+                Console.ReadKey();
+                Console.Clear();
+                continue; // Lus wordt opnieuw geroepen
+            }
+
+            if (inputEmail == adminEmail && inputPassword == adminPassword)
+            {
+                Console.WriteLine("\nU bent nu ingelogd!");
+                Thread.Sleep(1000);
+                isLoggedIn = true;
+                break; // Uit de lus als inloggegevens correct zijn
+            }
+            else
+            {
+                Console.WriteLine("\nOngeldige inloggegevens. Wat wilt u doen?");
+                int retrySelectedIndex = 0;
+                string[] retryOptions = { "Opnieuw inloggen", "Terug naar het hoofdmenu" };
+
+                while (true)
                 {
-                    retrySelectedIndex = Math.Max(0, retrySelectedIndex - 1);
-                }
-                else if (key2.Key == ConsoleKey.DownArrow)
-                {
-                    retrySelectedIndex = Math.Min(retryOptions.Length - 1, retrySelectedIndex + 1);
-                }
-                else if (key2.Key == ConsoleKey.Enter)
-                {
-                    if (retrySelectedIndex == 0)
+                    Console.Clear();
+                    Console.WriteLine("Ongeldige inloggegevens. Wat wilt u doen?");
+                    Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+                    for (int i = 0; i < retryOptions.Length; i++)
                     {
-                        Console.Clear();
-                        break; // Opnieuw inloggen
+                        if (i == retrySelectedIndex)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            Console.ForegroundColor = ConsoleColor.Black;
+                        }
+                        Console.WriteLine(retryOptions[i]);
+                        Console.ResetColor();
                     }
-                    else
+
+                    ConsoleKeyInfo key2 = Console.ReadKey(true);
+                    if (key2.Key == ConsoleKey.UpArrow)
                     {
-                        return; // Terug naar het hoofdmenu
+                        retrySelectedIndex = Math.Max(0, retrySelectedIndex - 1);
+                    }
+                    else if (key2.Key == ConsoleKey.DownArrow)
+                    {
+                        retrySelectedIndex = Math.Min(retryOptions.Length - 1, retrySelectedIndex + 1);
+                    }
+                    else if (key2.Key == ConsoleKey.Enter)
+                    {
+                        if (retrySelectedIndex == 0)
+                        {
+                            Console.Clear();
+                            break; // Opnieuw inloggen
+                        }
+                        else
+                        {
+                            return; // Terug naar het hoofdmenu
+                        }
                     }
                 }
             }
         }
-    }
 
-    if (isLoggedIn)
-    {
-        ToonMenu();
+        if (isLoggedIn)
+        {
+            ToonMenu();
+        }
     }
-}
 
 
     static void ToonMenu()
@@ -159,6 +162,8 @@ public class AdminSystem
             films = LoadFilms();
 
             Console.Clear();
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
             Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
             for (int i = 0; i < menuOptions.Length; i++)
             {
@@ -214,157 +219,151 @@ public class AdminSystem
     }
 
     static void VoegFilmToe()
-{
-    Console.Clear();
-    int selectedIndex = 0;
-    string[] options = { "Doorgaan met toevoegen van een film", "Terug naar het hoofdmenu" };
-
-    while (true)
     {
         Console.Clear();
-        Console.WriteLine("Wat wilt u doen?");
-        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
-        for (int i = 0; i < options.Length; i++)
+        StartScreen.DisplayAsciiArt();
+        Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
+        int selectedIndex = 0;
+        string[] options = { "Doorgaan met toevoegen van een film", "Terug naar het hoofdmenu" };
+
+        while (true)
+
         {
-            if (i == selectedIndex)
+            Console.Clear();
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
+            Console.WriteLine("Wat wilt u doen?");
+            Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
+            for (int i = 0; i < options.Length; i++)
             {
-                Console.BackgroundColor = ConsoleColor.Gray;
-                Console.ForegroundColor = ConsoleColor.Black;
+                if (i == selectedIndex)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+                Console.WriteLine(options[i]);
+                Console.ResetColor();
             }
-            Console.WriteLine(options[i]);
-            Console.ResetColor();
+
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.UpArrow)
+            {
+                selectedIndex = Math.Max(0, selectedIndex - 1);
+            }
+            else if (key.Key == ConsoleKey.DownArrow)
+            {
+                selectedIndex = Math.Min(options.Length - 1, selectedIndex + 1);
+            }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                if (selectedIndex == 0)
+                {
+                    break;
+                }
+                else if (selectedIndex == 1)
+                {
+                    return;
+                }
+            }
+            Console.Clear();
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
         }
 
-        ConsoleKeyInfo key = Console.ReadKey(true);
-        if (key.Key == ConsoleKey.UpArrow)
+        Console.WriteLine("\nFilm toevoegen:");
+
+        Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de titel van de film in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
+        string? naam = Console.ReadLine();
+
+        // Genres invoeren
+        List<string> genres;
+        while (true)
         {
-            selectedIndex = Math.Max(0, selectedIndex - 1);
-        }
-        else if (key.Key == ConsoleKey.DownArrow)
-        {
-            selectedIndex = Math.Min(options.Length - 1, selectedIndex + 1);
-        }
-        else if (key.Key == ConsoleKey.Enter)
-        {
-            if (selectedIndex == 0)
+            Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m het genre (gescheiden door komma's) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
+            Console.WriteLine("Voorbeeld: Drama, Actie");
+            string? genreInput = Console.ReadLine();
+            genres = genreInput.Split(',').Select(g => g.Trim()).ToList();
+
+            // Controleren of er minimaal twee genres zijn ingevoerd
+            if (genres.Count >= 2)
             {
                 break;
             }
-            else if (selectedIndex == 1)
+            else
             {
-                return;
+                Console.WriteLine("\u001b[38;2;250;156;55mVOER\u001b[0m minimaal twee genres gescheiden door komma's in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
             }
         }
-        Console.Clear();
+
+        // Acteurs invoeren
+        List<string> acteurs;
+        while (true)
+        {
+            Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de acteurs (gescheiden door komma's) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
+            Console.WriteLine("Voorbeeld: Dwayne Johnson, Sylvester Stallone");
+            string acteursInput = Console.ReadLine();
+            acteurs = acteursInput.Split(',').Select(a => a.Trim()).ToList();
+
+            // Controleren of er minimaal twee acteurs zijn ingevoerd
+            if (acteurs.Count >= 2)
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("\u001b[38;2;250;156;55mVOER\u001b[0m minimaal twee acteurs gescheiden door komma's in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
+            }
+        }
+        Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de omschrijving van de film in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
+        string? omschrijving = Console.ReadLine();
+
+        int duur;
+        while (true)
+        {
+            Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de duur (in minuten en getallen) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
+            Console.WriteLine("Voorbeeld: 120");
+            string inputDuur = Console.ReadLine();
+            try
+            {
+                duur = Convert.ToInt32(inputDuur);
+                break;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Ongeldige invoer. \u001b[38;2;250;156;55mVOER\u001b[0m een getal in voor de duur (in minuten en getallen) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
+            }
+        }
+
+        Film nieuweFilm = new Film
+        {
+            Titel = naam,
+            Genres = genres,
+            Acteurs = acteurs,
+            Omschrijving = omschrijving,
+            Duur = duur
+        };
+
+        films.Add(nieuweFilm);
+        SaveFilms(films);
+        Console.WriteLine("\nFilm succesvol toegevoegd!");
+        Thread.Sleep(1000);
     }
-
-    Console.WriteLine("\nFilm toevoegen:");
-
-    Console.Write("Titel van de film: ");
-    string? naam = Console.ReadLine();
-
-    // Genres invoeren
-    List<string> genres;
-    while (true)
-    {
-        Console.Write("Genres (gescheiden door komma's): ");
-        Console.WriteLine("Voorbeeld: Drama, Actie");
-        string? genreInput = Console.ReadLine();
-        genres = genreInput.Split(',').Select(g => g.Trim()).ToList();
-
-        // Controleren of er minimaal twee genres zijn ingevoerd
-        if (genres.Count >= 2)
-        {
-            break;
-        }
-        else
-        {
-            Console.WriteLine("Voer minimaal twee genres gescheiden door komma's in.");
-        }
-    }
-
-    // Acteurs invoeren
-    List<string> acteurs;
-    while (true)
-    {
-        Console.Write("Acteurs (gescheiden door komma's): ");
-        Console.WriteLine("Voorbeeld: Dwayne Johnson, Sylvester Stallone");
-        string? acteursInput = Console.ReadLine();
-        acteurs = acteursInput.Split(',').Select(a => a.Trim()).ToList();
-
-        // Controleren of er minimaal twee acteurs zijn ingevoerd
-        if (acteurs.Count >= 2)
-        {
-            break;
-        }
-        else
-        {
-            Console.WriteLine("Voer minimaal twee acteurs gescheiden door komma's in.");
-        }
-    }
-    Console.Write("Omschrijving: ");
-    string? omschrijving = Console.ReadLine();
-
-    // Datum en tijd invoeren
-    string releaseDatum;
-    while (true)
-    {
-        Console.Write("Release datum en tijd (yyyy-MM-ddTHH:mm:ss): ");
-        Console.WriteLine("Voorbeeld: 2024-05-14T16:30:00");
-        string inputDatumTijd = Console.ReadLine();
-        if (DateTime.TryParseExact(inputDatumTijd, "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDatumTijd))
-        {
-            releaseDatum = parsedDatumTijd.ToString("yyyy-MM-ddTHH:mm:ss");
-            break;
-        }
-        else
-        {
-            Console.WriteLine("Ongeldige datum of tijd. Voer de datum en tijd in het formaat yyyy-MM-ddTHH:mm:ss in.");
-        }
-    }
-
-    int duur;
-    while (true)
-    {
-        Console.Write("Duur (in minuten): ");
-        string inputDuur = Console.ReadLine();
-        try
-        {
-            duur = Convert.ToInt32(inputDuur);
-            break;
-        }
-        catch (FormatException)
-        {
-            Console.WriteLine("Ongeldige invoer. Voer een getal in voor de duur.");
-        }
-    }
-
-    Film nieuweFilm = new Film
-    {
-        Titel = naam,
-        Genres = genres,
-        Acteurs = acteurs,
-        Omschrijving = omschrijving,
-        ReleaseDatum = releaseDatum,
-        Duur = duur
-    };
-
-    films.Add(nieuweFilm);
-    SaveFilms(films);
-    Console.WriteLine("\nFilm succesvol toegevoegd!");
-}
 
 
 
     static void BewerkFilm()
     {
         Console.Clear();
+        StartScreen.DisplayAsciiArt();
+        Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
         int Index = 0; // Correcte naam: selectedIndex
         string[] options = { "Doorgaan met bewerken van een film", "Terug naar het hoofdmenu" };
 
         while (true)
         {
             Console.Clear();
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
             Console.WriteLine("Wat wilt u doen?");
             Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
             for (int i = 0; i < options.Length; i++)
@@ -399,6 +398,8 @@ public class AdminSystem
                 }
             }
             Console.Clear();
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
         }
 
         Console.WriteLine("\nFilm bewerken:");
@@ -429,6 +430,8 @@ public class AdminSystem
         while (true)
         {
             Console.Clear();
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
             Console.WriteLine("Kies de index van de film die u wilt bewerken:");
             for (int i = 0; i < films.Count; i++)
             {
@@ -438,7 +441,7 @@ public class AdminSystem
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.Write("=> ");
                 }
-                else    
+                else
                 {
                     Console.Write("   ");
                 }
@@ -467,6 +470,8 @@ public class AdminSystem
         while (true)
         {
             Console.Clear();
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
             Console.WriteLine("\nHuidige gegevens:");
             for (int i = 1; i <= 6; i++)
             {
@@ -502,7 +507,7 @@ public class AdminSystem
         switch (fieldToEditIndex)
         {
             case 1:
-                Console.Write("Voer de nieuwe titel van de film in: ");
+                Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de nieuwe titel van de film in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                 selectedFilm.Titel = Console.ReadLine();
                 break;
             case 2:
@@ -510,7 +515,7 @@ public class AdminSystem
                 List<string> genres;
                 while (true)
                 {
-                    Console.Write("Voer het nieuwe genre van de film in (gescheiden door komma's): ");
+                    Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m het nieuwe genre van de film in (gescheiden door komma's) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                     Console.WriteLine("Voorbeeld: Drama, Actie");
                     string genreInput = Console.ReadLine();
                     genres = genreInput.Split(',').Select(g => g.Trim()).ToList();
@@ -522,7 +527,7 @@ public class AdminSystem
                     }
                     else
                     {
-                        Console.WriteLine("Voer minimaal twee genres gescheiden door komma's in.");
+                        Console.WriteLine("\u001b[38;2;250;156;55mVOER\u001b[0m minimaal twee genres gescheiden door komma's in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m:");
                     }
                 }
                 selectedFilm.Genres = genres;
@@ -532,7 +537,7 @@ public class AdminSystem
                 List<string> acteurs;
                 while (true)
                 {
-                    Console.Write("Voer de nieuwe acteurs van de film in (gescheiden door komma's): ");
+                    Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de nieuwe acteurs van de film in (gescheiden door komma's) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                     Console.WriteLine("Voorbeeld: Dwayne Johnson, Sylvester Stallone");
                     string acteurInput = Console.ReadLine();
                     acteurs = acteurInput.Split(',').Select(a => a.Trim()).ToList();
@@ -544,41 +549,21 @@ public class AdminSystem
                     }
                     else
                     {
-                        Console.WriteLine("Voer minimaal twee acteurs gescheiden door komma's in.");
+                        Console.WriteLine("\u001b[38;2;250;156;55mVOER\u001b[0m minimaal twee acteurs gescheiden door komma's in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                     }
                 }
                 selectedFilm.Acteurs = acteurs;
                 break;
             case 4:
-                Console.Write("Voer de nieuwe omschrijving van de film in: ");
+                Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de nieuwe omschrijving van de film in en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                 selectedFilm.Omschrijving = Console.ReadLine();
                 break;
             case 5:
-                // Datum en tijd invoeren
-                string releaseDatum;
-                while (true)
-                {
-                    Console.Write("Voer de nieuwe release datum en tijd van de film in (yyyy-MM-ddTHH:mm:ss): ");
-                    Console.WriteLine("Voorbeeld: 2024-05-14T16:30:00");
-                    string inputDatumTijd = Console.ReadLine();
-                    if (DateTime.TryParseExact(inputDatumTijd, "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDatumTijd))
-                    {
-                        releaseDatum = parsedDatumTijd.ToString("yyyy-MM-ddTHH:mm:ss");
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ongeldige datum of tijd. Voer de datum en tijd in het formaat yyyy-MM-ddTHH:mm:ss in.");
-                        Console.WriteLine("Voorbeeld: 2024-05-14T16:30:00");
-                    }
-                }
-                selectedFilm.ReleaseDatum = releaseDatum;
-                break;
-            case 6:
                 int duur;
                 while (true)
                 {
-                    Console.Write("Voer de nieuwe duur van de film in (in minuten): ");
+                    Console.Write("\u001b[38;2;250;156;55mVOER\u001b[0m de nieuwe duur van de film in (in minuten en getallen) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
+                    Console.WriteLine("Voorbeeld: 120");
                     string inputDuur = Console.ReadLine();
                     if (int.TryParse(inputDuur, out duur))
                     {
@@ -587,7 +572,7 @@ public class AdminSystem
                     }
                     else
                     {
-                        Console.WriteLine("Ongeldige invoer. Voer een geheel getal in voor de duur.");
+                        Console.WriteLine("Ongeldige invoer. \u001b[38;2;250;156;55mVOER\u001b[0m een geheel getal in voor de duur (in minuten en getallen) en druk op \u001b[38;2;250;156;55mEnter\u001b[0m: ");
                     }
                 }
                 break;
@@ -603,12 +588,16 @@ public class AdminSystem
     static void VerwijderFilm()
     {
         Console.Clear();
+        StartScreen.DisplayAsciiArt();
+        Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
         int Index = 0; // Correcte naam: selectedIndex
         string[] options = { "Doorgaan met verwijderen van een film", "Terug naar het hoofdmenu" };
 
         while (true)
         {
             Console.Clear();
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
             Console.WriteLine("Wat wilt u doen?");
             Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m om te selecteren:");
             for (int i = 0; i < options.Length; i++)
@@ -643,6 +632,8 @@ public class AdminSystem
                 }
             }
             Console.Clear();
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
         }
 
         Console.WriteLine("\nFilm verwijderen:");
@@ -669,15 +660,18 @@ public class AdminSystem
         }
 
         int selectedIndex = 0;
-        
+
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("Kies de index van de film die u wilt verwijderen:");
+            StartScreen.DisplayAsciiArt();
+            Console.WriteLine("\u001b[38;2;250;156;55mAdministator systeem\u001b[0m");
+            Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mpijltjestoetsen\u001b[0m om te navigeren en druk op \u001b[38;2;250;156;55mEnter\u001b[0m op de index van de film die u wilt verwijderen:");
             for (int i = 0; i < films.Count; i++)
             {
                 if (i == selectedIndex)
-                {   Console.BackgroundColor = ConsoleColor.Gray; 
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.Write("=> ");
                 }
@@ -735,13 +729,26 @@ public class AdminSystem
             case 4:
                 return $"4. Omschrijving: {selectedFilm.Omschrijving}";
             case 5:
-                return $"5. Release datum: {selectedFilm.ReleaseDatum}";
-            case 6:
                 return $"6. Duur: {selectedFilm.Duur} minuten";
             default:
                 return "";
         }
-    }   
+    }
+
+    public static bool Login(string email, string password)
+    {
+        string adminEmail = "admin12@gmail.com";
+        string adminPassword = "admin12";
+
+        if (email == adminEmail && password == adminPassword)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 
     static void SaveFilms(List<Film> filmsToSave)
