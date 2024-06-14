@@ -777,4 +777,38 @@ public class AdminSystem
 
         return loadedFilms;
     }
+
+    public static Film VoegFilmToe(string naam, string genresInput, string acteursInput, string omschrijving, string inputDuur)
+    {
+        List<string> genres = genresInput.Split(',').Select(g => g.Trim()).ToList();
+        if (genres.Count < 2)
+        {
+            throw new ArgumentException("Minimaal twee genres zijn vereist.");
+        }
+
+        List<string> acteurs = acteursInput.Split(',').Select(a => a.Trim()).ToList();
+        if (acteurs.Count < 2)
+        {
+            throw new ArgumentException("Minimaal twee acteurs zijn vereist.");
+        }
+
+        if (!int.TryParse(inputDuur, out int duur))
+        {
+            throw new ArgumentException("Duur moet een geldig getal zijn.");
+        }
+
+        Film nieuweFilm = new Film
+        {
+            Titel = naam,
+            Genres = genres,
+            Acteurs = acteurs,
+            Omschrijving = omschrijving,
+            Duur = duur
+        };
+
+        films.Add(nieuweFilm);
+        SaveFilms(films);
+
+        return nieuweFilm;
+    }
 }

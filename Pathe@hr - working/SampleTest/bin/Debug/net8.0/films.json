@@ -1,0 +1,17 @@
+[
+  {
+    "isCurrentMovie": false,
+    "Titel": "Test Film",
+    "Genres": [
+      "Drama",
+      "Actie"
+    ],
+    "Acteurs": [
+      "Dwayne Johnson",
+      "Sylvester Stallone"
+    ],
+    "Omschrijving": "Een spannende actie-drama film.",
+    "Duur": 120,
+    "Color": "\u001b[0m"
+  }
+]
