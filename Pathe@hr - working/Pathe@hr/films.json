@@ -73,5 +73,248 @@
     "Omschrijving": "Een spannende actiefilm waarin een stuntman, die bekend staat om zijn gewaagde stunts in Hollywood, onbedoeld verwikkeld raakt in een gevaarlijk complot. Terwijl hij zijn vaardigheden gebruikt om te overleven, moet hij de waarheid onthullen en zijn eigen leven redden.",
     "Duur": 122,
     "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "The Seventh Seal",
+    "Genres": [
+      "Drama",
+      "Fantasy"
+    ],
+    "Acteurs": [
+      "Max von Sydow",
+      "Bengt Ekerot"
+    ],
+    "Omschrijving": "Een middeleeuwse ridder keert terug naar Zweden na de Kruistochten en wordt geconfronteerd met de Dood. Terwijl hij worstelt met zijn geloof en de zin van het leven, daagt hij de Dood uit tot een schaakspel om tijd te winnen.",
+    "Duur": 96,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "La Dolce Vita",
+    "Genres": [
+      "Drama"
+    ],
+    "Acteurs": [
+      "Marcello Mastroianni",
+      "Anita Ekberg"
+    ],
+    "Omschrijving": "Een journalist verkent het luxe en decadente leven van de elite in Rome. Terwijl hij zich onderdompelt in de glamour en excessen, ontdekt hij de leegte en het oppervlakkige karakter van het leven dat hij leidt.",
+    "Duur": 174,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "8½",
+    "Genres": [
+      "Drama",
+      "Fantasy"
+    ],
+    "Acteurs": [
+      "Marcello Mastroianni",
+      "Anouk Aimée"
+    ],
+    "Omschrijving": "Een filmregisseur lijdt aan een creatieve blokkade en reflecteert op zijn leven, dromen en herinneringen. Terwijl hij worstelt om zijn nieuwste film af te maken, verkent hij zijn innerlijke wereld en zijn relaties.",
+    "Duur": 138,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Breathless",
+    "Genres": [
+      "Crime",
+      "Drama"
+    ],
+    "Acteurs": [
+      "Jean-Paul Belmondo",
+      "Jean Seberg"
+    ],
+    "Omschrijving": "Een kleine crimineel is op de vlucht na het vermoorden van een politieagent. Hij zoekt toevlucht bij een Amerikaanse journalist in Parijs, en hun relatie ontwikkelt zich terwijl ze proberen de politie te ontwijken.",
+    "Duur": 90,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Pulp Fiction",
+    "Genres": [
+      "Crime",
+      "Drama"
+    ],
+    "Acteurs": [
+      "John Travolta",
+      "Uma Thurman",
+      "Samuel L. Jackson"
+    ],
+    "Omschrijving": "Een reeks verweven verhalen over misdaad en verlossing in Los Angeles, met iconische personages en dialogen. De film verkent thema's van moraal en toeval in een gewelddadige onderwereld.",
+    "Duur": 154,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Lost in Translation",
+    "Genres": [
+      "Drama",
+      "Romance"
+    ],
+    "Acteurs": [
+      "Bill Murray",
+      "Scarlett Johansson"
+    ],
+    "Omschrijving": "Een verouderende acteur en een jonge vrouw ontmoeten elkaar in Tokio. Terwijl ze beide worstelen met vervreemding en eenzaamheid, ontwikkelen ze een onwaarschijnlijke en diepe band.",
+    "Duur": 102,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Mulholland Drive",
+    "Genres": [
+      "Mystery",
+      "Thriller"
+    ],
+    "Acteurs": [
+      "Naomi Watts",
+      "Laura Harring"
+    ],
+    "Omschrijving": "Een mysterieuze en surrealistische thriller die de donkere kant van Hollywood verkent. Een vrouw met geheugenverlies en een aspirant-actrice zoeken naar antwoorden, terwijl hun levens en dromen in elkaar vervloeien.",
+    "Duur": 147,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "The Tree of Life",
+    "Genres": [
+      "Drama",
+      "Fantasy"
+    ],
+    "Acteurs": [
+      "Brad Pitt",
+      "Jessica Chastain",
+      "Sean Penn"
+    ],
+    "Omschrijving": "Een meditatieve verkenning van het leven door de ogen van een gezin in Texas in de jaren 1950. De film combineert persoonlijke herinneringen met beelden van de kosmische geschiedenis van het universum.",
+    "Duur": 139,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Parasite",
+    "Genres": [
+      "Comedy",
+      "Drama",
+      "Thriller"
+    ],
+    "Acteurs": [
+      "Song Kang-ho",
+      "Lee Sun-kyun",
+      "Cho Yeo-jeong"
+    ],
+    "Omschrijving": "Een duister komisch en spannend verhaal over een arme familie die zich infiltreert in het huishouden van een rijke familie. De film onderzoekt thema's van klasseverschillen en sociale ongelijkheid.",
+    "Duur": 132,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Amélie",
+    "Genres": [
+      "Comedy",
+      "Romance"
+    ],
+    "Acteurs": [
+      "Audrey Tautou",
+      "Mathieu Kassovitz"
+    ],
+    "Omschrijving": "Een verlegen serveerster in Parijs besluit de levens van de mensen om haar heen te verbeteren door kleine, onzelfzuchtige daden. Haar eigen leven neemt een verrassende wending wanneer ze verliefd wordt.",
+    "Duur": 122,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "In the Mood for Love",
+    "Genres": [
+      "Drama",
+      "Romance"
+    ],
+    "Acteurs": [
+      "Tony Leung Chiu-Wai",
+      "Maggie Cheung"
+    ],
+    "Omschrijving": "In het Hongkong van de jaren 1960 ontdekken een man en een vrouw dat hun echtgenoten een affaire hebben. Terwijl ze hun eenzaamheid en verdriet delen, ontwikkelen ze een complexe en emotionele band.",
+    "Duur": 98,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "City of God",
+    "Genres": [
+      "Crime",
+      "Drama"
+    ],
+    "Acteurs": [
+      "Alexandre Rodrigues",
+      "Leandro Firmino"
+    ],
+    "Omschrijving": "Een rauw en aangrijpend portret van het leven in de sloppenwijken van Rio de Janeiro. De film volgt de opkomst van een jonge fotograaf en zijn vrienden, te midden van geweld en bendeoorlogen.",
+    "Duur": 130,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Moonlight",
+    "Genres": [
+      "Drama"
+    ],
+    "Acteurs": [
+      "Trevante Rhodes",
+      "Mahershala Ali",
+      "Naomie Harris"
+    ],
+    "Omschrijving": "Een intieme en poëtische verkenning van identiteit, seksualiteit en verbinding. Het verhaal volgt drie hoofdstukken uit het leven van een jonge Afro-Amerikaanse man die opgroeit in een ruige buurt in Miami.",
+    "Duur": 111,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "The Lighthouse",
+    "Genres": [
+      "Drama",
+      "Horror"
+    ],
+    "Acteurs": [
+      "Robert Pattinson",
+      "Willem Dafoe"
+    ],
+    "Omschrijving": "Een psychologische thriller die zich afspeelt in een afgelegen vuurtoren. Twee vuurtorenwachters proberen hun verstand te bewaren terwijl ze worstelen met isolatie, waanzin en hun eigen donkere geheimen.",
+    "Duur": 109,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Call Me by Your Name",
+    "Genres": [
+      "Drama",
+      "Romance"
+    ],
+    "Acteurs": [
+      "Timothée Chalamet",
+      "Armie Hammer"
+    ],
+    "Omschrijving": "Een coming-of-age romantiek die zich afspeelt in het Italië van de jaren 1980. Een jonge man ontdekt de intensiteit van de eerste liefde en de ingewikkelde emoties die daarbij horen, wanneer hij verliefd wordt op een oudere gast van zijn ouders.",
+    "Duur": 132,
+    "Color": "\u001b[0m"
+  },
+  {
+    "isCurrentMovie": false,
+    "Titel": "Portrait of a Lady on Fire",
+    "Genres": [
+      "Drama",
+      "Romance"
+    ],
+    "Acteurs": [
+      "Noémie Merlant",
+      "Adèle Haenel"
+    ],
+    "Omschrijving": "Een aangrijpend en visueel verbluffend liefdesverhaal tussen een kunstenares en haar onderwerp in het Frankrijk van de 18e eeuw. Hun verboden romance ontvouwt zich terwijl de kunstenares een geheim portret van haar schildert.",
+    "Duur": 122,
+    "Color": "\u001b[0m"
   }
 ]

@@ -88,6 +88,8 @@ public class Zaal
         }
     }
 
+
+
     public void makeEventChairs()
     {
         string filePath = "event.json";
@@ -138,7 +140,7 @@ public class Zaal
         bool chairsChosen = false;
         remainingTime = maxRemainingTime;
         Extras.isTimeLeft = true;
-        //makeEventChairs(); //fill the json with chairs (only do this if new events are made)
+        makeEventChairs(); //fill the json with chairs (only do this if new events are made)
         chooseTickets();
         resetChairs();// maak stoelen weer allemaal vrij
         fillChairs();// laad in de stoelen van gekozen event
@@ -203,6 +205,11 @@ public class Zaal
                 case ConsoleKey.Escape:
                     deselectChairs();
                     StopTimer();
+                    Console.Clear();
+                    StartScreen.DisplayAsciiArt();
+                    Console.WriteLine("\n\u001b[38;2;230;214;76mBestelling geannuleerd\u001b[0m");
+                    Console.WriteLine("druk op een toets om terug naar het hoofdmenu te gaan...");
+                    Console.ReadKey();
                     return;
 
             }
@@ -555,8 +562,7 @@ public class Zaal
         // vinden van de meest linkse en meest rechtse geselecteerde stoel. Daarnaast zijn de enige twee stoelen ter evaluatie
         {
             /*to do
-                - aangeven illegale stoelen en niet door laten gaan als niet is opgelost
-                - maak een scherm
+                - aangeven illegale stoelen en niet door laten gaan als niet is opgelost(niet gemaakt omdat PO niet hoefde(ik had het graag gedaan))
             */
             // als currentChair een randstoel is
             if (colToCheck == stoelArray.GetLength(1) || colToCheck == 0)
@@ -719,7 +725,7 @@ public class Zaal
 
     private void printInfo()
     {
-        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren, druk \u001b[38;2;250;156;55mSPATIE\u001b[0m om te selecteren en deselecteren en druk \u001b[38;2;250;156;55mENTER\u001b[0m om door te gaan");
+        Console.WriteLine("Gebruik de \u001b[38;2;250;156;55mPIJLTJESTOETSEN\u001b[0m om te navigeren, druk \u001b[38;2;250;156;55mSPATIE\u001b[0m om te selecteren en deselecteren en druk \u001b[38;2;250;156;55mENTER\u001b[0m om door te gaan. De \u001b[38;2;250;156;55mESCAPE\u001b[0m knop is om bestelling te annuleren.");
         Console.WriteLine((numInvalideTickets == 1) ? $"U heeft \u001b[38;2;250;156;55m{numInvalideTickets}\u001b[0m zijkant stoel om te selecteren" : $"U heeft \u001b[38;2;250;156;55m{numInvalideTickets}\u001b[0m zijkant stoelen om te selecteren");
         Console.WriteLine((numNormaleTickets == 1) ? $"U heeft nog \u001b[38;2;250;156;55m{numNormaleTickets}\u001b[0m stoel om te selecteren" : $"U heeft nog \u001b[38;2;250;156;55m{numNormaleTickets}\u001b[0m stoelen om te selecteren");
         Console.WriteLine("\u001b[48;2;230;214;76m   \u001b[0m : Vrij \n" +
@@ -745,7 +751,7 @@ public class Zaal
         }
     }
 
-    private (int, int) findSelectedChair()
+    public (int, int) findSelectedChair()
     {
 
         int rows = stoelArray.GetLength(0);
@@ -755,7 +761,7 @@ public class Zaal
         {
             for (int j = 0; j < columns; j++)
             {
-                if (stoelArray[i, j].isCurrentChair)
+                if (stoelArray[i, j] != null && stoelArray[i, j].isCurrentChair)
                 {
                     return (i, j);
                 }
